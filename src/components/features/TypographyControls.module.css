@@ -26,3 +26,31 @@
 .label {
   @apply block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2;
 }
+
+.weightSelectContainer {
+  @apply relative;
+}
+
+.weightSelectTrigger {
+  @apply w-full appearance-none bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-xs text-slate-200 outline-hidden focus:border-blue-500/50 transition-all cursor-pointer hover:bg-white/5 flex items-center justify-between;
+}
+
+.weightSelectChevron {
+  @apply text-slate-500 transition-transform;
+}
+
+.weightSelectChevron.open {
+  @apply transform rotate-180;
+}
+
+.weightSelectDropdown {
+  @apply absolute z-50 w-full mt-1 bg-slate-900 border border-white/10 rounded-lg shadow-xl overflow-hidden;
+}
+
+.weightSelectOption {
+  @apply w-full px-4 py-2.5 text-xs text-slate-200 text-left hover:bg-white/5 transition-colors cursor-pointer border-b border-white/5 last:border-b-0;
+}
+
+.weightSelectOption.selected {
+  @apply bg-blue-500/20 text-blue-300;
+}

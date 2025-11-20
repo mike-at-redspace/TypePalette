@@ -1,9 +1,88 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronUp, Sliders } from 'lucide-react'
-import { ControlSlider, Select } from '@/components/ui'
+import { ControlSlider } from '@/components/ui'
 import CasingControl from './CasingControl'
 import styles from './TypographyControls.module.css'
+
+const WEIGHT_OPTIONS = [
+  { value: '300', label: 'Light (300)' },
+  { value: '400', label: 'Regular (400)' },
+  { value: '500', label: 'Medium (500)' },
+  { value: '600', label: 'Semi-Bold (600)' },
+  { value: '700', label: 'Bold (700)' },
+  { value: '900', label: 'Black (900)' }
+]
+
+const WeightSelect = ({ value, onChange, fontFamily, options }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const containerRef = useRef(null)
+  const selectedOption = options.find(opt => opt.value === value) || options[0]
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen])
+
+  return (
+    <div className={styles.weightSelectContainer} ref={containerRef}>
+      <button
+        type='button'
+        className={styles.weightSelectTrigger}
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          fontFamily: `"${fontFamily}", sans-serif`,
+          fontWeight: value || '400'
+        }}
+      >
+        <span>{selectedOption.label}</span>
+        <ChevronDown
+          size={14}
+          className={`${styles.weightSelectChevron} ${isOpen ? styles.open : ''}`}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={styles.weightSelectDropdown}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            {options.map(option => (
+              <button
+                key={option.value}
+                type='button'
+                className={`${styles.weightSelectOption} ${
+                  value === option.value ? styles.selected : ''
+                }`}
+                onClick={() => {
+                  onChange(option.value)
+                  setIsOpen(false)
+                }}
+                style={{
+                  fontFamily: `"${fontFamily}", sans-serif`,
+                  fontWeight: option.value
+                }}
+              >
+                {option.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
 
 const TypographyControls = ({
   config,
@@ -14,6 +93,8 @@ const TypographyControls = ({
   const [isOpen, setIsOpen] = useState(false)
   const currentConfig =
     config[activeRole]?.[activeElement] || config[activeRole]?.all || {}
+  
+  const fontFamily = currentConfig.family || 'Inter'
 
   return (
     <div className={styles.container}>
@@ -44,17 +125,12 @@ const TypographyControls = ({
           >
             <div className={styles.weightControl}>
               <label className={styles.label}>Weight</label>
-              <Select
+              <WeightSelect
                 value={currentConfig.weight}
-                onChange={e => onUpdate('weight', e.target.value)}
-              >
-                <option value='300'>Light (300)</option>
-                <option value='400'>Regular (400)</option>
-                <option value='500'>Medium (500)</option>
-                <option value='600'>Semi-Bold (600)</option>
-                <option value='700'>Bold (700)</option>
-                <option value='900'>Black (900)</option>
-              </Select>
+                onChange={weight => onUpdate('weight', weight)}
+                fontFamily={fontFamily}
+                options={WEIGHT_OPTIONS}
+              />
             </div>
 
             <ControlSlider
