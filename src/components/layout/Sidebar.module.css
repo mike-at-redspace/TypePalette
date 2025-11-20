@@ -8,7 +8,7 @@
 }
 
 .presetSection {
-  @apply px-6 pt-6 flex-1 overflow-y-auto;
+  @apply px-6 pt-4 flex-1 overflow-y-auto;
 }
 
 .roleSection {
