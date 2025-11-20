@@ -31,7 +31,7 @@
 }
 
 .tabContent {
-  @apply space-y-6 mt-4;
+  @apply space-y-6 mt-4 pb-4;
   transform: translateZ(0);
 }
 
@@ -90,12 +90,4 @@
 
 .infoText code {
   @apply bg-black/30 px-1.5 py-0.5 rounded text-cyan-300 font-mono;
-}
-
-.footer {
-  @apply p-4 border-t border-white/10 bg-white/5 text-center;
-}
-
-.footerText {
-  @apply text-[10px] text-slate-500;
 }
