@@ -8,7 +8,7 @@ const Header = ({ onExportClick }) => (
       <div className={styles.logoIcon}>
         <Type size={20} className={styles.typeIcon} />
       </div>
-      <span className={styles.logoText}>TypeScale</span>
+      <span className={styles.logoText}>TypePalette</span>
     </div>
     <div className={styles.actions}>
       <Button onClick={onExportClick}>
