@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Code,
   Copy,
@@ -49,115 +50,116 @@ const ExportModal = ({ isOpen, onClose, config }) => {
     { id: 'framework', label: 'Framework', icon: Rocket }
   ]
 
+  const CodeSection = ({
+    label,
+    labelClass,
+    code,
+    buttonId,
+    language = 'css'
+  }) => (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className={styles.header}>
+        <label className={labelClass}>{label}</label>
+        <motion.button
+          onClick={() => handleCopy(code, buttonId)}
+          className={styles.copyButton}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <AnimatePresence mode='wait'>
+            {copiedButton === buttonId ? (
+              <motion.div
+                key='check'
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className={styles.copyButtonContent}
+              >
+                <Check size={12} className={styles.checkIcon} /> Copied
+              </motion.div>
+            ) : (
+              <motion.div
+                key='copy'
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className={styles.copyButtonContent}
+              >
+                <Copy size={12} /> Copy
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
+      </div>
+      <motion.div
+        className={styles.codeBlock}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1 }}
+      >
+        <CodeBlock code={code} language={language} />
+      </motion.div>
+    </motion.div>
+  )
+
   const renderContent = () => {
     switch (activeTab) {
       case 'tailwind':
         return (
-          <div className={styles.tabContent}>
-            <div>
-              <div className={styles.header}>
-                <label className={styles.label}>
-                  Comprehensive Tailwind v4 Config
-                </label>
-                <button
-                  onClick={() =>
-                    handleCopy(comprehensiveTailwind, 'comprehensiveTailwind')
-                  }
-                  className={styles.copyButton}
-                >
-                  {copiedButton === 'comprehensiveTailwind' ? (
-                    <>
-                      <Check size={12} className={styles.checkIcon} /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
-              <div className={styles.codeBlock}>
-                <CodeBlock code={comprehensiveTailwind} language='css' />
-              </div>
-            </div>
-            <div>
-              <div className={styles.header}>
-                <label className={styles.labelSecondary}>
-                  Basic Tailwind v4
-                </label>
-                <button
-                  onClick={() => handleCopy(tailwindConfig, 'tailwindConfig')}
-                  className={styles.copyButton}
-                >
-                  {copiedButton === 'tailwindConfig' ? (
-                    <>
-                      <Check size={12} className={styles.checkIcon} /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
-              <div className={styles.codeBlock}>
-                <CodeBlock code={tailwindConfig} language='css' />
-              </div>
-            </div>
-            <div>
-              <div className={styles.header}>
-                <label className={styles.labelSecondary}>
-                  Standard CSS Variables
-                </label>
-                <button
-                  onClick={() => handleCopy(cssVars, 'cssVars')}
-                  className={styles.copyButton}
-                >
-                  {copiedButton === 'cssVars' ? (
-                    <>
-                      <Check size={12} className={styles.checkIcon} /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
-              <div className={styles.codeBlock}>
-                <CodeBlock code={cssVars} language='css' />
-              </div>
-            </div>
-          </div>
+          <motion.div
+            key='tailwind'
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className={styles.tabContent}
+          >
+            <CodeSection
+              label='Comprehensive Tailwind v4 Config'
+              labelClass={styles.label}
+              code={comprehensiveTailwind}
+              buttonId='comprehensiveTailwind'
+            />
+            <CodeSection
+              label='Basic Tailwind v4'
+              labelClass={styles.labelSecondary}
+              code={tailwindConfig}
+              buttonId='tailwindConfig'
+            />
+            <CodeSection
+              label='Standard CSS Variables'
+              labelClass={styles.labelSecondary}
+              code={cssVars}
+              buttonId='cssVars'
+            />
+          </motion.div>
         )
       case 'prose':
         return (
-          <div className={styles.tabContent}>
-            <div>
-              <div className={styles.header}>
-                <label className={styles.label}>
-                  @tailwindcss/typography Configuration
-                </label>
-                <button
-                  onClick={() => handleCopy(proseConfig, 'proseConfig')}
-                  className={styles.copyButton}
-                >
-                  {copiedButton === 'proseConfig' ? (
-                    <>
-                      <Check size={12} className={styles.checkIcon} /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
-              <div className={styles.codeBlock}>
-                <CodeBlock code={proseConfig} language='css' />
-              </div>
-            </div>
-            <div className={styles.infoBox}>
+          <motion.div
+            key='prose'
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className={styles.tabContent}
+          >
+            <CodeSection
+              label='@tailwindcss/typography Configuration'
+              labelClass={styles.label}
+              code={proseConfig}
+              buttonId='proseConfig'
+            />
+            <motion.div
+              className={styles.infoBox}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
               <p className={styles.infoText}>
                 <strong>Install:</strong>{' '}
                 <code>npm install @tailwindcss/typography</code>
@@ -166,114 +168,71 @@ const ExportModal = ({ isOpen, onClose, config }) => {
                 <strong>Usage:</strong> Add <code>class="prose"</code> to any
                 container with long-form content.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )
       case 'json':
         return (
-          <div className={styles.tabContent}>
-            <div>
-              <div className={styles.header}>
-                <label className={styles.label}>Design Tokens (JSON)</label>
-                <button
-                  onClick={() => handleCopy(jsonTokens, 'jsonTokens')}
-                  className={styles.copyButton}
-                >
-                  {copiedButton === 'jsonTokens' ? (
-                    <>
-                      <Check size={12} className={styles.checkIcon} /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
-              <div className={styles.codeBlock}>
-                <CodeBlock code={jsonTokens} language='json' />
-              </div>
-            </div>
-            <div className={styles.infoBox}>
+          <motion.div
+            key='json'
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className={styles.tabContent}
+          >
+            <CodeSection
+              label='Design Tokens (JSON)'
+              labelClass={styles.label}
+              code={jsonTokens}
+              buttonId='jsonTokens'
+              language='json'
+            />
+            <motion.div
+              className={styles.infoBox}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
               <p className={styles.infoText}>
                 Platform-agnostic tokens that can be used with Figma plugins,
                 CSS-in-JS libraries, or imported into Tailwind config files.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )
       case 'framework':
         return (
-          <div className={styles.tabContent}>
-            <div>
-              <div className={styles.header}>
-                <label className={styles.label}>
-                  Next.js (next/font/google)
-                </label>
-                <button
-                  onClick={() => handleCopy(nextJSInstall, 'nextJSInstall')}
-                  className={styles.copyButton}
-                >
-                  {copiedButton === 'nextJSInstall' ? (
-                    <>
-                      <Check size={12} className={styles.checkIcon} /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
-              <div className={styles.codeBlock}>
-                <CodeBlock code={nextJSInstall} language='jsx' />
-              </div>
-            </div>
-            <div>
-              <div className={styles.header}>
-                <label className={styles.labelSecondary}>Vite</label>
-                <button
-                  onClick={() => handleCopy(viteInstall, 'viteInstall')}
-                  className={styles.copyButton}
-                >
-                  {copiedButton === 'viteInstall' ? (
-                    <>
-                      <Check size={12} className={styles.checkIcon} /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
-              <div className={styles.codeBlock}>
-                <CodeBlock code={viteInstall} language='html' />
-              </div>
-            </div>
-            <div>
-              <div className={styles.header}>
-                <label className={styles.labelSecondary}>Plain HTML</label>
-                <button
-                  onClick={() => handleCopy(htmlInstall, 'htmlInstall')}
-                  className={styles.copyButton}
-                >
-                  {copiedButton === 'htmlInstall' ? (
-                    <>
-                      <Check size={12} className={styles.checkIcon} /> Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
-              <div className={styles.codeBlock}>
-                <CodeBlock code={htmlInstall} language='html' />
-              </div>
-            </div>
-          </div>
+          <motion.div
+            key='framework'
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className={styles.tabContent}
+          >
+            <CodeSection
+              label='Next.js (next/font/google)'
+              labelClass={styles.label}
+              code={nextJSInstall}
+              buttonId='nextJSInstall'
+              language='jsx'
+            />
+            <CodeSection
+              label='Vite'
+              labelClass={styles.labelSecondary}
+              code={viteInstall}
+              buttonId='viteInstall'
+              language='html'
+            />
+            <CodeSection
+              label='Plain HTML'
+              labelClass={styles.labelSecondary}
+              code={htmlInstall}
+              buttonId='htmlInstall'
+              language='html'
+            />
+          </motion.div>
         )
       default:
         return null
@@ -291,8 +250,13 @@ const ExportModal = ({ isOpen, onClose, config }) => {
       }
     >
       <div className={styles.content}>
-        <Tabs active={activeTab} options={exportTabs} onChange={setActiveTab} />
-        {renderContent()}
+        <Tabs
+          active={activeTab}
+          options={exportTabs}
+          onChange={setActiveTab}
+          layoutId='exportTab'
+        />
+        <AnimatePresence mode='wait'>{renderContent()}</AnimatePresence>
       </div>
 
       <div className={styles.footer}>

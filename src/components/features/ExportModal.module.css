@@ -27,6 +27,10 @@
   @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded transition-colors;
 }
 
+.copyButtonContent {
+  @apply flex items-center gap-1;
+}
+
 .checkIcon {
   @apply text-green-400;
 }

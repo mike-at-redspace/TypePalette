@@ -21,7 +21,7 @@ const PreviewToolbar = ({ activeMode, onModeChange }) => {
           <span className={styles.label}>{mode.label}</span>
           {activeMode === mode.id && (
             <motion.div
-              layoutId="activePreviewButton"
+              layoutId='activePreviewButton'
               className={styles.activeIndicator}
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />

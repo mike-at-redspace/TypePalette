@@ -21,7 +21,7 @@ const CasingControl = ({ value, onChange }) => {
             {option.label}
             {value === option.value && (
               <motion.div
-                layoutId="activeCasing"
+                layoutId='activeCasing'
                 className={styles.activeIndicator}
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
@@ -34,4 +34,3 @@ const CasingControl = ({ value, onChange }) => {
 }
 
 export default CasingControl
-
