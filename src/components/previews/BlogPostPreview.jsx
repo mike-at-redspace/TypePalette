@@ -1,17 +1,30 @@
 import { useMemo } from 'react'
-import { falso } from '@/utils'
 
 const BlogPostPreview = ({ style }) => {
   const content = useMemo(
     () => ({
-      title: falso.randPhrase(),
-      author: falso.randFullName(),
-      date: `Oct ${falso.randNumber({ min: 1, max: 30 })}, 2024`,
-      body1: falso.randParagraph(),
-      body2: falso.randParagraph(),
-      subtitle: falso.randPhrase(),
-      body3: falso.randParagraph(),
-      quote: falso.randPhrase()
+      title: 'Why Your Font Choices Are Making Designers Cry',
+      author: 'Helvetica Neue',
+      date: 'Oct 24, 2024',
+      subtitle: 'Typography Tips',
+      body1: {
+        start: 'Let\'s talk about the elephant in the room:',
+        strong: 'Comic Sans',
+        end: 'is not a font choice, it\'s a cry for help. When you use it in a professional setting, you\'re essentially telling the world that you gave up on life somewhere around 1994.'
+      },
+      body2: {
+        start: 'Typography is more than just',
+        emphasis: 'picking pretty letters',
+        end: '. It\'s about creating hierarchy, establishing mood, and making sure your users don\'t have to squint to read your content. If your line-height is too tight, you\'re not being edgy—you\'re being cruel.'
+      },
+      body3: {
+        start: 'Remember:',
+        code: 'font-family',
+        middle: 'is not a suggestion, it\'s a',
+        link: 'commitment',
+        end: 'Choose wisely, or your users will choose a different website'
+      },
+      quote: 'The difference between good typography and bad typography is the difference between looking professional and looking like you designed your site in Microsoft Word.'
     }),
     []
   )
@@ -31,35 +44,31 @@ const BlogPostPreview = ({ style }) => {
       </div>
       <div className='font-body text-lg text-slate-200 space-y-8 leading-relaxed'>
         <p>
-          {content.body1.split(' ').slice(0, 5).join(' ')}{' '}
-          <strong className='body-strong'>
-            {content.body1.split(' ').slice(5, 8).join(' ')}
-          </strong>{' '}
-          {content.body1.split(' ').slice(8).join(' ')}
+          {content.body1.start}{' '}
+          <strong className='body-strong'>{content.body1.strong}</strong>{' '}
+          {content.body1.end}
         </p>
         <p>
-          {content.body2.split(' ').slice(0, 3).join(' ')}{' '}
-          <em className='body-emphasis'>
-            {content.body2.split(' ').slice(3, 6).join(' ')}
-          </em>{' '}
-          {content.body2.split(' ').slice(6).join(' ')}
+          {content.body2.start}{' '}
+          <em className='body-emphasis'>{content.body2.emphasis}</em>{' '}
+          {content.body2.end}
         </p>
         <h2 className='font-heading text-3xl mt-12 mb-6 text-white'>
           {content.subtitle}
         </h2>
         <p>
-          {content.body3.split(' ').slice(0, 4).join(' ')}{' '}
+          {content.body3.start}{' '}
           <code className='body-code bg-slate-800/50 px-2 py-1 rounded text-cyan-300'>
-            {content.body3.split(' ').slice(4, 5).join(' ')}
+            {content.body3.code}
           </code>{' '}
-          {content.body3.split(' ').slice(5, 8).join(' ')}{' '}
+          {content.body3.middle}{' '}
           <a
             href='#'
             className='body-link text-cyan-400 hover:text-cyan-300 underline decoration-cyan-500/50 hover:decoration-cyan-400'
           >
-            {content.body3.split(' ').slice(8, 10).join(' ')}
-          </a>{' '}
-          {content.body3.split(' ').slice(10).join(' ')}
+            {content.body3.link}
+          </a>
+          . {content.body3.end}.
         </p>
         <blockquote className='body-blockquote bg-slate-900/70 border-l-4 border-purple-400 p-8 italic text-2xl my-12 text-white rounded-r-xl backdrop-blur-sm shadow-lg'>
           "{content.quote}"
