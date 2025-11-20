@@ -25,17 +25,21 @@ function App() {
     setActiveElement('all')
   }, [activeRole, setActiveElement])
 
+  // Wrapper to reset all user settings when applying a preset
+  const handleApplyPreset = presetId => {
+    applyPreset(presetId)
+    setActiveRole('headings')
+    setActiveElement('all')
+    setSearchQuery('')
+    setMode('custom')
+  }
+
   useFontLoader(config)
 
   const previewStyles = useMemo(() => {
-    // When editing a specific element, use that element's config for the base variables
-    // so the preview shows the changes in real-time
+    // Base CSS variables always use the 'all' config for each role
+    // Element-specific variables are set separately below and handle individual element styling
     const getRoleConfig = role => {
-      if (activeRole === role && activeElement !== 'all') {
-        // Use the active element's config for this role
-        return config[role]?.[activeElement] || config[role]?.all || {}
-      }
-      // Otherwise use the 'all' config
       return config[role]?.all || {}
     }
 
@@ -99,7 +103,7 @@ function App() {
     })
 
     return styles
-  }, [config, activeRole, activeElement])
+  }, [config])
 
   return (
     <div className={styles.app}>
@@ -116,7 +120,7 @@ function App() {
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           onUpdate={updateConfig}
-          onApplyPreset={applyPreset}
+          onApplyPreset={handleApplyPreset}
         />
         <MainContent
           previewMode={previewMode}
