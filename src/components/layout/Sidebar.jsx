@@ -1,4 +1,5 @@
 import { LayoutDashboard } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Tabs, Select } from '@/components/ui'
 import {
   FontSelector,
@@ -72,64 +73,79 @@ const Sidebar = ({
           ]}
         />
       </div>
-      {mode === 'preset' ? (
-        <div className={styles.presetSection}>
-          <PresetSelector onApplyPreset={onApplyPreset} />
-        </div>
-      ) : (
-        <>
-          <div className={styles.roleSection}>
-            <h2 className={styles.sectionTitle}>
-              <LayoutDashboard size={14} /> Context
-            </h2>
-            <Tabs
-              active={activeRole}
-              onChange={onRoleChange}
-              layoutId='contextTab'
-              options={[
-                { id: 'headings', label: 'Headings' },
-                { id: 'body', label: 'Body' },
-                { id: 'ui', label: 'Interface' }
-              ]}
-            />
-            <div className={styles.elementSelector}>
-              <Select
-                value={activeElement}
-                onChange={e => onElementChange(e.target.value)}
-                className={styles.elementSelect}
-              >
-                {elementOptions.map(option => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Select>
-            </div>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.typefaceSection}>
-              <FontSelector
-                activeFamily={currentConfig?.family}
-                searchQuery={searchQuery}
-                onSearchChange={onSearchChange}
-                onFontSelect={family => {
-                  const font = GOOGLE_FONTS.find(f => f.name === family)
-                  if (font) {
-                    // Update both family and category in a single atomic update
-                    onUpdate({ family, category: font.category })
-                  }
-                }}
+      <AnimatePresence mode='wait'>
+        {mode === 'preset' ? (
+          <motion.div
+            key='preset'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className={styles.presetSection}
+          >
+            <PresetSelector onApplyPreset={onApplyPreset} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key='custom'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className={styles.roleSection}>
+              <h2 className={styles.sectionTitle}>
+                <LayoutDashboard size={14} /> Context
+              </h2>
+              <Tabs
+                active={activeRole}
+                onChange={onRoleChange}
+                layoutId='contextTab'
+                options={[
+                  { id: 'headings', label: 'Headings' },
+                  { id: 'body', label: 'Body' },
+                  { id: 'ui', label: 'Interface' }
+                ]}
               />
-              <TypographyControls
-                config={config}
-                activeRole={activeRole}
-                activeElement={activeElement}
-                onUpdate={onUpdate}
-              />
+              <div className={styles.elementSelector}>
+                <Select
+                  value={activeElement}
+                  onChange={e => onElementChange(e.target.value)}
+                  className={styles.elementSelect}
+                >
+                  {elementOptions.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </Select>
+              </div>
             </div>
-          </div>
-        </>
-      )}
+            <div className={styles.content}>
+              <div className={styles.typefaceSection}>
+                <FontSelector
+                  activeFamily={currentConfig?.family}
+                  searchQuery={searchQuery}
+                  onSearchChange={onSearchChange}
+                  onFontSelect={family => {
+                    const font = GOOGLE_FONTS.find(f => f.name === family)
+                    if (font) {
+                      // Update both family and category in a single atomic update
+                      onUpdate({ family, category: font.category })
+                    }
+                  }}
+                />
+                <TypographyControls
+                  config={config}
+                  activeRole={activeRole}
+                  activeElement={activeElement}
+                  onUpdate={onUpdate}
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </aside>
   )
 }
