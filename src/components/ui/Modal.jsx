@@ -1,72 +1,44 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import styles from './Modal.module.css'
 
 const Modal = ({ isOpen, onClose, title, children }) => {
-  const [isClosing, setIsClosing] = useState(false)
-  const [shouldRender, setShouldRender] = useState(isOpen)
-  const timerRef = useRef(null)
-  const prevIsOpenRef = useRef(isOpen)
+  const [isVisible, setIsVisible] = useState(false)
+  const [shouldRender, setShouldRender] = useState(false)
 
   useEffect(() => {
-    // Only update state when isOpen actually changes
-    if (isOpen !== prevIsOpenRef.current) {
-      prevIsOpenRef.current = isOpen
-
-      if (isOpen) {
-        // Clear any existing timer
-        if (timerRef.current) {
-          clearTimeout(timerRef.current)
-          timerRef.current = null
-        }
-        // Use setTimeout to defer state update
-        timerRef.current = setTimeout(() => {
-          setShouldRender(true)
-          setIsClosing(false)
-          timerRef.current = null
-        }, 0)
-      } else if (shouldRender) {
-        // Use setTimeout to defer state update
-        timerRef.current = setTimeout(() => {
-          setIsClosing(true)
-          timerRef.current = setTimeout(() => {
-            setShouldRender(false)
-            setIsClosing(false)
-            timerRef.current = null
-          }, 200) // Match animation duration
-        }, 0)
-      }
+    if (isOpen) {
+      setShouldRender(true)
+      // Trigger animation on next frame
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsVisible(true)
+        })
+      })
+    } else {
+      setIsVisible(false)
+      // Wait for animation to complete before unmounting
+      const timer = setTimeout(() => {
+        setShouldRender(false)
+      }, 200)
+      return () => clearTimeout(timer)
     }
-
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current)
-        timerRef.current = null
-      }
-    }
-  }, [isOpen, shouldRender])
-
-  const handleClose = () => {
-    setIsClosing(true)
-    setTimeout(() => {
-      onClose()
-    }, 200)
-  }
+  }, [isOpen])
 
   if (!shouldRender) return null
 
   return (
     <div
-      className={`${styles.overlay} ${isClosing ? styles.fadeOut : styles.fadeIn}`}
-      onClick={handleClose}
+      className={`${styles.overlay} ${isVisible ? styles.visible : ''}`}
+      onClick={onClose}
     >
       <div
-        className={`${styles.content} ${isClosing ? styles.zoomOut : styles.zoomIn}`}
+        className={`${styles.content} ${isVisible ? styles.visible : ''}`}
         onClick={e => e.stopPropagation()}
       >
         <div className={styles.header}>
           <h2 className={styles.title}>{title}</h2>
-          <button onClick={handleClose} className={styles.closeButton}>
+          <button onClick={onClose} className={styles.closeButton}>
             <X size={20} />
           </button>
         </div>

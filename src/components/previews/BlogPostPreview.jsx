@@ -22,7 +22,7 @@ const BlogPostPreview = ({ style }) => {
         code: 'font-family',
         middle: 'is not a suggestion, it\'s a',
         link: 'commitment',
-        end: 'Choose wisely, or your users will choose a different website'
+        end: 'Choose wisely, or your users will choose a different website.'
       },
       quote: 'The difference between good typography and bad typography is the difference between looking professional and looking like you designed your site in Microsoft Word.'
     }),
@@ -68,7 +68,7 @@ const BlogPostPreview = ({ style }) => {
           >
             {content.body3.link}
           </a>
-          . {content.body3.end}.
+          . {content.body3.end}
         </p>
         <blockquote className='body-blockquote bg-slate-900/70 border-l-4 border-purple-400 p-8 italic text-2xl my-12 text-white rounded-r-xl backdrop-blur-sm shadow-lg'>
           "{content.quote}"
