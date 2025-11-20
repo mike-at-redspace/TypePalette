@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, forwardRef } from 'react'
 import { X } from 'lucide-react'
 import styles from './Modal.module.css'
 
-const Modal = ({ isOpen, onClose, title, children }) => {
+const Modal = forwardRef(({ isOpen, onClose, title, children }, ref) => {
   const [isVisible, setIsVisible] = useState(false)
   const [shouldRender, setShouldRender] = useState(false)
 
@@ -42,10 +42,12 @@ const Modal = ({ isOpen, onClose, title, children }) => {
             <X size={20} />
           </button>
         </div>
-        <div className={styles.body}>{children}</div>
+        <div className={styles.body} ref={ref}>{children}</div>
       </div>
     </div>
   )
-}
+})
+
+Modal.displayName = 'Modal'
 
 export default Modal

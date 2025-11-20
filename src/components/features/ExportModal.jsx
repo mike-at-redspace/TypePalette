@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Code,
@@ -25,6 +25,29 @@ import styles from './ExportModal.module.css'
 const ExportModal = ({ isOpen, onClose, config }) => {
   const [activeTab, setActiveTab] = useState('tailwind')
   const [copiedButton, setCopiedButton] = useState(null)
+  const [isContentReady, setIsContentReady] = useState(false)
+  const contentRef = useRef(null)
+
+  // Reset scroll position when tab changes
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0
+    }
+  }, [activeTab])
+
+  // Ensure content is ready before showing
+  useEffect(() => {
+    if (isOpen) {
+      setIsContentReady(false)
+      // Small delay to ensure code blocks are ready
+      const timer = setTimeout(() => {
+        setIsContentReady(true)
+      }, 50)
+      return () => clearTimeout(timer)
+    } else {
+      setIsContentReady(false)
+    }
+  }, [isOpen, activeTab])
 
   const cssVars = generateCSSExport(config)
   const tailwindConfig = generateTailwindExport(config)
@@ -57,11 +80,7 @@ const ExportModal = ({ isOpen, onClose, config }) => {
     buttonId,
     language = 'css'
   }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <div>
       <div className={styles.header}>
         <label className={labelClass}>{label}</label>
         <motion.button
@@ -95,15 +114,10 @@ const ExportModal = ({ isOpen, onClose, config }) => {
           </AnimatePresence>
         </motion.button>
       </div>
-      <motion.div
-        className={styles.codeBlock}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.1 }}
-      >
+      <div className={styles.codeBlock}>
         <CodeBlock code={code} language={language} />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 
   const renderContent = () => {
@@ -112,10 +126,14 @@ const ExportModal = ({ isOpen, onClose, config }) => {
         return (
           <motion.div
             key='tailwind'
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ 
+              opacity: { duration: 0.3 },
+              layout: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
+            }}
             className={styles.tabContent}
           >
             <CodeSection
@@ -142,10 +160,14 @@ const ExportModal = ({ isOpen, onClose, config }) => {
         return (
           <motion.div
             key='prose'
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ 
+              opacity: { duration: 0.3 },
+              layout: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
+            }}
             className={styles.tabContent}
           >
             <CodeSection
@@ -154,12 +176,7 @@ const ExportModal = ({ isOpen, onClose, config }) => {
               code={proseConfig}
               buttonId='proseConfig'
             />
-            <motion.div
-              className={styles.infoBox}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
+            <div className={styles.infoBox}>
               <p className={styles.infoText}>
                 <strong>Install:</strong>{' '}
                 <code>npm install @tailwindcss/typography</code>
@@ -168,17 +185,21 @@ const ExportModal = ({ isOpen, onClose, config }) => {
                 <strong>Usage:</strong> Add <code>class="prose"</code> to any
                 container with long-form content.
               </p>
-            </motion.div>
+            </div>
           </motion.div>
         )
       case 'json':
         return (
           <motion.div
             key='json'
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ 
+              opacity: { duration: 0.3 },
+              layout: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
+            }}
             className={styles.tabContent}
           >
             <CodeSection
@@ -188,27 +209,26 @@ const ExportModal = ({ isOpen, onClose, config }) => {
               buttonId='jsonTokens'
               language='json'
             />
-            <motion.div
-              className={styles.infoBox}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
+            <div className={styles.infoBox}>
               <p className={styles.infoText}>
                 Platform-agnostic tokens that can be used with Figma plugins,
                 CSS-in-JS libraries, or imported into Tailwind config files.
               </p>
-            </motion.div>
+            </div>
           </motion.div>
         )
       case 'framework':
         return (
           <motion.div
             key='framework'
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ 
+              opacity: { duration: 0.3 },
+              layout: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
+            }}
             className={styles.tabContent}
           >
             <CodeSection
@@ -250,13 +270,21 @@ const ExportModal = ({ isOpen, onClose, config }) => {
       }
     >
       <div className={styles.content}>
-        <Tabs
-          active={activeTab}
-          options={exportTabs}
-          onChange={setActiveTab}
-          layoutId='exportTab'
-        />
-        <AnimatePresence mode='wait'>{renderContent()}</AnimatePresence>
+        <div className={styles.tabsContainer}>
+          <Tabs
+            active={activeTab}
+            options={exportTabs}
+            onChange={setActiveTab}
+            layoutId='exportTab'
+          />
+        </div>
+        <div className={styles.tabContentWrapper} ref={contentRef}>
+          {isContentReady && (
+            <AnimatePresence mode='wait' initial={false}>
+              {renderContent()}
+            </AnimatePresence>
+          )}
+        </div>
       </div>
 
       <div className={styles.footer}>

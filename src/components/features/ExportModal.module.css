@@ -5,10 +5,34 @@
 
 .content {
   @apply space-y-6;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.tabsContainer {
+  @apply mb-0;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background: rgb(2 6 23 / 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.tabContentWrapper {
+  @apply relative;
+  min-height: 400px;
+  transform: translateZ(0);
+  will-change: contents;
+  opacity: 1;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .tabContent {
   @apply space-y-6 mt-4;
+  transform: translateZ(0);
 }
 
 .header {
@@ -24,7 +48,7 @@
 }
 
 .copyButton {
-  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded transition-colors;
+  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded transition-colors mr-2;
 }
 
 .copyButtonContent {
@@ -36,15 +60,20 @@
 }
 
 .codeBlock {
-  @apply bg-black/50 p-4 rounded-xl border border-white/5 overflow-hidden relative;
+  @apply bg-black/50 rounded-xl border border-white/5 overflow-hidden relative;
 }
 
 .codeBlock :global(pre) {
-  @apply m-0 p-0;
+  @apply m-0;
   background: transparent !important;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  border-radius: 0.5rem;
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
 }
 
 .codeBlock :global(pre::-webkit-scrollbar) {

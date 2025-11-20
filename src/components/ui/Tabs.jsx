@@ -4,10 +4,11 @@ import styles from './Tabs.module.css'
 const Tabs = ({ active, options, onChange, layoutId = 'activeTab' }) => (
   <div className={styles.container}>
     {options.map(opt => (
-      <button
+      <motion.button
         key={opt.id}
         onClick={() => onChange(opt.id)}
         className={`${styles.tab} ${active === opt.id ? styles.active : ''}`}
+        layout
       >
         {opt.icon && <opt.icon size={14} />}
         {opt.label}
@@ -18,7 +19,7 @@ const Tabs = ({ active, options, onChange, layoutId = 'activeTab' }) => (
             transition={{ type: 'spring', stiffness: 500, damping: 30 }}
           />
         )}
-      </button>
+      </motion.button>
     ))}
   </div>
 )
