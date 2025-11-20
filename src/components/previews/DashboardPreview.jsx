@@ -1,5 +1,12 @@
 import { useMemo } from 'react'
-import { ArrowUpDown, TrendingUp, TrendingDown, Clock, User, DollarSign } from 'lucide-react'
+import {
+  ArrowUpDown,
+  TrendingUp,
+  TrendingDown,
+  Clock,
+  User,
+  DollarSign
+} from 'lucide-react'
 import { GlassPanel } from '@/components/ui'
 import { falso } from '@/utils'
 
@@ -28,55 +35,54 @@ const DashboardPreview = ({ style }) => {
     []
   )
 
-  const transactions = useMemo(
-    () => {
-      const projects = [
-        'Fix Comic Sans',
-        'Kerning Emergency',
-        'Font Loading',
-        'Tracking Issues',
-        'Leading Problems',
-        'Ligature Support',
-        'Baseline Alignment',
-        'X-Height Crisis'
-      ]
-      const clients = [
-        'Helvetica Neue',
-        'Times Roman',
-        'Arial Bold',
-        'Georgia Serif',
-        'Roboto Slab',
-        'Open Sans',
-        'Lato Light',
-        'Montserrat'
-      ]
-      const statuses = ['Active', 'Pending', 'Completed', 'On Hold']
-      const priorities = ['High', 'Medium', 'Low']
+  const transactions = useMemo(() => {
+    const projects = [
+      'Fix Comic Sans',
+      'Kerning Emergency',
+      'Font Loading',
+      'Tracking Issues',
+      'Leading Problems',
+      'Ligature Support',
+      'Baseline Alignment',
+      'X-Height Crisis'
+    ]
+    const clients = [
+      'Helvetica Neue',
+      'Times Roman',
+      'Arial Bold',
+      'Georgia Serif',
+      'Roboto Slab',
+      'Open Sans',
+      'Lato Light',
+      'Montserrat'
+    ]
+    const statuses = ['Active', 'Pending', 'Completed', 'On Hold']
+    const priorities = ['High', 'Medium', 'Low']
 
-      return Array.from({ length: 8 }, (_, i) => {
-        const status = statuses[falso.randNumber({ min: 0, max: statuses.length - 1 })]
-        const priority = priorities[falso.randNumber({ min: 0, max: priorities.length - 1 })]
-        const daysAgo = falso.randNumber({ min: 1, max: 30 })
-        const date = new Date()
-        date.setDate(date.getDate() - daysAgo)
+    return Array.from({ length: 8 }, (_, i) => {
+      const status =
+        statuses[falso.randNumber({ min: 0, max: statuses.length - 1 })]
+      const priority =
+        priorities[falso.randNumber({ min: 0, max: priorities.length - 1 })]
+      const daysAgo = falso.randNumber({ min: 1, max: 30 })
+      const date = new Date()
+      date.setDate(date.getDate() - daysAgo)
 
-        return {
-          id: i + 1,
-          project: projects[i],
-          client: clients[i],
-          status,
-          priority,
-          date: date.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-          }),
-          value: falso.randFloat({ min: 100, max: 9999, fraction: 2 })
-        }
-      })
-    },
-    []
-  )
+      return {
+        id: i + 1,
+        project: projects[i],
+        client: clients[i],
+        status,
+        priority,
+        date: date.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        }),
+        value: falso.randFloat({ min: 100, max: 9999, fraction: 2 })
+      }
+    })
+  }, [])
 
   const getStatusColor = status => {
     switch (status) {
@@ -110,7 +116,9 @@ const DashboardPreview = ({ style }) => {
     <div className='h-full p-8 bg-slate-950/50' style={style}>
       <header className='flex justify-between items-end mb-10 border-b border-white/10 pb-6'>
         <div>
-          <h1 className='font-heading text-3xl text-white mb-2'>Type Metrics</h1>
+          <h1 className='font-heading text-3xl text-white mb-2'>
+            Type Metrics
+          </h1>
           <p className='body-paragraph font-body text-sm text-slate-400'>
             Tracking all your typography needs.{' '}
             <a
@@ -226,7 +234,9 @@ const DashboardPreview = ({ style }) => {
                           .join('')
                           .toUpperCase()}
                       </div>
-                      <span className='font-body text-sm'>{transaction.client}</span>
+                      <span className='font-body text-sm'>
+                        {transaction.client}
+                      </span>
                     </div>
                   </td>
                   <td className='px-6 py-4'>
@@ -269,7 +279,10 @@ const DashboardPreview = ({ style }) => {
             </tbody>
             <tfoot className='bg-black/10 border-t border-white/5'>
               <tr>
-                <td colSpan={5} className='px-6 py-4 text-right font-ui text-[10px] uppercase text-slate-500 tracking-wider'>
+                <td
+                  colSpan={5}
+                  className='px-6 py-4 text-right font-ui text-[10px] uppercase text-slate-500 tracking-wider'
+                >
                   Total
                 </td>
                 <td className='px-6 py-4 text-right'>

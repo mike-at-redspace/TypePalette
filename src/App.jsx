@@ -1,9 +1,12 @@
-import { useState, useMemo, useEffect } from 'react'
-import { Header, Sidebar, MainContent, ExportModal } from '@/components'
+import { useState, useMemo, useEffect, lazy, Suspense } from 'react'
+import { Header, Sidebar, MainContent } from '@/components'
 import { useFontLoader, useTypographyConfig } from '@/hooks'
 import '@/styles/globals.css'
 import '@/styles/preview.css'
 import styles from './App.module.css'
+
+// Lazy load ExportModal to reduce initial bundle size
+const ExportModal = lazy(() => import('@/components/features/ExportModal'))
 
 function App() {
   const {
@@ -107,7 +110,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <Header onExportClick={() => setShowExport(true)} />
+      <Header onExportClick={() => setShowExport(true)} config={config} />
       <main className={styles.main}>
         <Sidebar
           mode={mode}
@@ -128,11 +131,15 @@ function App() {
           previewStyles={previewStyles}
         />
       </main>
-      <ExportModal
-        isOpen={showExport}
-        onClose={() => setShowExport(false)}
-        config={config}
-      />
+      {showExport && (
+        <Suspense fallback={null}>
+          <ExportModal
+            isOpen={showExport}
+            onClose={() => setShowExport(false)}
+            config={config}
+          />
+        </Suspense>
+      )}
     </div>
   )
 }

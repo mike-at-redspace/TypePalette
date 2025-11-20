@@ -14,5 +14,7 @@ export {
   generateJSONTokens,
   generateNextJSInstall,
   generateViteInstall,
-  generateHTMLInstall
+  generateHTMLInstall,
+  generateKitchenSinkHTML,
+  generateExportZip
 } from './exportUtils'

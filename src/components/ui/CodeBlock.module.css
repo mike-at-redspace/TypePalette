@@ -29,3 +29,17 @@
   @apply block;
   width: 100%;
 }
+
+.fallback {
+  @apply m-0 p-4 bg-[#1e1e1e] rounded text-white overflow-x-auto;
+  font-size: 10px;
+  line-height: 1.6;
+  font-family:
+    'Cartograph CF', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+}
+
+.fallback code {
+  @apply block;
+  width: 100%;
+}

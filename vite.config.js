@@ -18,6 +18,43 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          // Separate vendor libraries into their own chunks
+          if (id.includes('node_modules')) {
+            // Framer Motion
+            if (id.includes('framer-motion')) {
+              return 'framer-motion'
+            }
+            // Lucide React
+            if (id.includes('lucide-react')) {
+              return 'lucide-react'
+            }
+            // React and React DOM
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor'
+            }
+            // React Shiki (will be lazy loaded, but separate chunk if included)
+            if (id.includes('react-shiki') || id.includes('shiki')) {
+              return 'react-shiki'
+            }
+            // JSZip (will be lazy loaded, but separate chunk if included)
+            if (id.includes('jszip')) {
+              return 'jszip'
+            }
+            // Other node_modules
+            return 'vendor'
+          }
+        }
+      }
+    },
+    // Enable minification and compression
+    minify: 'esbuild',
+    // Increase chunk size warning limit since we're splitting chunks
+    chunkSizeWarningLimit: 1000
+  },
   test: {
     projects: [{
       extends: true,

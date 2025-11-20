@@ -12,7 +12,7 @@ const MarketingPreview = ({ style }) => {
         strong: 'Comic Sans',
         middle: 'in production. Master the art of',
         emphasis: 'font pairing',
-        end: 'and make your designs look like they were made by someone who actually knows what they\'re doing.'
+        end: "and make your designs look like they were made by someone who actually knows what they're doing."
       },
       cta1: 'Fix Your Fonts',
       cta2: 'View Typefaces'
@@ -50,7 +50,8 @@ const MarketingPreview = ({ style }) => {
 
         <div className='flex flex-col sm:flex-row justify-center gap-6 mb-20'>
           <button className='font-ui text-sm bg-cyan-500 text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-cyan-500/50 hover:bg-cyan-400 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2'>
-            {content.cta1} <Play size={16} fill='currentColor' className='shrink-0' />
+            {content.cta1}{' '}
+            <Play size={16} fill='currentColor' className='shrink-0' />
           </button>
           <button className='font-ui text-sm bg-white/5 text-white border border-white/10 px-10 py-4 rounded-full font-bold hover:bg-white/10 backdrop-blur-md transition-all flex items-center justify-center gap-2'>
             <Image size={16} className='shrink-0' />
@@ -58,8 +59,8 @@ const MarketingPreview = ({ style }) => {
           </button>
         </div>
 
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] -z-10 pointer-events-none mix-blend-screen animate-pulse' />
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[80px] -z-10 pointer-events-none mix-blend-screen' />
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] -z-10 pointer-events-none mix-blend-screen animate-pulse' />
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[80px] -z-10 pointer-events-none mix-blend-screen' />
       </div>
     </div>
   )

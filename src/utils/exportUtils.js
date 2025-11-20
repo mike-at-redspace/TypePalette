@@ -1,3 +1,5 @@
+// JSZip is lazy loaded to reduce initial bundle size
+
 const getFontFamily = (family, category) => {
   const fallback = category.toLowerCase().includes('serif')
     ? 'serif'
@@ -669,26 +671,406 @@ export const generateHTMLInstall = config => {
     .map(name => name.replace(/\s+/g, '+'))
     .join('&family=')
 
-  return `
-<!DOCTYPE html>
+  return `# Typography Configuration
+
+This package contains your typography configuration files.
+
+## Installation
+
+### 1. Add Google Fonts
+
+Add the following to your HTML \`<head>\`:
+
+\`\`\`html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=${googleFontsUrl}&display=swap" rel="stylesheet">
+\`\`\`
+
+### 2. Include CSS Variables
+
+Link to \`css-variables.css\` in your HTML:
+
+\`\`\`html
+<link rel="stylesheet" href="css-variables.css">
+\`\`\`
+
+Or copy the contents of \`css-variables.css\` into your stylesheet.
+
+## Usage
+
+### CSS Variables
+
+Use the CSS variables in your styles:
+
+\`\`\`css
+.heading {
+  font-family: var(--font-heading);
+  font-weight: var(--heading-weight);
+  letter-spacing: var(--heading-tracking);
+  line-height: var(--heading-leading);
+  text-transform: var(--heading-transform);
+}
+
+.body {
+  font-family: var(--font-body);
+  font-weight: var(--body-weight);
+  letter-spacing: var(--body-tracking);
+  line-height: var(--body-leading);
+  text-transform: var(--body-transform);
+}
+
+.ui {
+  font-family: var(--font-ui);
+  font-weight: var(--ui-weight);
+  letter-spacing: var(--ui-tracking);
+  line-height: var(--ui-leading);
+  text-transform: var(--ui-transform);
+}
+\`\`\`
+
+### HTML Example
+
+\`\`\`html
+<h1 style="font-family: var(--font-heading); font-weight: var(--heading-weight);">
+  Heading Text
+</h1>
+<p style="font-family: var(--font-body); font-weight: var(--body-weight);">
+  Body text content
+</p>
+\`\`\`
+
+## Files Included
+
+- \`css-variables.css\` - CSS variables for typography system
+- \`tailwind-comprehensive.css\` - Comprehensive Tailwind v4 configuration
+- \`tailwind-basic.css\` - Basic Tailwind v4 configuration
+- \`prose-config.css\` - @tailwindcss/typography configuration
+- \`design-tokens.json\` - Design tokens in JSON format
+- \`kitchen-sink.html\` - Example HTML file demonstrating all typography elements
+- \`nextjs-install.jsx\` - Next.js installation example
+- \`vite-install.html\` - Vite installation example
+
+## See Also
+
+Check out \`kitchen-sink.html\` for a complete example of all typography elements in action.
+`.trim()
+}
+
+export const generateKitchenSinkHTML = config => {
+  // Collect all unique font families
+  const fontNames = new Set()
+
+  // Add base fonts
+  fontNames.add(config.headings?.all?.family)
+  fontNames.add(config.body?.all?.family)
+  fontNames.add(config.ui?.all?.family)
+
+  // Add element-specific fonts
+  Object.values(config.headings || {}).forEach(elemConfig => {
+    if (elemConfig?.family) fontNames.add(elemConfig.family)
+  })
+  Object.values(config.body || {}).forEach(elemConfig => {
+    if (elemConfig?.family) fontNames.add(elemConfig.family)
+  })
+  Object.values(config.ui || {}).forEach(elemConfig => {
+    if (elemConfig?.family) fontNames.add(elemConfig.family)
+  })
+
+  const googleFontsUrl = Array.from(fontNames)
+    .filter(Boolean)
+    .map(name => name.replace(/\s+/g, '+'))
+    .join('&family=')
+
+  const getRoleConfig = role => config[role]?.all || {}
+  const headingConfig = getRoleConfig('headings')
+  const bodyConfig = getRoleConfig('body')
+  const uiConfig = getRoleConfig('ui')
+
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Typography Kitchen Sink</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=${googleFontsUrl}&display=swap" rel="stylesheet">
   
+  <!-- CSS Variables -->
+  <link rel="stylesheet" href="css-variables.css">
+  
   <style>
-    ${generateCSSExport(config)}
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: #2a2a2a;
+      border-radius: 8px;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: var(--heading-weight);
+      letter-spacing: var(--heading-tracking);
+      line-height: var(--heading-leading);
+      text-transform: var(--heading-transform);
+      color: #ffffff;
+      margin-top: 0;
+    }
+    
+    p, li, td, th {
+      font-family: var(--font-body);
+      font-weight: var(--body-weight);
+      letter-spacing: var(--body-tracking);
+      line-height: var(--body-leading);
+      text-transform: var(--body-transform);
+    }
+    
+    strong {
+      font-family: var(--font-body-strong, var(--font-body));
+      font-weight: var(--body-strong-weight, var(--body-weight));
+    }
+    
+    em {
+      font-family: var(--font-body-emphasis, var(--font-body));
+      font-weight: var(--body-emphasis-weight, var(--body-weight));
+      font-style: italic;
+    }
+    
+    code {
+      font-family: var(--font-body-code, var(--font-body));
+      font-weight: var(--body-code-weight, var(--body-weight));
+      background: #3a3a3a;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+    
+    a {
+      font-family: var(--font-body-link, var(--font-body));
+      font-weight: var(--body-link-weight, var(--body-weight));
+      color: #60a5fa;
+      text-decoration: underline;
+    }
+    
+    blockquote {
+      font-family: var(--font-body-blockquote, var(--font-body));
+      font-weight: var(--body-blockquote-weight, var(--body-weight));
+      border-left: 4px solid #60a5fa;
+      padding-left: 1rem;
+      margin-left: 0;
+      font-style: italic;
+    }
+    
+    button {
+      font-family: var(--font-ui);
+      font-weight: var(--ui-weight);
+      letter-spacing: var(--ui-tracking);
+      line-height: var(--ui-leading);
+      text-transform: var(--ui-transform);
+      padding: 0.5rem 1rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background: #2563eb;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #3a3a3a;
+    }
+    
+    th {
+      font-family: var(--font-ui);
+      font-weight: var(--ui-weight);
+      background: #2a2a2a;
+    }
+    
+    input, textarea, select {
+      font-family: var(--font-body);
+      padding: 0.5rem;
+      border: 1px solid #3a3a3a;
+      border-radius: 4px;
+      background: #2a2a2a;
+      color: #e0e0e0;
+    }
   </style>
 </head>
 <body>
-  <!-- Your content here -->
+  <h1>Typography Kitchen Sink</h1>
+  <p>This page demonstrates all typography elements using your configured typography system.</p>
+  
+  <section>
+    <h2>Headings</h2>
+    <h1>Heading 1 (H1)</h1>
+    <h2>Heading 2 (H2)</h2>
+    <h3>Heading 3 (H3)</h3>
+    <h4>Heading 4 (H4)</h4>
+    <h5>Heading 5 (H5)</h5>
+    <h6>Heading 6 (H6)</h6>
+  </section>
+  
+  <section>
+    <h2>Body Text</h2>
+    <p>This is a paragraph of body text. It demonstrates the default body typography settings including font family, weight, letter spacing, line height, and text transform.</p>
+    <p>Here's another paragraph to show spacing between paragraphs. Notice how the typography system creates a comfortable reading experience with appropriate line height and letter spacing.</p>
+  </section>
+  
+  <section>
+    <h2>Text Formatting</h2>
+    <p>This paragraph contains <strong>strong/bold text</strong> and <em>emphasized/italic text</em> to demonstrate how these elements are styled.</p>
+    <p>You can also use <code>inline code</code> within paragraphs, and here's a <a href="#">link to demonstrate link styling</a>.</p>
+  </section>
+  
+  <section>
+    <h2>Blockquote</h2>
+    <blockquote>
+      "This is a blockquote. It's used for highlighting important quotes or callouts. Notice how it has distinct styling from regular paragraphs."
+    </blockquote>
+  </section>
+  
+  <section>
+    <h2>Lists</h2>
+    <h3>Unordered List</h3>
+    <ul>
+      <li>First list item</li>
+      <li>Second list item with <strong>bold text</strong></li>
+      <li>Third list item with <em>italic text</em></li>
+      <li>Fourth list item with <code>code</code></li>
+    </ul>
+    
+    <h3>Ordered List</h3>
+    <ol>
+      <li>First numbered item</li>
+      <li>Second numbered item</li>
+      <li>Third numbered item</li>
+    </ol>
+  </section>
+  
+  <section>
+    <h2>Buttons</h2>
+    <button>Primary Button</button>
+    <button style="background: #10b981; margin-left: 0.5rem;">Success Button</button>
+    <button style="background: #ef4444; margin-left: 0.5rem;">Danger Button</button>
+  </section>
+  
+  <section>
+    <h2>Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Heading Font</td>
+          <td>Typography</td>
+          <td>${headingConfig.family} - ${headingConfig.weight}</td>
+        </tr>
+        <tr>
+          <td>Body Font</td>
+          <td>Typography</td>
+          <td>${bodyConfig.family} - ${bodyConfig.weight}</td>
+        </tr>
+        <tr>
+          <td>UI Font</td>
+          <td>Typography</td>
+          <td>${uiConfig.family} - ${uiConfig.weight}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section>
+    <h2>Forms</h2>
+    <form>
+      <p>
+        <label for="text-input">Text Input:</label><br>
+        <input type="text" id="text-input" placeholder="Enter text here">
+      </p>
+      <p>
+        <label for="textarea">Textarea:</label><br>
+        <textarea id="textarea" rows="4" placeholder="Enter multiple lines of text"></textarea>
+      </p>
+      <p>
+        <label for="select">Select:</label><br>
+        <select id="select">
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+        </select>
+      </p>
+      <p>
+        <button type="submit">Submit Form</button>
+      </p>
+    </form>
+  </section>
+  
+  <section>
+    <h2>Code Block</h2>
+    <pre><code>// Example code block
+function example() {
+  const heading = document.querySelector('h1');
+  heading.style.fontFamily = 'var(--font-heading)';
+  heading.style.fontWeight = 'var(--heading-weight)';
+}</code></pre>
+  </section>
 </body>
-</html>
-`.trim()
+</html>`
+}
+
+export const generateExportZip = async config => {
+  // Lazy load JSZip only when export is triggered
+  const JSZip = (await import('jszip')).default
+  const zip = new JSZip()
+
+  // Add all export files
+  zip.file('css-variables.css', generateCSSExport(config))
+  zip.file(
+    'tailwind-comprehensive.css',
+    generateComprehensiveTailwindConfig(config)
+  )
+  zip.file('tailwind-basic.css', generateTailwindExport(config))
+  zip.file('prose-config.css', generateProseConfig(config))
+  zip.file('design-tokens.json', generateJSONTokens(config))
+  zip.file('nextjs-install.jsx', generateNextJSInstall(config))
+  zip.file('vite-install.html', generateViteInstall(config))
+  zip.file('README.md', generateHTMLInstall(config))
+  zip.file('kitchen-sink.html', generateKitchenSinkHTML(config))
+
+  // Generate zip file and trigger download
+  const blob = await zip.generateAsync({ type: 'blob' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = 'typography-export.zip'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url)
 }

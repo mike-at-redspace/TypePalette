@@ -16,13 +16,7 @@
 }
 
 .roleSection {
-  @apply px-6 py-4 border-b border-white/10 bg-white/5;
-  position: relative;
-  isolation: isolate;
-}
-
-.sectionTitle {
-  @apply text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2;
+  @apply px-6 py-4 border-b border-white/10 bg-white/5 relative isolate;
 }
 
 .elementSelector {

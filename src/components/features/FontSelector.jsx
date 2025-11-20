@@ -1,11 +1,12 @@
 import { useMemo, useEffect, useState, useRef } from 'react'
-import { Clock, Trash2, List } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Clock, Trash2, List, ChevronDown, ChevronUp, Type } from 'lucide-react'
 import { SearchInput } from '@/components/ui'
 import { GOOGLE_FONTS } from '@/utils'
 import styles from './FontSelector.module.css'
 
 const RECENT_FONTS_KEY = 'typepalette_recent_fonts'
-const MAX_RECENT_FONTS = 5
+const MAX_RECENT_FONTS = 3
 
 const getRecentFonts = () => {
   try {
@@ -50,6 +51,7 @@ const FontSelector = ({
   onFontSelect
 }) => {
   const [recentFonts, setRecentFonts] = useState(getRecentFonts())
+  const [isRecentOpen, setIsRecentOpen] = useState(true)
   const prevActiveFamilyRef = useRef(activeFamily)
 
   useEffect(() => {
@@ -103,10 +105,13 @@ const FontSelector = ({
 
   return (
     <div>
-      <h3 className={styles.title}>
-        Typeface
-        <span className={styles.badge}>{activeFamily}</span>
-      </h3>
+      <div className={styles.typefaceHeader}>
+        <div className={styles.typefaceHeaderContent}>
+          <Type size={12} />
+          <span className={styles.typefaceLabel}>Typeface</span>
+        </div>
+        {activeFamily && <span className={styles.badge}>{activeFamily}</span>}
+      </div>
 
       {activeFamily && (
         <div className={styles.preview}>
@@ -127,39 +132,60 @@ const FontSelector = ({
 
       {recentFontsToShow.length > 0 && !searchQuery && (
         <div className={styles.recentSection}>
-          <div className={styles.recentHeader}>
-            <Clock size={12} />
-            <span className={styles.recentLabel}>Recently Used</span>
-          </div>
-          <div className={styles.recentList}>
-            {recentFontsToShow.map(fontName => {
-              const font = getFontByName(fontName)
-              if (!font) return null
-              return (
-                <button
-                  key={fontName}
-                  onClick={() => handleFontSelect(fontName)}
-                  className={`${styles.fontItem} ${activeFamily === fontName ? styles.active : ''}`}
-                >
-                  <span
-                    style={{ fontFamily: fontName }}
-                    className={styles.fontName}
-                  >
-                    {fontName}
-                  </span>
-                  <div className={styles.fontItemActions}>
+          <button
+            className={styles.recentHeader}
+            onClick={() => setIsRecentOpen(!isRecentOpen)}
+          >
+            <div className={styles.recentHeaderContent}>
+              <Clock size={12} />
+              <span className={styles.recentLabel}>Recently Used</span>
+            </div>
+            {isRecentOpen ? (
+              <ChevronUp size={14} className={styles.chevron} />
+            ) : (
+              <ChevronDown size={14} className={styles.chevron} />
+            )}
+          </button>
+          <AnimatePresence>
+            {isRecentOpen && (
+              <motion.div
+                className={styles.recentList}
+                initial={{ maxHeight: 0, opacity: 0, y: -10 }}
+                animate={{ maxHeight: 1000, opacity: 1, y: 0 }}
+                exit={{ maxHeight: 0, opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                style={{ overflow: 'hidden' }}
+              >
+                {recentFontsToShow.map(fontName => {
+                  const font = getFontByName(fontName)
+                  if (!font) return null
+                  return (
                     <button
-                      onClick={e => handleRemoveRecentFont(fontName, e)}
-                      className={styles.trashButton}
-                      aria-label={`Remove ${fontName} from recent fonts`}
+                      key={fontName}
+                      onClick={() => handleFontSelect(fontName)}
+                      className={`${styles.fontItem} ${activeFamily === fontName ? styles.active : ''}`}
                     >
-                      <Trash2 size={10} />
+                      <span
+                        style={{ fontFamily: fontName }}
+                        className={styles.fontName}
+                      >
+                        {fontName}
+                      </span>
+                      <div className={styles.fontItemActions}>
+                        <button
+                          onClick={e => handleRemoveRecentFont(fontName, e)}
+                          className={styles.trashButton}
+                          aria-label={`Remove ${fontName} from recent fonts`}
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
                     </button>
-                  </div>
-                </button>
-              )
-            })}
-          </div>
+                  )
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
 

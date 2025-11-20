@@ -8,7 +8,9 @@ const Tabs = ({ active, options, onChange }) => {
   useEffect(() => {
     if (!containerRef.current || !indicatorRef.current) return
 
-    const activeButton = containerRef.current.querySelector(`.${styles.tab}.${styles.active}`)
+    const activeButton = containerRef.current.querySelector(
+      `.${styles.tab}.${styles.active}`
+    )
     if (!activeButton) return
 
     const containerRect = containerRef.current.getBoundingClientRect()

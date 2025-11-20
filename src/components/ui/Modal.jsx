@@ -8,7 +8,8 @@ const Modal = forwardRef(({ isOpen, onClose, title, children }, ref) => {
 
   useEffect(() => {
     if (isOpen) {
-      setShouldRender(true)
+      // Avoid synchronous setState in effect
+      setTimeout(() => setShouldRender(true), 0)
       // Trigger animation on next frame
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -16,7 +17,10 @@ const Modal = forwardRef(({ isOpen, onClose, title, children }, ref) => {
         })
       })
     } else {
-      setIsVisible(false)
+      // Avoid synchronous setState in effect
+      requestAnimationFrame(() => {
+        setIsVisible(false)
+      })
       // Wait for animation to complete before unmounting
       const timer = setTimeout(() => {
         setShouldRender(false)
@@ -42,7 +46,9 @@ const Modal = forwardRef(({ isOpen, onClose, title, children }, ref) => {
             <X size={20} />
           </button>
         </div>
-        <div className={styles.body} ref={ref}>{children}</div>
+        <div className={styles.body} ref={ref}>
+          {children}
+        </div>
       </div>
     </div>
   )

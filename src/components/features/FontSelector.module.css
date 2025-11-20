@@ -1,6 +1,15 @@
 @import 'tailwindcss' reference;
-.title {
-  @apply text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center justify-between;
+
+.typefaceHeader {
+  @apply flex items-center justify-between mb-3;
+}
+
+.typefaceHeaderContent {
+  @apply flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
+}
+
+.typefaceLabel {
+  @apply text-slate-500;
 }
 
 .badge {
@@ -20,15 +29,23 @@
 }
 
 .recentHeader {
-  @apply flex items-center gap-2 mb-3 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
+  @apply w-full flex items-center justify-between mb-3 cursor-pointer hover:opacity-80 transition-opacity;
+}
+
+.recentHeaderContent {
+  @apply flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
 }
 
 .recentLabel {
   @apply text-slate-500;
 }
 
+.chevron {
+  @apply text-slate-400;
+}
+
 .recentList {
-  @apply border rounded-lg border-white/10 bg-black/20 pr-1 mb-3;
+  @apply border rounded-lg border-white/10 bg-black/20 pr-1 mb-3 transition-opacity duration-200;
 }
 
 .allFontsSection {

@@ -22,7 +22,10 @@ const WeightSelect = ({ value, onChange, fontFamily, options }) => {
 
   useEffect(() => {
     const handleClickOutside = event => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setIsOpen(false)
       }
     }
@@ -31,9 +34,14 @@ const WeightSelect = ({ value, onChange, fontFamily, options }) => {
       document.addEventListener('mousedown', handleClickOutside)
       // Scroll selected option into view when dropdown opens
       if (dropdownRef.current) {
-        const selectedElement = dropdownRef.current.querySelector(`[data-value="${value}"]`)
+        const selectedElement = dropdownRef.current.querySelector(
+          `[data-value="${value}"]`
+        )
         if (selectedElement) {
-          selectedElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+          selectedElement.scrollIntoView({
+            block: 'nearest',
+            behavior: 'smooth'
+          })
         }
       }
       return () => document.removeEventListener('mousedown', handleClickOutside)
@@ -103,7 +111,7 @@ const TypographyControls = ({
   const [isOpen, setIsOpen] = useState(false)
   const currentConfig =
     config[activeRole]?.[activeElement] || config[activeRole]?.all || {}
-  
+
   const fontFamily = currentConfig.family || 'Inter'
 
   return (

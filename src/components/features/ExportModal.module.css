@@ -60,7 +60,10 @@
   @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded mr-2;
   min-width: 60px;
   justify-content: center;
-  transition: color 0.2s, background-color 0.2s, transform 0.15s;
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    transform 0.15s;
   transform: scale(1);
 }
 
@@ -76,7 +79,9 @@
   @apply flex items-center gap-1;
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
 }
 
 .checkIcon {

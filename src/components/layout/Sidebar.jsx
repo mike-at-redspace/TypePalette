@@ -1,6 +1,6 @@
 import { LayoutDashboard } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Tabs, Select } from '@/components/ui'
+import { Tabs, Select, SectionTitle } from '@/components/ui'
 import {
   FontSelector,
   TypographyControls,
@@ -95,9 +95,7 @@ const Sidebar = ({
             className={styles.customSection}
           >
             <div className={styles.roleSection}>
-              <h2 className={styles.sectionTitle}>
-                <LayoutDashboard size={14} /> Context
-              </h2>
+              <SectionTitle icon={LayoutDashboard}>Context</SectionTitle>
               <Tabs
                 active={activeRole}
                 onChange={onRoleChange}

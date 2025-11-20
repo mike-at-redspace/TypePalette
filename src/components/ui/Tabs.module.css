@@ -1,9 +1,6 @@
 @import 'tailwindcss' reference;
 .container {
-  @apply flex p-1 gap-1 bg-black/20 rounded-lg border border-white/5;
-  min-height: 40px;
-  position: relative;
-  overflow: hidden;
+  @apply flex p-1 gap-1 bg-black/20 rounded-lg border border-white/5 min-h-10 relative overflow-hidden;
 }
 
 .tab {
@@ -15,10 +12,5 @@
 }
 
 .activeIndicator {
-  @apply absolute top-1 bottom-1 bg-white/10 rounded-md shadow-sm border border-white/10 -z-10 pointer-events-none;
-  left: 0;
-  width: 0;
-  transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  @apply absolute top-1 bottom-1 bg-white/10 rounded-md shadow-sm border border-white/10 -z-10 pointer-events-none left-0 w-0 transition-[width,transform] duration-300 ease-in-out;
 }

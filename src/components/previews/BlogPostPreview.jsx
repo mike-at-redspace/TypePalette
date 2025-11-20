@@ -8,23 +8,24 @@ const BlogPostPreview = ({ style }) => {
       date: 'Oct 24, 2024',
       subtitle: 'Typography Tips',
       body1: {
-        start: 'Let\'s talk about the elephant in the room:',
+        start: "Let's talk about the elephant in the room:",
         strong: 'Comic Sans',
-        end: 'is not a font choice, it\'s a cry for help. When you use it in a professional setting, you\'re essentially telling the world that you gave up on life somewhere around 1994.'
+        end: "is not a font choice, it's a cry for help. When you use it in a professional setting, you're essentially telling the world that you gave up on life somewhere around 1994."
       },
       body2: {
         start: 'Typography is more than just',
         emphasis: 'picking pretty letters',
-        end: '. It\'s about creating hierarchy, establishing mood, and making sure your users don\'t have to squint to read your content. If your line-height is too tight, you\'re not being edgy—you\'re being cruel.'
+        end: ". It's about creating hierarchy, establishing mood, and making sure your users don't have to squint to read your content. If your line-height is too tight, you're not being edgy—you're being cruel."
       },
       body3: {
         start: 'Remember:',
         code: 'font-family',
-        middle: 'is not a suggestion, it\'s a',
+        middle: "is not a suggestion, it's a",
         link: 'commitment',
         end: 'Choose wisely, or your users will choose a different website.'
       },
-      quote: 'The difference between good typography and bad typography is the difference between looking professional and looking like you designed your site in Microsoft Word.'
+      quote:
+        'The difference between good typography and bad typography is the difference between looking professional and looking like you designed your site in Microsoft Word.'
     }),
     []
   )
