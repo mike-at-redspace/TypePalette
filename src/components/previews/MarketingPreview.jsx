@@ -40,7 +40,7 @@ const MarketingPreview = ({ style }) => {
           </span>
         </h1>
 
-        <p className='font-body text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto mb-12 leading-relaxed font-light'>
+        <p className='body-paragraph font-body text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto mb-12 leading-relaxed font-light'>
           {content.body.start}{' '}
           <strong className='body-strong'>{content.body.strong}</strong>{' '}
           {content.body.middle}{' '}

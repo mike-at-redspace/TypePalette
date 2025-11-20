@@ -238,6 +238,13 @@ export const generateComprehensiveTailwindConfig = config => {
 
 /* Element-Specific Utility Classes */
 /* Body Prose Elements */
+.text-body-paragraph {
+  font-family: var(--font-body-paragraph, var(--font-body));
+  font-weight: var(--font-weight-body-paragraph, var(--font-weight-body));
+  letter-spacing: var(--letter-spacing-body-paragraph, var(--letter-spacing-body));
+  line-height: var(--line-height-body-paragraph, var(--line-height-body));
+}
+
 .text-body-strong {
   font-family: var(--font-body-strong, var(--font-body));
   font-weight: var(--font-weight-body-strong, var(--font-weight-body));
@@ -290,6 +297,7 @@ export const generateProseConfig = config => {
   const bodyFamily = getFontFamily(bodyConfig.family, bodyConfig.category)
 
   // Get element-specific body configs
+  const paragraphConfig = config.body?.paragraph || bodyConfig
   const strongConfig = config.body?.strong || bodyConfig
   const emphasisConfig = config.body?.emphasis || bodyConfig
   const blockquoteConfig = config.body?.blockquote || bodyConfig
@@ -314,6 +322,8 @@ export const generateProseConfig = config => {
   --prose-headings-tracking: ${headingConfig.tracking}em;
   
   /* Prose Element-Specific Settings */
+  --prose-paragraph-weight: ${paragraphConfig.weight};
+  --prose-paragraph-family: ${getFontFamily(paragraphConfig.family, paragraphConfig.category)};
   --prose-strong-weight: ${strongConfig.weight};
   --prose-strong-family: ${getFontFamily(strongConfig.family, strongConfig.category)};
   --prose-emphasis-weight: ${emphasisConfig.weight};
@@ -339,6 +349,11 @@ export const generateProseConfig = config => {
 }
 
 /* Element-Specific Prose Styles */
+.prose p {
+  font-weight: var(--prose-paragraph-weight);
+  font-family: var(--prose-paragraph-family);
+}
+
 .prose strong {
   font-weight: var(--prose-strong-weight);
   font-family: var(--prose-strong-family);

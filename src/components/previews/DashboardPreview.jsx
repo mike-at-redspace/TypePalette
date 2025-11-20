@@ -111,7 +111,7 @@ const DashboardPreview = ({ style }) => {
       <header className='flex justify-between items-end mb-10 border-b border-white/10 pb-6'>
         <div>
           <h1 className='font-heading text-3xl text-white mb-2'>Type Metrics</h1>
-          <p className='font-body text-sm text-slate-400'>
+          <p className='body-paragraph font-body text-sm text-slate-400'>
             Tracking all your typography needs.{' '}
             <a
               href='#'
@@ -162,7 +162,7 @@ const DashboardPreview = ({ style }) => {
             <h3 className='font-heading text-lg text-white mb-1'>
               Active Projects
             </h3>
-            <p className='font-body text-xs text-slate-400 prose prose-sm max-w-none'>
+            <p className='body-paragraph font-body text-xs text-slate-400 prose prose-sm max-w-none'>
               Because someone has to fix the font rendering issues
             </p>
           </div>

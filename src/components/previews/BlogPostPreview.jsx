@@ -43,7 +43,7 @@ const BlogPostPreview = ({ style }) => {
         <span className='text-slate-300'>{content.date}</span>
       </div>
       <div className='font-body text-lg text-slate-200 space-y-8 leading-relaxed'>
-        <p>
+        <p className='body-paragraph'>
           {content.body1.start}{' '}
           <strong className='body-strong'>{content.body1.strong}</strong>{' '}
           {content.body1.end}
@@ -51,7 +51,7 @@ const BlogPostPreview = ({ style }) => {
         <h2 className='font-heading text-4xl mt-12 mb-6 text-white'>
           {content.subtitle}
         </h2>
-        <p>
+        <p className='body-paragraph'>
           {content.body2.start}{' '}
           <em className='body-emphasis'>{content.body2.emphasis}</em>{' '}
           {content.body2.end}
@@ -59,28 +59,28 @@ const BlogPostPreview = ({ style }) => {
         <h3 className='font-heading text-3xl mt-12 mb-4 text-white'>
           Typography Hierarchy
         </h3>
-        <p>
+        <p className='body-paragraph'>
           Let's explore all heading levels to see how your typography system
           scales.
         </p>
         <h4 className='font-heading text-2xl mt-8 mb-3 text-white'>
           Fourth Level Heading
         </h4>
-        <p>
+        <p className='body-paragraph'>
           This is an <strong className='body-strong'>h4 heading</strong> that
           demonstrates the typography scale.
         </p>
         <h5 className='font-heading text-xl mt-6 mb-2 text-white'>
           Fifth Level Heading
         </h5>
-        <p>
+        <p className='body-paragraph'>
           Here's an <em className='body-emphasis'>h5 heading</em> showing
           another level of hierarchy.
         </p>
         <h6 className='font-heading text-lg mt-4 mb-2 text-white'>
           Sixth Level Heading
         </h6>
-        <p>
+        <p className='body-paragraph'>
           Finally, the smallest heading level. Notice how{' '}
           <code className='body-code bg-slate-800/50 px-2 py-1 rounded text-cyan-300'>
             font-heading
@@ -90,7 +90,7 @@ const BlogPostPreview = ({ style }) => {
         <h2 className='font-heading text-3xl mt-12 mb-6 text-white'>
           Back to Content
         </h2>
-        <p>
+        <p className='body-paragraph'>
           {content.body3.start}{' '}
           <code className='body-code bg-slate-800/50 px-2 py-1 rounded text-cyan-300'>
             {content.body3.code}

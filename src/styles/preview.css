@@ -29,6 +29,15 @@
 }
 
 /* Body prose element classes */
+.body-paragraph,
+p.body-paragraph {
+  font-family: var(--font-body-paragraph, var(--font-body));
+  font-weight: var(--body-paragraph-weight, var(--body-weight, 400));
+  letter-spacing: var(--body-paragraph-tracking, var(--body-tracking, 0em));
+  line-height: var(--body-paragraph-leading, var(--body-leading, 1.6));
+  text-transform: var(--body-paragraph-transform, var(--body-transform, none));
+}
+
 .body-strong,
 strong.body-strong {
   font-family: var(--font-body-strong, var(--font-body));
