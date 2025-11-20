@@ -794,6 +794,9 @@ export const generateKitchenSinkHTML = config => {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Typography Kitchen Sink</title>
   
+  <!-- Tailwind CSS Browser -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -827,6 +830,7 @@ export const generateKitchenSinkHTML = config => {
       text-transform: var(--heading-transform);
       color: #ffffff;
       margin-top: 0;
+      /* Don't set font-size here - let Tailwind classes control it */
     }
     
     p, li, td, th {
@@ -879,15 +883,15 @@ export const generateKitchenSinkHTML = config => {
       line-height: var(--ui-leading);
       text-transform: var(--ui-transform);
       padding: 0.5rem 1rem;
-      background: #3b82f6;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      transition: filter 0.2s ease-in-out;
     }
     
     button:hover {
-      background: #2563eb;
+      filter: brightness(1.1);
     }
     
     table {
@@ -918,41 +922,43 @@ export const generateKitchenSinkHTML = config => {
     }
   </style>
 </head>
-<body>
-  <h1>Typography Kitchen Sink</h1>
-  <p>This page demonstrates all typography elements using your configured typography system.</p>
+<body class="max-w-5xl mx-auto p-8 bg-[#1a1a1a] text-[#e0e0e0]">
+  <h1 class="mb-4" style="font-size: 3rem;">Typography Kitchen Sink</h1>
+  <p class="mb-8">This page demonstrates all typography elements using your configured typography system.</p>
   
-  <section>
-    <h2>Headings</h2>
-    <h1>Heading 1 (H1)</h1>
-    <h2>Heading 2 (H2)</h2>
-    <h3>Heading 3 (H3)</h3>
-    <h4>Heading 4 (H4)</h4>
-    <h5>Heading 5 (H5)</h5>
-    <h6>Heading 6 (H6)</h6>
+  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg">
+    <h2 class="mb-6">Headings</h2>
+    <div class="space-y-4">
+      <h1 style="font-size: 3rem;">Heading 1 (H1)</h1>
+      <h2 style="font-size: 2.25rem;">Heading 2 (H2)</h2>
+      <h3 style="font-size: 1.875rem;">Heading 3 (H3)</h3>
+      <h4 style="font-size: 1.5rem;">Heading 4 (H4)</h4>
+      <h5 style="font-size: 1.25rem;">Heading 5 (H5)</h5>
+      <h6 style="font-size: 1.125rem;">Heading 6 (H6)</h6>
+    </div>
   </section>
   
-  <section>
-    <h2>Body Text</h2>
+  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
+    <h2 class="mb-6">Body Text</h2>
     <p>This is a paragraph of body text. It demonstrates the default body typography settings including font family, weight, letter spacing, line height, and text transform.</p>
     <p>Here's another paragraph to show spacing between paragraphs. Notice how the typography system creates a comfortable reading experience with appropriate line height and letter spacing.</p>
   </section>
   
-  <section>
-    <h2>Text Formatting</h2>
+  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
+    <h2 class="mb-6">Text Formatting</h2>
     <p>This paragraph contains <strong>strong/bold text</strong> and <em>emphasized/italic text</em> to demonstrate how these elements are styled.</p>
     <p>You can also use <code>inline code</code> within paragraphs, and here's a <a href="#">link to demonstrate link styling</a>.</p>
   </section>
   
-  <section>
-    <h2>Blockquote</h2>
+  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
+    <h2 class="mb-6">Blockquote</h2>
     <blockquote>
       "This is a blockquote. It's used for highlighting important quotes or callouts. Notice how it has distinct styling from regular paragraphs."
     </blockquote>
   </section>
   
-  <section>
-    <h2>Lists</h2>
+  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
+    <h2 class="mb-6">Lists</h2>
     <h3>Unordered List</h3>
     <ul>
       <li>First list item</li>
@@ -969,71 +975,50 @@ export const generateKitchenSinkHTML = config => {
     </ol>
   </section>
   
-  <section>
-    <h2>Buttons</h2>
-    <button>Primary Button</button>
-    <button style="background: #10b981; margin-left: 0.5rem;">Success Button</button>
-    <button style="background: #ef4444; margin-left: 0.5rem;">Danger Button</button>
+  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg">
+    <h2 class="mb-6">Buttons</h2>
+    <div class="flex gap-2">
+      <button class="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer hover:bg-blue-700">Primary Button</button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded cursor-pointer hover:bg-green-700">Success Button</button>
+      <button class="px-4 py-2 bg-red-600 text-white rounded cursor-pointer hover:bg-red-700">Danger Button</button>
+    </div>
   </section>
   
-  <section>
-    <h2>Table</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Heading Font</td>
-          <td>Typography</td>
-          <td>${headingConfig.family} - ${headingConfig.weight}</td>
-        </tr>
-        <tr>
-          <td>Body Font</td>
-          <td>Typography</td>
-          <td>${bodyConfig.family} - ${bodyConfig.weight}</td>
-        </tr>
-        <tr>
-          <td>UI Font</td>
-          <td>Typography</td>
-          <td>${uiConfig.family} - ${uiConfig.weight}</td>
-        </tr>
-      </tbody>
-    </table>
+  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
+    <h2 class="mb-6">Table</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse my-4">
+        <thead>
+          <tr>
+            <th class="p-3 text-left border-b border-[#3a3a3a] bg-[#2a2a2a]">Name</th>
+            <th class="p-3 text-left border-b border-[#3a3a3a] bg-[#2a2a2a]">Type</th>
+            <th class="p-3 text-left border-b border-[#3a3a3a] bg-[#2a2a2a]">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-3 border-b border-[#3a3a3a]">Heading Font</td>
+            <td class="p-3 border-b border-[#3a3a3a]">Typography</td>
+            <td class="p-3 border-b border-[#3a3a3a]">${headingConfig.family} - ${headingConfig.weight}</td>
+          </tr>
+          <tr>
+            <td class="p-3 border-b border-[#3a3a3a]">Body Font</td>
+            <td class="p-3 border-b border-[#3a3a3a]">Typography</td>
+            <td class="p-3 border-b border-[#3a3a3a]">${bodyConfig.family} - ${bodyConfig.weight}</td>
+          </tr>
+          <tr>
+            <td class="p-3 border-b border-[#3a3a3a]">UI Font</td>
+            <td class="p-3 border-b border-[#3a3a3a]">Typography</td>
+            <td class="p-3 border-b border-[#3a3a3a]">${uiConfig.family} - ${uiConfig.weight}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
   
-  <section>
-    <h2>Forms</h2>
-    <form>
-      <p>
-        <label for="text-input">Text Input:</label><br>
-        <input type="text" id="text-input" placeholder="Enter text here">
-      </p>
-      <p>
-        <label for="textarea">Textarea:</label><br>
-        <textarea id="textarea" rows="4" placeholder="Enter multiple lines of text"></textarea>
-      </p>
-      <p>
-        <label for="select">Select:</label><br>
-        <select id="select">
-          <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
-        </select>
-      </p>
-      <p>
-        <button type="submit">Submit Form</button>
-      </p>
-    </form>
-  </section>
-  
-  <section>
-    <h2>Code Block</h2>
-    <pre><code>// Example code block
+  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
+    <h2 class="mb-6">Code Block</h2>
+    <pre class="bg-[#1e1e1e] p-4 rounded overflow-x-auto"><code>// Example code block
 function example() {
   const heading = document.querySelector('h1');
   heading.style.fontFamily = 'var(--font-heading)';
@@ -1060,7 +1045,42 @@ export const generateExportZip = async config => {
   zip.file('design-tokens.json', generateJSONTokens(config))
   zip.file('nextjs-install.jsx', generateNextJSInstall(config))
   zip.file('vite-install.html', generateViteInstall(config))
-  zip.file('README.md', generateHTMLInstall(config))
+  // Include the project README.md
+  const projectReadme = `# TypePalette
+
+A typography configuration tool for creating and customizing beautiful type systems. Configure fonts, weights, tracking, leading, and more for headings, body text, and UI elements.
+
+## Scripts
+
+- \`npm run dev\` - Start development server
+- \`npm run build\` - Build for production
+- \`npm run preview\` - Preview production build
+- \`npm run lint\` - Lint and fix code
+- \`npm run format\` - Format code with Prettier
+- \`npm run storybook\` - Start Storybook
+- \`npm run build-storybook\` - Build Storybook
+
+## Third-Party Libraries
+
+### Dependencies
+
+- [React](https://react.dev) - UI library
+- [React DOM](https://react.dev) - React renderer
+- [Framer Motion](https://www.framer.com/motion) - Animation library
+- [Lucide React](https://lucide.dev) - Icon library
+- [React Shiki](https://github.com/antfu/react-shiki) - Syntax highlighting
+
+### Dev Dependencies
+
+- [Vite](https://vitejs.dev) - Build tool
+- [Tailwind CSS](https://tailwindcss.com) - CSS framework
+- [Storybook](https://storybook.js.org) - Component development environment
+- [ESLint](https://eslint.org) - Linting
+- [Prettier](https://prettier.io) - Code formatting
+- [Vitest](https://vitest.dev) - Testing framework
+- [Playwright](https://playwright.dev) - Browser automation
+`
+  zip.file('README.md', projectReadme)
   zip.file('kitchen-sink.html', generateKitchenSinkHTML(config))
 
   // Generate zip file and trigger download
