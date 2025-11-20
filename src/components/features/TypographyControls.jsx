@@ -17,6 +17,7 @@ const WEIGHT_OPTIONS = [
 const WeightSelect = ({ value, onChange, fontFamily, options }) => {
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef(null)
+  const dropdownRef = useRef(null)
   const selectedOption = options.find(opt => opt.value === value) || options[0]
 
   useEffect(() => {
@@ -28,9 +29,16 @@ const WeightSelect = ({ value, onChange, fontFamily, options }) => {
 
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside)
+      // Scroll selected option into view when dropdown opens
+      if (dropdownRef.current) {
+        const selectedElement = dropdownRef.current.querySelector(`[data-value="${value}"]`)
+        if (selectedElement) {
+          selectedElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+        }
+      }
       return () => document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isOpen])
+  }, [isOpen, value])
 
   return (
     <div className={styles.weightSelectContainer} ref={containerRef}>
@@ -52,6 +60,7 @@ const WeightSelect = ({ value, onChange, fontFamily, options }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={dropdownRef}
             className={styles.weightSelectDropdown}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -62,6 +71,7 @@ const WeightSelect = ({ value, onChange, fontFamily, options }) => {
               <button
                 key={option.value}
                 type='button'
+                data-value={option.value}
                 className={`${styles.weightSelectOption} ${
                   value === option.value ? styles.selected : ''
                 }`}
