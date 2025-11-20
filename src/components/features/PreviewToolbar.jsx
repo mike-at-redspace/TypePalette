@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { BookOpen, LayoutDashboard, Monitor } from 'lucide-react'
 import styles from './PreviewToolbar.module.css'
 
@@ -18,6 +19,13 @@ const PreviewToolbar = ({ activeMode, onModeChange }) => {
         >
           <mode.icon size={14} />
           <span className={styles.label}>{mode.label}</span>
+          {activeMode === mode.id && (
+            <motion.div
+              layoutId="activePreviewButton"
+              className={styles.activeIndicator}
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            />
+          )}
         </button>
       ))}
     </div>

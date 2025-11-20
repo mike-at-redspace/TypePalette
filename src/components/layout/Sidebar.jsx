@@ -65,6 +65,7 @@ const Sidebar = ({
         <Tabs
           active={mode}
           onChange={onModeChange}
+          layoutId="modeTab"
           options={[
             { id: 'preset', label: 'Preset' },
             { id: 'custom', label: 'Custom' }
@@ -84,6 +85,7 @@ const Sidebar = ({
             <Tabs
               active={activeRole}
               onChange={onRoleChange}
+              layoutId="contextTab"
               options={[
                 { id: 'headings', label: 'Headings' },
                 { id: 'body', label: 'Body' },

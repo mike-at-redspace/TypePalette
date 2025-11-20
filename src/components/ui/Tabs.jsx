@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion'
 import styles from './Tabs.module.css'
 
-const Tabs = ({ active, options, onChange }) => (
+const Tabs = ({ active, options, onChange, layoutId = 'activeTab' }) => (
   <div className={styles.container}>
     {options.map(opt => (
       <button
@@ -10,6 +11,13 @@ const Tabs = ({ active, options, onChange }) => (
       >
         {opt.icon && <opt.icon size={14} />}
         {opt.label}
+        {active === opt.id && (
+          <motion.div
+            layoutId={layoutId}
+            className={styles.activeIndicator}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+          />
+        )}
       </button>
     ))}
   </div>
