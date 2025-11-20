@@ -36,10 +36,10 @@ const TypographyControls = ({
         {isOpen && (
           <motion.div
             className={styles.accordionContent}
-            initial={{ maxHeight: 0, opacity: 0 }}
-            animate={{ maxHeight: 1000, opacity: 1 }}
-            exit={{ maxHeight: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            initial={{ maxHeight: 0, opacity: 0, y: -10 }}
+            animate={{ maxHeight: 1000, opacity: 1, y: 0 }}
+            exit={{ maxHeight: 0, opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
             style={{ overflow: 'hidden' }}
           >
             <div className={styles.weightControl}>

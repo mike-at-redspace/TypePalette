@@ -8,6 +8,7 @@ const useTypographyConfig = () => {
 
   const updateConfig = (field, value) => {
     setConfig(prev => {
+      // Create a deep copy of the config to avoid reference issues
       const newConfig = { ...prev }
       const roleConfig = { ...newConfig[activeRole] }
 
@@ -19,6 +20,7 @@ const useTypographyConfig = () => {
         // When updating 'all', cascade to all elements in that role
         const updatedRoleConfig = {}
         Object.keys(roleConfig).forEach(element => {
+          // Create a new object for each element to ensure isolation
           updatedRoleConfig[element] = {
             ...roleConfig[element],
             ...updates
@@ -26,12 +28,21 @@ const useTypographyConfig = () => {
         })
         newConfig[activeRole] = updatedRoleConfig
       } else {
-        // Update specific element
-        roleConfig[activeElement] = {
-          ...roleConfig[activeElement],
-          ...updates
+        // When updating a specific element, only update that element
+        // Ensure the element exists, or initialize it from 'all' if it doesn't
+        const existingElementConfig =
+          roleConfig[activeElement] || roleConfig.all || {}
+
+        // Create a new object for the specific element to ensure isolation
+        // Only update the specific element, leaving all other elements unchanged
+        const updatedRoleConfig = {
+          ...roleConfig,
+          [activeElement]: {
+            ...existingElementConfig,
+            ...updates
+          }
         }
-        newConfig[activeRole] = roleConfig
+        newConfig[activeRole] = updatedRoleConfig
       }
 
       return newConfig

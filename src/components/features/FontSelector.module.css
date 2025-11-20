@@ -8,7 +8,7 @@
 }
 
 .preview {
-  @apply mb-1 p-4 rounded-lg bg-black/30 border border-white/10;
+  @apply mb-1 p-2 rounded-lg bg-black/30 border border-white/10;
 }
 
 .previewText {
@@ -20,7 +20,7 @@
 }
 
 .recentHeader {
-  @apply flex items-center gap-2 mb-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
+  @apply flex items-center gap-2 mb-3 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
 }
 
 .recentLabel {
@@ -32,11 +32,11 @@
 }
 
 .allFontsSection {
-  @apply mb-4;
+  @apply mb-0;
 }
 
 .allFontsHeader {
-  @apply flex items-center gap-2 mb-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
+  @apply flex items-center gap-2 mb-3 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
 }
 
 .allFontsLabel {
@@ -44,7 +44,7 @@
 }
 
 .fontList {
-  @apply h-48 overflow-y-auto border rounded-lg border-white/10 bg-black/20 pr-1;
+  @apply h-52 overflow-y-auto border rounded-lg border-white/10 bg-black/20 pr-1;
 }
 
 .fontItem {

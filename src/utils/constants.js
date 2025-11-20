@@ -42,6 +42,19 @@ export const GOOGLE_FONTS = [
   { name: 'Tenor Sans', category: 'Sans Serif' },
   { name: 'Roboto Flex', category: 'Sans Serif' },
   { name: 'Be Vietnam Pro', category: 'Sans Serif' },
+  // New Sans Additions
+  { name: 'Urbanist', category: 'Sans Serif' }, // Geometric, premium UI feel
+  { name: 'Lexend', category: 'Sans Serif' }, // Designed for reading proficiency
+  { name: 'Barlow', category: 'Sans Serif' }, // Grotesque, slightly rounded
+  { name: 'IBM Plex Sans', category: 'Sans Serif' }, // Corporate, neutral
+  { name: 'Titillium Web', category: 'Sans Serif' }, // Tech-focused
+  { name: 'Josefin Sans', category: 'Sans Serif' }, // Vintage geometric
+  { name: 'Dosis', category: 'Sans Serif' }, // Rounded, friendly
+  { name: 'Mukta', category: 'Sans Serif' }, // Good multi-script support
+  { name: 'Teko', category: 'Sans Serif' }, // Boxy, display-like sans
+  { name: 'Assistant', category: 'Sans Serif' }, // Hebrew/Latin clean sans
+  { name: 'Prompt', category: 'Sans Serif' }, // Loopless Thai/Latin, modern
+
   // Serif
   { name: 'Playfair Display', category: 'Serif' },
   { name: 'Merriweather', category: 'Serif' },
@@ -63,6 +76,17 @@ export const GOOGLE_FONTS = [
   { name: 'Fraunces', category: 'Serif' },
   { name: 'Newsreader', category: 'Serif' },
   { name: 'DM Serif Display', category: 'Serif' },
+  // New Serif Additions
+  { name: 'Bodoni Moda', category: 'Serif' }, // High fashion, extreme contrast
+  { name: 'Cinzel', category: 'Serif' }, // Roman/Trajan inspired
+  { name: 'Prata', category: 'Serif' }, // Elegant display serif
+  { name: 'Spectral', category: 'Serif' }, // Screen-first serif by Google
+  { name: 'Cardo', category: 'Serif' }, // Classic, old-style
+  { name: 'Domine', category: 'Serif' }, // Optimized for body text
+  { name: 'Frank Ruhl Libre', category: 'Serif' }, // Distinctive character
+  { name: 'Tinos', category: 'Serif' }, // Metric-compatible with Times New Roman
+  { name: 'BioRhyme', category: 'Serif' }, // Slab serif, wide
+
   // Display
   { name: 'Oswald', category: 'Display' },
   { name: 'Bebas Neue', category: 'Display' },
@@ -84,6 +108,18 @@ export const GOOGLE_FONTS = [
   { name: 'Bungee Inline', category: 'Display' },
   { name: 'Luckiest Guy', category: 'Display' },
   { name: 'Passion One', category: 'Display' },
+  // New Display Additions
+  { name: 'Syne', category: 'Display' }, // Art-house, brutalist favorite
+  { name: 'Unbounded', category: 'Display' }, // Modern, variable, tech
+  { name: 'Chakra Petch', category: 'Display' }, // Square, futuristic, cyber
+  { name: 'Alfa Slab One', category: 'Display' }, // Extremely heavy slab
+  { name: 'Bangers', category: 'Display' }, // Comic book style
+  { name: 'Shrikhand', category: 'Display' }, // Retro, bold, curvy
+  { name: 'Carter One', category: 'Display' }, // Pulp fiction style
+  { name: 'Special Elite', category: 'Display' }, // Grungy typewriter
+  { name: 'Syncopate', category: 'Display' }, // Wide, modern
+  { name: 'Staatliches', category: 'Display' }, // Clean, condensed caps
+
   // Monospace
   { name: 'Roboto Mono', category: 'Monospace' },
   { name: 'Source Code Pro', category: 'Monospace' },
@@ -102,6 +138,13 @@ export const GOOGLE_FONTS = [
   { name: 'Cutive Mono', category: 'Monospace' },
   { name: 'Nanum Gothic Coding', category: 'Monospace' },
   { name: 'Ubuntu Mono', category: 'Monospace' },
+  // New Monospace Additions
+  { name: 'Martian Mono', category: 'Monospace' }, // Sci-fi, legible
+  { name: 'Kode Mono', category: 'Monospace' }, // Coding focused
+  { name: 'Anonymous Pro', category: 'Monospace' }, // Classic coding font
+  { name: 'VT323', category: 'Monospace' }, // Retro terminal pixelated
+  { name: 'Red Hat Mono', category: 'Monospace' }, // Clean, modern
+
   // Handwriting
   { name: 'Dancing Script', category: 'Handwriting' },
   { name: 'Pacifico', category: 'Handwriting' },
@@ -116,7 +159,15 @@ export const GOOGLE_FONTS = [
   { name: 'Great Vibes', category: 'Handwriting' },
   { name: 'Caveat Brush', category: 'Handwriting' },
   { name: 'Comforter', category: 'Handwriting' },
-  { name: 'Marck Script', category: 'Handwriting' }
+  { name: 'Marck Script', category: 'Handwriting' },
+  // New Handwriting Additions
+  { name: 'Sacramento', category: 'Handwriting' }, // Mono-line script, clean
+  { name: 'Gloria Hallelujah', category: 'Handwriting' }, // Playful, marker style
+  { name: 'Architects Daughter', category: 'Handwriting' }, // Architectural sketch
+  { name: 'Patrick Hand', category: 'Handwriting' }, // Neat handwriting
+  { name: 'Yellowtail', category: 'Handwriting' }, // Old school script
+  { name: 'Nothing You Could Do', category: 'Handwriting' }, // Messy scribble
+  { name: 'Covered By Your Grace', category: 'Handwriting' } // Tall, skinny hand
 ]
 
 export const INITIAL_CONFIG = {
