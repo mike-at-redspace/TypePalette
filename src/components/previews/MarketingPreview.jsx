@@ -44,11 +44,11 @@ const MarketingPreview = ({ style }) => (
       </p>
 
       <div className='flex flex-col sm:flex-row justify-center gap-6 mb-20'>
-        <button className='font-ui text-sm bg-cyan-500 text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-cyan-500/50 hover:bg-cyan-400 hover:scale-105 transition-all duration-300 flex items-center gap-2'>
-          Get Started <Play size={16} fill='currentColor' />
+        <button className='font-ui text-sm bg-cyan-500 text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-cyan-500/50 hover:bg-cyan-400 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2'>
+          Get Started <Play size={16} fill='currentColor' className='shrink-0' />
         </button>
-        <button className='font-ui text-sm bg-white/5 text-white border border-white/10 px-10 py-4 rounded-full font-bold hover:bg-white/10 backdrop-blur-md transition-all flex items-center gap-2'>
-          <Image size={16} />
+        <button className='font-ui text-sm bg-white/5 text-white border border-white/10 px-10 py-4 rounded-full font-bold hover:bg-white/10 backdrop-blur-md transition-all flex items-center justify-center gap-2'>
+          <Image size={16} className='shrink-0' />
           View Gallery
         </button>
       </div>
