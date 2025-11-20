@@ -1,16 +1,33 @@
-# React + Vite
+# TypePalette
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A typography configuration tool for creating and customizing beautiful type systems. Configure fonts, weights, tracking, leading, and more for headings, body text, and UI elements.
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Lint and fix code
+- `npm run format` - Format code with Prettier
+- `npm run storybook` - Start Storybook
+- `npm run build-storybook` - Build Storybook
 
-## React Compiler
+## Third-Party Libraries
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Dependencies
 
-## Expanding the ESLint configuration
+- [React](https://react.dev) - UI library
+- [React DOM](https://react.dev) - React renderer
+- [Framer Motion](https://www.framer.com/motion) - Animation library
+- [Lucide React](https://lucide.dev) - Icon library
+- [React Shiki](https://github.com/antfu/react-shiki) - Syntax highlighting
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Dev Dependencies
+
+- [Vite](https://vitejs.dev) - Build tool
+- [Tailwind CSS](https://tailwindcss.com) - CSS framework
+- [Storybook](https://storybook.js.org) - Component development environment
+- [ESLint](https://eslint.org) - Linting
+- [Prettier](https://prettier.io) - Code formatting
+- [Vitest](https://vitest.dev) - Testing framework
+- [Playwright](https://playwright.dev) - Browser automation
