@@ -1,0 +1,28 @@
+@import 'tailwindcss' reference;
+.container {
+  @apply mb-5;
+}
+
+.header {
+  @apply flex justify-between mb-2;
+}
+
+.label {
+  @apply text-[10px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-blue-300 transition-colors;
+}
+
+.value {
+  @apply text-[10px] text-slate-200 font-mono bg-white/10 px-2 py-0.5 rounded border border-white/10;
+}
+
+.track {
+  @apply relative h-1.5 bg-slate-900 rounded-full overflow-hidden border border-white/5;
+}
+
+.fill {
+  @apply absolute top-0 left-0 h-full bg-linear-to-r from-blue-500 to-purple-500 rounded-full;
+}
+
+.input {
+  @apply absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer;
+}

@@ -1,0 +1,72 @@
+@import 'tailwindcss' reference;
+.title {
+  @apply text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center justify-between;
+}
+
+.badge {
+  @apply text-[10px] font-normal text-blue-200 bg-blue-900/40 px-2 py-0.5 rounded border border-blue-500/30;
+}
+
+.preview {
+  @apply mb-1 p-4 rounded-lg bg-black/30 border border-white/10;
+}
+
+.previewText {
+  @apply text-2xl font-medium text-white;
+}
+
+.recentSection {
+  @apply mb-4;
+}
+
+.recentHeader {
+  @apply flex items-center gap-2 mb-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
+}
+
+.recentLabel {
+  @apply text-slate-500;
+}
+
+.recentList {
+  @apply border rounded-lg border-white/10 bg-black/20 pr-1 mb-3;
+}
+
+.allFontsSection {
+  @apply mb-4;
+}
+
+.allFontsHeader {
+  @apply flex items-center gap-2 mb-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider;
+}
+
+.allFontsLabel {
+  @apply text-slate-500;
+}
+
+.fontList {
+  @apply h-48 overflow-y-auto border rounded-lg border-white/10 bg-black/20 pr-1;
+}
+
+.fontItem {
+  @apply w-full text-left px-3 py-2.5 text-xs flex justify-between items-center transition-all border-b border-white/5 last:border-0 text-slate-400 hover:bg-white/5 hover:text-slate-200;
+}
+
+.fontItem.active {
+  @apply bg-blue-500/20 text-white border-l-2 border-l-blue-500;
+}
+
+.fontName {
+  @apply text-sm;
+}
+
+.icon {
+  @apply text-blue-400;
+}
+
+.fontItemActions {
+  @apply flex items-center gap-2;
+}
+
+.trashButton {
+  @apply p-1 rounded opacity-50 hover:opacity-100 transition-opacity text-slate-400 hover:text-red-400 hover:bg-red-500/10;
+}

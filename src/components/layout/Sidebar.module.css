@@ -1,0 +1,36 @@
+@import 'tailwindcss' reference;
+.sidebar {
+  @apply w-80 md:w-96 bg-slate-950/80 backdrop-blur-xl border-r border-white/10 flex flex-col h-full z-30 shadow-2xl;
+}
+
+.modeSection {
+  @apply p-4 border-b border-white/10 bg-white/5;
+}
+
+.presetSection {
+  @apply px-6 pt-6 flex-1 overflow-y-auto;
+}
+
+.roleSection {
+  @apply px-6 py-4 border-b border-white/10 bg-white/5;
+}
+
+.sectionTitle {
+  @apply text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2;
+}
+
+.elementSelector {
+  @apply mt-1;
+}
+
+.elementSelect {
+  @apply text-sm font-medium border-2 border-white/20 hover:border-white/30;
+}
+
+.content {
+  @apply px-6 pt-4 flex-1 overflow-y-auto;
+}
+
+.typefaceSection {
+  @apply space-y-6;
+}

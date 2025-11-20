@@ -1,0 +1,9 @@
+@import 'tailwindcss' reference;
+.app {
+  @apply h-screen flex flex-col overflow-hidden text-slate-200 font-sans;
+  @apply 2xl:max-w-[1600px] 2xl:mx-auto;
+}
+
+.main {
+  @apply flex-1 flex overflow-hidden relative;
+}

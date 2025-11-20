@@ -1,0 +1,16 @@
+@import 'tailwindcss' reference;
+.container {
+  @apply absolute top-1 left-1/2 transform -translate-x-1/2 bg-slate-950/80 backdrop-blur-xl p-1.5 rounded-full border border-white/10 flex gap-2 z-40 shadow-2xl;
+}
+
+.button {
+  @apply px-6 py-2 rounded-full text-xs font-bold flex items-center gap-2 transition-all text-slate-400 hover:text-white hover:bg-white/5;
+}
+
+.button.active {
+  @apply bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-900/50 border border-white/10;
+}
+
+.label {
+  @apply hidden sm:inline;
+}

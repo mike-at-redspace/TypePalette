@@ -1,0 +1,51 @@
+@import 'tailwindcss' reference;
+.container {
+  @apply flex-1 flex flex-col h-full relative overflow-hidden;
+}
+
+.previewArea {
+  @apply flex-1 overflow-y-auto relative bg-black/10;
+}
+
+.previewContent {
+  @apply min-h-full w-full;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.previewContent.fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.previewContent.fadeOut {
+  animation: fadeOut 0.15s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .previewContent,
+  .previewContent.fadeIn,
+  .previewContent.fadeOut {
+    animation: none;
+  }
+}

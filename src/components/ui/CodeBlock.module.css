@@ -1,0 +1,31 @@
+@import 'tailwindcss' reference;
+
+@font-face {
+  font-family: 'Cartograph CF';
+  src: url('../../assets/fonts/CartographCF-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.container {
+  @apply overflow-x-auto;
+}
+
+.container :global(pre) {
+  @apply m-0 p-0 bg-transparent;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.container :global(code) {
+  font-size: 10px;
+  font-family:
+    'Cartograph CF', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+}
+
+.container :global(pre code) {
+  @apply block;
+  width: 100%;
+}

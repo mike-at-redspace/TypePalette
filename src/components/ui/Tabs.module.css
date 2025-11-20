@@ -1,0 +1,12 @@
+@import 'tailwindcss' reference;
+.container {
+  @apply flex p-1 gap-1 bg-black/20 rounded-lg overflow-x-auto border border-white/5;
+}
+
+.tab {
+  @apply flex-1 px-3 py-2 text-xs font-bold rounded-md transition-all whitespace-nowrap flex items-center justify-center gap-2 uppercase tracking-wider text-slate-400 hover:text-white hover:bg-white/10;
+}
+
+.tab.active {
+  @apply bg-white/20 text-white shadow-lg border border-white/10;
+}

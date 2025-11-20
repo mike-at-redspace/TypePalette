@@ -1,0 +1,68 @@
+@import 'tailwindcss' reference;
+.codeIcon {
+  @apply text-blue-400;
+}
+
+.content {
+  @apply space-y-6;
+}
+
+.tabContent {
+  @apply space-y-6 mt-4;
+}
+
+.header {
+  @apply flex justify-between items-center mb-3;
+}
+
+.label {
+  @apply text-xs font-bold uppercase text-cyan-400 tracking-wider;
+}
+
+.labelSecondary {
+  @apply text-xs font-bold uppercase text-slate-400 tracking-wider;
+}
+
+.copyButton {
+  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded transition-colors;
+}
+
+.checkIcon {
+  @apply text-green-400;
+}
+
+.codeBlock {
+  @apply bg-black/50 p-4 rounded-xl border border-white/5 overflow-hidden relative;
+}
+
+.codeBlock :global(pre) {
+  @apply m-0 p-0;
+  background: transparent !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.codeBlock :global(pre::-webkit-scrollbar) {
+  display: none;
+}
+
+.infoBox {
+  @apply bg-cyan-500/10 border border-cyan-500/20 rounded-xl p-4 space-y-2;
+}
+
+.infoText {
+  @apply text-xs text-slate-300 leading-relaxed;
+}
+
+.infoText code {
+  @apply bg-black/30 px-1.5 py-0.5 rounded text-cyan-300 font-mono;
+}
+
+.footer {
+  @apply p-4 border-t border-white/10 bg-white/5 text-center;
+}
+
+.footerText {
+  @apply text-[10px] text-slate-500;
+}

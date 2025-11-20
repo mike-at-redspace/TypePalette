@@ -1,0 +1,16 @@
+@import 'tailwindcss' reference;
+.container {
+  @apply relative mb-3;
+}
+
+.icon {
+  @apply absolute left-3 top-2.5 text-slate-500 group-focus-within:text-blue-400 transition-colors;
+}
+
+.input {
+  @apply w-full pl-9 pr-9 py-2 bg-black/40 rounded-lg text-sm border border-white/10 text-slate-300 outline-hidden focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-slate-600;
+}
+
+.clearButton {
+  @apply absolute right-3 top-2.5 text-slate-500 hover:text-white transition-colors p-0.5 rounded;
+}
