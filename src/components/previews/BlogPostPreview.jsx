@@ -48,13 +48,47 @@ const BlogPostPreview = ({ style }) => {
           <strong className='body-strong'>{content.body1.strong}</strong>{' '}
           {content.body1.end}
         </p>
+        <h2 className='font-heading text-4xl mt-12 mb-6 text-white'>
+          {content.subtitle}
+        </h2>
         <p>
           {content.body2.start}{' '}
           <em className='body-emphasis'>{content.body2.emphasis}</em>{' '}
           {content.body2.end}
         </p>
+        <h3 className='font-heading text-3xl mt-12 mb-4 text-white'>
+          Typography Hierarchy
+        </h3>
+        <p>
+          Let's explore all heading levels to see how your typography system
+          scales.
+        </p>
+        <h4 className='font-heading text-2xl mt-8 mb-3 text-white'>
+          Fourth Level Heading
+        </h4>
+        <p>
+          This is an <strong className='body-strong'>h4 heading</strong> that
+          demonstrates the typography scale.
+        </p>
+        <h5 className='font-heading text-xl mt-6 mb-2 text-white'>
+          Fifth Level Heading
+        </h5>
+        <p>
+          Here's an <em className='body-emphasis'>h5 heading</em> showing
+          another level of hierarchy.
+        </p>
+        <h6 className='font-heading text-lg mt-4 mb-2 text-white'>
+          Sixth Level Heading
+        </h6>
+        <p>
+          Finally, the smallest heading level. Notice how{' '}
+          <code className='body-code bg-slate-800/50 px-2 py-1 rounded text-cyan-300'>
+            font-heading
+          </code>{' '}
+          applies consistently across all levels.
+        </p>
         <h2 className='font-heading text-3xl mt-12 mb-6 text-white'>
-          {content.subtitle}
+          Back to Content
         </h2>
         <p>
           {content.body3.start}{' '}
@@ -68,7 +102,7 @@ const BlogPostPreview = ({ style }) => {
           >
             {content.body3.link}
           </a>
-          . {content.body3.end}
+          . {content.body3.end}.
         </p>
         <blockquote className='body-blockquote bg-slate-900/70 border-l-4 border-purple-400 p-8 italic text-2xl my-12 text-white rounded-r-xl backdrop-blur-sm shadow-lg'>
           "{content.quote}"

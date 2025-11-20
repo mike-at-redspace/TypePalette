@@ -92,6 +92,7 @@ const Sidebar = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
+            className={styles.customSection}
           >
             <div className={styles.roleSection}>
               <h2 className={styles.sectionTitle}>
