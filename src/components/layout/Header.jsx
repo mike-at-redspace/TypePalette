@@ -25,7 +25,7 @@ const Header = ({ onExportClick, config }) => {
         </Button>
         <Button onClick={onExportClick}>
           <Code size={16} />
-          <span>EXPORT CONFIG</span>
+          <span>CODE</span>
         </Button>
       </div>
     </header>
