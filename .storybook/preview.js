@@ -1,5 +1,6 @@
 import '../src/styles/globals.css';
 import '../src/styles/preview.css';
+import './storybook.css';
 
 /** @type { import('@storybook/react-vite').Preview } */
 const preview = {

@@ -1,0 +1,202 @@
+/* Storybook Base Stylesheet - Light foreground colors for dark branded background */
+
+/* Storybook docs preview blocks - branded background */
+.sbdocs-preview,
+.docs-story {
+  background: linear-gradient(
+    100deg,
+    rgb(23, 37, 84) 13.57%,
+    rgb(30, 27, 75) 98.38%
+  ) !important;
+  border-radius: 8px;
+  padding: 1rem;
+  color: rgb(226, 232, 240); /* slate-200 - light foreground */
+}
+
+/* Base text elements - light colors */
+.sbdocs-preview,
+.docs-story {
+  color: rgb(226, 232, 240); /* slate-200 */
+}
+
+/* Headings - lighter/white for emphasis */
+.sbdocs-preview h1,
+.docs-story h1,
+.sbdocs-preview h2,
+.docs-story h2,
+.sbdocs-preview h3,
+.docs-story h3,
+.sbdocs-preview h4,
+.docs-story h4,
+.sbdocs-preview h5,
+.docs-story h5,
+.sbdocs-preview h6,
+.docs-story h6 {
+  color: rgb(255, 255, 255); /* white for headings */
+  font-weight: 600;
+}
+
+/* Paragraphs and text */
+.sbdocs-preview p,
+.docs-story p,
+.sbdocs-preview div,
+.docs-story div,
+.sbdocs-preview span,
+.docs-story span,
+.sbdocs-preview li,
+.docs-story li,
+.sbdocs-preview td,
+.docs-story td,
+.sbdocs-preview th,
+.docs-story th {
+  color: rgb(226, 232, 240); /* slate-200 */
+}
+
+/* Links - cyan accent for visibility */
+.sbdocs-preview a,
+.docs-story a {
+  color: rgb(103, 232, 249) !important; /* cyan-300 */
+  text-decoration: underline;
+  text-decoration-color: rgba(103, 232, 249, 0.5);
+}
+
+.sbdocs-preview a:hover,
+.docs-story a:hover {
+  color: rgb(165, 243, 252) !important; /* cyan-200 */
+  text-decoration-color: rgba(165, 243, 252, 0.8);
+}
+
+/* Lists */
+.sbdocs-preview ul,
+.docs-story ul,
+.sbdocs-preview ol,
+.docs-story ol {
+  color: rgb(226, 232, 240);
+}
+
+.sbdocs-preview li,
+.docs-story li {
+  color: rgb(226, 232, 240);
+}
+
+/* Code blocks - purple/cyan theme */
+.sbdocs-preview pre,
+.docs-story pre {
+  background: rgba(15, 23, 42, 0.9) !important; /* slate-950 with opacity */
+  color: rgb(196, 181, 253) !important; /* purple-300 */
+  border: 1px solid rgba(71, 85, 105, 0.5); /* slate-600 border */
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.sbdocs-preview code,
+.docs-story code {
+  background: rgba(15, 23, 42, 0.8) !important;
+  color: rgb(196, 181, 253) !important; /* purple-300 */
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+.sbdocs-preview pre code,
+.docs-story pre code {
+  background: transparent !important;
+  padding: 0;
+}
+
+/* Tables */
+.sbdocs-preview table,
+.docs-story table {
+  color: rgb(226, 232, 240);
+  border-color: rgba(71, 85, 105, 0.5); /* slate-600 */
+}
+
+.sbdocs-preview th,
+.docs-story th {
+  color: rgb(255, 255, 255); /* white for headers */
+  font-weight: 600;
+  border-color: rgba(71, 85, 105, 0.5);
+}
+
+.sbdocs-preview td,
+.docs-story td {
+  color: rgb(226, 232, 240);
+  border-color: rgba(71, 85, 105, 0.3);
+}
+
+/* Blockquotes */
+.sbdocs-preview blockquote,
+.docs-story blockquote {
+  color: rgb(203, 213, 225); /* slate-300 - slightly lighter */
+  border-left-color: rgb(103, 232, 249); /* cyan-300 */
+  background: rgba(15, 23, 42, 0.3);
+}
+
+/* Strong/Emphasis */
+.sbdocs-preview strong,
+.docs-story strong,
+.sbdocs-preview b,
+.docs-story b {
+  color: rgb(255, 255, 255); /* white for emphasis */
+  font-weight: 600;
+}
+
+.sbdocs-preview em,
+.docs-story em,
+.sbdocs-preview i,
+.docs-story i {
+  color: rgb(203, 213, 225); /* slate-300 */
+  font-style: italic;
+}
+
+/* Buttons and interactive elements */
+.sbdocs-preview button,
+.docs-story button {
+  color: rgb(255, 255, 255);
+}
+
+/* Labels and form elements */
+.sbdocs-preview label,
+.docs-story label {
+  color: rgb(226, 232, 240);
+}
+
+/* GlassPanel component - ensure light foreground */
+.sbdocs-preview [class*="GlassPanel"],
+.docs-story [class*="GlassPanel"],
+.sbdocs-preview .panel,
+.docs-story .panel {
+  color: rgb(226, 232, 240) !important; /* slate-200 */
+}
+
+/* Story wrapper for canvas */
+.sb-story {
+  color: rgb(226, 232, 240);
+}
+
+/* Storybook story canvas/iframe background - branded gradient */
+.sb-show-main,
+#storybook-root,
+#root,
+.sb-main-padded {
+  background: linear-gradient(
+    100deg,
+    rgb(23, 37, 84) 13.57%,
+    rgb(30, 27, 75) 98.38%
+  ) !important;
+}
+
+/* Story preview area */
+.sb-story > * {
+  background: transparent;
+}
+
+/* Canvas wrapper */
+.sb-main-padded {
+  background: linear-gradient(
+    100deg,
+    rgb(23, 37, 84) 13.57%,
+    rgb(30, 27, 75) 98.38%
+  ) !important;
+}
+
