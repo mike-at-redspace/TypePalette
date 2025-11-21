@@ -1,8 +1,9 @@
-import { useMemo, useEffect, useState, useRef } from 'react'
+import { useMemo, useEffect, useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Clock, Trash2, List, ChevronDown, ChevronUp, Type } from 'lucide-react'
 import { SearchInput } from '@/components/ui'
-import { GOOGLE_FONTS } from '@/utils'
+import { GOOGLE_FONTS, loadGoogleFonts, FONT_CATEGORIES } from '@/utils'
+import { useScrollFontPreloader } from '@/hooks'
 import styles from './FontSelector.module.css'
 
 const RECENT_FONTS_KEY = 'typepalette_recent_fonts'
@@ -103,6 +104,42 @@ const FontSelector = ({
     }
   }
 
+  // Always load recent fonts immediately
+  useEffect(() => {
+    if (recentFonts.length > 0) {
+      loadGoogleFonts(recentFonts)
+    }
+  }, [recentFonts])
+
+  // Scroll-based font preloading
+  const visibleFonts = useMemo(() => {
+    return filteredFonts.filter(
+      font => !recentFontsToShow.includes(font.name) || searchQuery
+    )
+  }, [filteredFonts, recentFontsToShow, searchQuery])
+
+  // Group fonts by category
+  const fontsByCategory = useMemo(() => {
+    const grouped = {}
+    FONT_CATEGORIES.forEach(category => {
+      grouped[category] = visibleFonts.filter(
+        font => font.category === category
+      )
+    })
+    return grouped
+  }, [visibleFonts])
+
+  const fontListRef = useScrollFontPreloader(visibleFonts, true)
+
+  // Check if search matches category for highlighting
+  const isCategoryMatch = useCallback(
+    category => {
+      if (!searchQuery) return false
+      return category.toLowerCase().includes(searchQuery.toLowerCase())
+    },
+    [searchQuery]
+  )
+
   return (
     <div>
       <div className={styles.typefaceHeader}>
@@ -194,25 +231,46 @@ const FontSelector = ({
           <List size={12} />
           <span className={styles.allFontsLabel}>All Fonts</span>
         </div>
-        <div className={styles.fontList}>
-          {filteredFonts
-            .filter(
-              font => !recentFontsToShow.includes(font.name) || searchQuery
+        <div ref={fontListRef} className={styles.fontList}>
+          {FONT_CATEGORIES.map(category => {
+            const categoryFonts = fontsByCategory[category]
+            if (categoryFonts.length === 0) return null
+
+            return (
+              <div key={category} className={styles.categoryGroup}>
+                <div className={styles.categoryHeader}>
+                  <span className={styles.categoryTitle}>{category}</span>
+                  <span className={styles.categoryCount}>
+                    {categoryFonts.length}
+                  </span>
+                </div>
+                {categoryFonts.map(font => (
+                  <button
+                    key={font.name}
+                    data-font-name={font.name}
+                    onClick={() => handleFontSelect(font.name)}
+                    className={`${styles.fontItem} ${activeFamily === font.name ? styles.active : ''}`}
+                  >
+                    <span
+                      style={{ fontFamily: font.name }}
+                      className={styles.fontName}
+                    >
+                      {font.name}
+                    </span>
+                    <span
+                      className={`${styles.categoryBadge} ${
+                        isCategoryMatch(font.category)
+                          ? styles['categoryBadge--highlight']
+                          : ''
+                      }`}
+                    >
+                      {font.category}
+                    </span>
+                  </button>
+                ))}
+              </div>
             )
-            .map(font => (
-              <button
-                key={font.name}
-                onClick={() => handleFontSelect(font.name)}
-                className={`${styles.fontItem} ${activeFamily === font.name ? styles.active : ''}`}
-              >
-                <span
-                  style={{ fontFamily: font.name }}
-                  className={styles.fontName}
-                >
-                  {font.name}
-                </span>
-              </button>
-            ))}
+          })}
         </div>
       </div>
     </div>

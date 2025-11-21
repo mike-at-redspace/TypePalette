@@ -32,7 +32,7 @@
 }
 
 .weightSelectTrigger {
-  @apply w-full appearance-none bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-xs text-slate-200 outline-hidden focus:border-blue-500/50 transition-all cursor-pointer hover:bg-white/5 flex items-center justify-between;
+  @apply w-full appearance-none bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-base text-slate-200 outline-hidden focus:border-blue-500/50 transition-all cursor-pointer hover:bg-white/5 flex items-center justify-between;
 }
 
 .weightSelectChevron {
@@ -44,14 +44,12 @@
 }
 
 .weightSelectDropdown {
-  @apply absolute z-50 w-full mt-1 bg-slate-900 border border-white/10 rounded-lg shadow-xl overflow-hidden;
-  max-height: 120px;
-  overflow-y: auto;
+  @apply absolute z-50 w-full mt-1 bg-slate-900 border border-white/10 rounded-lg shadow-xl overflow-hidden max-h-[120px] overflow-y-auto;
   overscroll-behavior: contain;
 }
 
 .weightSelectOption {
-  @apply w-full px-4 py-2.5 text-xs text-slate-200 text-left hover:bg-white/5 transition-colors cursor-pointer border-b border-white/5 last:border-b-0;
+  @apply w-full px-4 py-2.5 text-sm text-slate-200 text-left hover:bg-white/5 transition-colors cursor-pointer border-b border-white/5 last:border-b-0;
 }
 
 .weightSelectOption.selected {

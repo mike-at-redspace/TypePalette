@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense, lazy } from 'react'
+import { Suspense, lazy } from 'react'
 import styles from './CodeBlock.module.css'
 
 // Lazy load react-shiki to reduce initial bundle size
@@ -10,13 +10,6 @@ const ShikiHighlighter = lazy(() =>
 )
 
 const CodeBlock = ({ code, language = 'css' }) => {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    // Preload react-shiki when component mounts
-    import('react-shiki').then(() => setIsLoaded(true))
-  }, [])
-
   return (
     <div className={styles.container}>
       <Suspense
