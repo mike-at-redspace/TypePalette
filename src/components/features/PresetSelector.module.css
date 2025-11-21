@@ -4,6 +4,10 @@
   @apply h-full flex flex-col;
 }
 
+.instruction {
+  @apply text-xs text-slate-400 mb-4 leading-relaxed;
+}
+
 .title {
   @apply text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center justify-between;
 }
