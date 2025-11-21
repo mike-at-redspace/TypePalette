@@ -5,8 +5,8 @@ import {
   Check,
   FileCode,
   Package,
-  Database,
-  Rocket
+  Rocket,
+  Download
 } from 'lucide-react'
 import { Modal, Tabs, CodeBlock } from '@/components/ui'
 import {
@@ -14,7 +14,6 @@ import {
   generateTailwindExport,
   generateComprehensiveTailwindConfig,
   generateProseConfig,
-  generateJSONTokens,
   generateNextJSInstall,
   generateViteInstall,
   generateHTMLInstall
@@ -22,7 +21,7 @@ import {
 import styles from './ExportModal.module.css'
 
 const ExportModal = ({ isOpen, onClose, config }) => {
-  const [activeTab, setActiveTab] = useState('tailwind')
+  const [activeTab, setActiveTab] = useState('css')
   const [copiedButton, setCopiedButton] = useState(null)
   const contentRef = useRef(null)
 
@@ -42,7 +41,6 @@ const ExportModal = ({ isOpen, onClose, config }) => {
   const tailwindConfig = generateTailwindExport(config)
   const comprehensiveTailwind = generateComprehensiveTailwindConfig(config)
   const proseConfig = generateProseConfig(config)
-  const jsonTokens = generateJSONTokens(config)
   const nextJSInstall = generateNextJSInstall(config)
   const viteInstall = generateViteInstall(config)
   const htmlInstall = generateHTMLInstall(config)
@@ -55,10 +53,22 @@ const ExportModal = ({ isOpen, onClose, config }) => {
     }, 2000)
   }
 
+  const handleDownload = (content, filename, mimeType = 'text/plain') => {
+    const blob = new Blob([content], { type: mimeType })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
+
   const exportTabs = [
+    { id: 'css', label: 'CSS', icon: FileCode },
     { id: 'tailwind', label: 'Tailwind', icon: FileCode },
     { id: 'prose', label: 'Prose', icon: Package },
-    { id: 'json', label: 'Tokens', icon: Database },
     { id: 'framework', label: 'Framework', icon: Rocket }
   ]
 
@@ -67,27 +77,40 @@ const ExportModal = ({ isOpen, onClose, config }) => {
     labelClass,
     code,
     buttonId,
-    language = 'css'
+    language = 'css',
+    filename,
+    mimeType
   }) => (
     <div>
       <div className={styles.header}>
         <label className={labelClass}>{label}</label>
-        <button
-          onClick={() => handleCopy(code, buttonId)}
-          className={styles.copyButton}
-        >
-          <div className={styles.copyButtonContent}>
-            {copiedButton === buttonId ? (
-              <>
-                <Check size={12} className={styles.checkIcon} /> Copied
-              </>
-            ) : (
-              <>
-                <Copy size={12} /> Copy
-              </>
-            )}
-          </div>
-        </button>
+        <div className={styles.buttonGroup}>
+          <button
+            onClick={() => handleCopy(code, buttonId)}
+            className={styles.copyButton}
+          >
+            <div className={styles.copyButtonContent}>
+              {copiedButton === buttonId ? (
+                <>
+                  <Check size={12} className={styles.checkIcon} /> Copied
+                </>
+              ) : (
+                <>
+                  <Copy size={12} /> Copy
+                </>
+              )}
+            </div>
+          </button>
+          {filename && (
+            <button
+              onClick={() => handleDownload(code, filename, mimeType)}
+              className={styles.downloadButton}
+              title={`Download ${filename}`}
+            >
+              <Download size={12} />
+            </button>
+          )}
+        </div>
       </div>
       <div className={styles.codeBlock}>
         <CodeBlock code={code} language={language} />
@@ -97,6 +120,26 @@ const ExportModal = ({ isOpen, onClose, config }) => {
 
   const renderContent = () => {
     switch (activeTab) {
+      case 'css':
+        return (
+          <div key='css' className={styles.tabContent}>
+            <CodeSection
+              label='CSS Variables'
+              labelClass={styles.label}
+              code={cssVars}
+              buttonId='cssVars'
+              filename='css-variables.css'
+              mimeType='text/css'
+            />
+            <div className={styles.infoBox}>
+              <p className={styles.infoText}>
+                <strong>Usage:</strong> Link this CSS file in your HTML or
+                import it in your stylesheet. Use the CSS custom properties
+                (variables) throughout your project.
+              </p>
+            </div>
+          </div>
+        )
       case 'tailwind':
         return (
           <div key='tailwind' className={styles.tabContent}>
@@ -105,19 +148,24 @@ const ExportModal = ({ isOpen, onClose, config }) => {
               labelClass={styles.label}
               code={comprehensiveTailwind}
               buttonId='comprehensiveTailwind'
+              filename='tailwind-comprehensive.css'
+              mimeType='text/css'
             />
             <CodeSection
-              label='Basic Tailwind v4'
+              label='Basic Tailwind v4 Config'
               labelClass={styles.labelSecondary}
               code={tailwindConfig}
               buttonId='tailwindConfig'
+              filename='tailwind-basic.css'
+              mimeType='text/css'
             />
-            <CodeSection
-              label='Standard CSS Variables'
-              labelClass={styles.labelSecondary}
-              code={cssVars}
-              buttonId='cssVars'
-            />
+            <div className={styles.infoBox}>
+              <p className={styles.infoText}>
+                <strong>Usage:</strong> Add this to your CSS file or import it
+                in your Tailwind config. The comprehensive version includes
+                utility classes and element-specific variables.
+              </p>
+            </div>
           </div>
         )
       case 'prose':
@@ -128,6 +176,8 @@ const ExportModal = ({ isOpen, onClose, config }) => {
               labelClass={styles.label}
               code={proseConfig}
               buttonId='proseConfig'
+              filename='prose-config.css'
+              mimeType='text/css'
             />
             <div className={styles.infoBox}>
               <p className={styles.infoText}>
@@ -141,24 +191,6 @@ const ExportModal = ({ isOpen, onClose, config }) => {
             </div>
           </div>
         )
-      case 'json':
-        return (
-          <div key='json' className={styles.tabContent}>
-            <CodeSection
-              label='Design Tokens (JSON)'
-              labelClass={styles.label}
-              code={jsonTokens}
-              buttonId='jsonTokens'
-              language='json'
-            />
-            <div className={styles.infoBox}>
-              <p className={styles.infoText}>
-                Platform-agnostic tokens that can be used with Figma plugins,
-                CSS-in-JS libraries, or imported into Tailwind config files.
-              </p>
-            </div>
-          </div>
-        )
       case 'framework':
         return (
           <div key='framework' className={styles.tabContent}>
@@ -168,6 +200,8 @@ const ExportModal = ({ isOpen, onClose, config }) => {
               code={nextJSInstall}
               buttonId='nextJSInstall'
               language='jsx'
+              filename='nextjs-install.jsx'
+              mimeType='text/jsx'
             />
             <CodeSection
               label='Vite'
@@ -175,6 +209,8 @@ const ExportModal = ({ isOpen, onClose, config }) => {
               code={viteInstall}
               buttonId='viteInstall'
               language='html'
+              filename='vite-install.html'
+              mimeType='text/html'
             />
             <CodeSection
               label='Plain HTML'
@@ -182,6 +218,8 @@ const ExportModal = ({ isOpen, onClose, config }) => {
               code={htmlInstall}
               buttonId='htmlInstall'
               language='html'
+              filename='html-install.md'
+              mimeType='text/markdown'
             />
           </div>
         )

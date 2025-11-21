@@ -56,8 +56,12 @@
   @apply text-xs font-bold uppercase text-slate-400 tracking-wider;
 }
 
+.buttonGroup {
+  @apply flex items-center gap-2;
+}
+
 .copyButton {
-  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded mr-2;
+  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded;
   min-width: 60px;
   justify-content: center;
   transition:
@@ -72,6 +76,26 @@
 }
 
 .copyButton:active {
+  transform: scale(0.95);
+}
+
+.downloadButton {
+  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-cyan-400 bg-white/5 px-2 py-1 rounded;
+  min-width: 32px;
+  justify-content: center;
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    transform 0.15s;
+  transform: scale(1);
+}
+
+.downloadButton:hover {
+  transform: scale(1.05);
+  @apply bg-cyan-500/10;
+}
+
+.downloadButton:active {
   transform: scale(0.95);
 }
 
