@@ -1,9 +1,9 @@
 import { Play, Image } from 'lucide-react'
-import { useMemo } from 'react'
+import { useState } from 'react'
 
 const MarketingPreview = ({ style }) => {
-  const content = useMemo(
-    () => ({
+  const mockData = [
+    {
       badge: 'KERNING MATTERS',
       heading: 'Perfect Typography',
       subheading: 'One Pixel at a Time',
@@ -12,13 +12,73 @@ const MarketingPreview = ({ style }) => {
         strong: 'Comic Sans',
         middle: 'in production. Master the art of',
         emphasis: 'font pairing',
-        end: "and make your designs look like they were made by someone who actually knows what they're doing."
+        end: 'and make your designs look like they were made by someone who actually knows what they’re doing.'
       },
       cta1: 'Fix Your Fonts',
       cta2: 'View Typefaces'
-    }),
-    []
-  )
+    },
+    {
+      badge: 'COLOR THEORY',
+      heading: 'Vibrant Gradients',
+      subheading: 'Without the Migraine',
+      body: {
+        start: 'A gradient from',
+        strong: 'neon pink to lime',
+        middle: 'is not always a good idea. Try',
+        emphasis: 'subtle transitions',
+        end: 'and keep your users’ retinas intact.'
+      },
+      cta1: 'See Gradient Tips',
+      cta2: 'Explore Palettes'
+    },
+    {
+      badge: 'LAYOUT WISDOM',
+      heading: 'Whitespace Wins',
+      subheading: 'Let It Breathe',
+      body: {
+        start: 'Cramming every pixel with content',
+        strong: 'is not thorough',
+        middle: '. It’s hoarding. Embrace',
+        emphasis: 'negative space',
+        end: 'and let your design exhale.'
+      },
+      cta1: 'Learn Spacing',
+      cta2: 'View Layouts'
+    },
+    {
+      badge: 'FONT FLAIR',
+      heading: 'Pair Like a Pro',
+      subheading: 'Harmony in Type',
+      body: {
+        start: 'Mixing fonts is an art. Avoid',
+        strong: 'clashing styles',
+        middle: 'and focus on',
+        emphasis: 'visual hierarchy',
+        end: 'for a polished look.'
+      },
+      cta1: 'Font Pairing Guide',
+      cta2: 'Browse Examples'
+    },
+    {
+      badge: 'CTA SCIENCE',
+      heading: 'Compelling Actions',
+      subheading: 'Drive Engagement',
+      body: {
+        start: '“Learn More” is not enough. Make your',
+        strong: 'call-to-action',
+        middle: 'specific and persuasive. Use',
+        emphasis: 'active language',
+        end: 'to boost clicks.'
+      },
+      cta1: 'Upgrade Your CTA',
+      cta2: 'See Examples'
+    }
+  ]
+
+  const [content] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * mockData.length)
+    return mockData[randomIndex]
+  })
 
   return (
     <div
