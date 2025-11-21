@@ -797,6 +797,9 @@ export const generateKitchenSinkHTML = config => {
   <!-- Tailwind CSS Browser -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   
+  <!-- Tailwind Typography -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.x/dist/typography.min.css">
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -805,225 +808,200 @@ export const generateKitchenSinkHTML = config => {
   <!-- CSS Variables -->
   <link rel="stylesheet" href="css-variables.css">
   
-  <style>
-    body {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: #1a1a1a;
-      color: #e0e0e0;
-      line-height: 1.6;
-    }
-    
-    section {
-      margin-bottom: 3rem;
-      padding: 2rem;
-      background: #2a2a2a;
-      border-radius: 8px;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--font-heading);
-      font-weight: var(--heading-weight);
-      letter-spacing: var(--heading-tracking);
-      line-height: var(--heading-leading);
-      text-transform: var(--heading-transform);
-      color: #ffffff;
-      margin-top: 0;
-      /* Don't set font-size here - let Tailwind classes control it */
-    }
-    
-    p, li, td, th {
-      font-family: var(--font-body);
-      font-weight: var(--body-weight);
-      letter-spacing: var(--body-tracking);
-      line-height: var(--body-leading);
-      text-transform: var(--body-transform);
-    }
-    
-    strong {
-      font-family: var(--font-body-strong, var(--font-body));
-      font-weight: var(--body-strong-weight, var(--body-weight));
-    }
-    
-    em {
-      font-family: var(--font-body-emphasis, var(--font-body));
-      font-weight: var(--body-emphasis-weight, var(--body-weight));
-      font-style: italic;
-    }
-    
-    code {
-      font-family: var(--font-body-code, var(--font-body));
-      font-weight: var(--body-code-weight, var(--body-weight));
-      background: #3a3a3a;
-      padding: 0.2em 0.4em;
-      border-radius: 4px;
-    }
-    
-    a {
-      font-family: var(--font-body-link, var(--font-body));
-      font-weight: var(--body-link-weight, var(--body-weight));
-      color: #60a5fa;
-      text-decoration: underline;
-    }
-    
-    blockquote {
-      font-family: var(--font-body-blockquote, var(--font-body));
-      font-weight: var(--body-blockquote-weight, var(--body-weight));
-      border-left: 4px solid #60a5fa;
-      padding-left: 1rem;
-      margin-left: 0;
-      font-style: italic;
-    }
-    
-    button {
-      font-family: var(--font-ui);
-      font-weight: var(--ui-weight);
-      letter-spacing: var(--ui-tracking);
-      line-height: var(--ui-leading);
-      text-transform: var(--ui-transform);
-      padding: 0.5rem 1rem;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: filter 0.2s ease-in-out;
-    }
-    
-    button:hover {
-      filter: brightness(1.1);
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-    }
-    
-    th, td {
-      padding: 0.75rem;
-      text-align: left;
-      border-bottom: 1px solid #3a3a3a;
-    }
-    
-    th {
-      font-family: var(--font-ui);
-      font-weight: var(--ui-weight);
-      background: #2a2a2a;
-    }
-    
-    input, textarea, select {
-      font-family: var(--font-body);
-      padding: 0.5rem;
-      border: 1px solid #3a3a3a;
-      border-radius: 4px;
-      background: #2a2a2a;
-      color: #e0e0e0;
-    }
-  </style>
+  <!-- Prose Configuration -->
+  <link rel="stylesheet" href="prose-config.css">
+  
+   <style>
+      body {
+        background: linear-gradient(
+          100deg,
+          color(xyz 0.274 0.276 1.029) 13.57%,
+          color(xyz 0.259 0.245 0.959),
+          #1e7ef5,
+          #3773ed,
+          #4567e6 55.97%,
+          #574fd6,
+          #6034c7 98.38%
+        );
+        color: white;
+      }
+      section {
+        background-color: #020618cc;
+      }
+      header p {
+        color: #f3f3f3;
+      }
+      /* Headings use CSS variables for custom typography */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-heading);
+        font-weight: var(--heading-weight);
+        letter-spacing: var(--heading-tracking);
+        line-height: var(--heading-leading);
+        text-transform: var(--heading-transform);
+      }
+
+      section > h2 {
+        color: oklch(0.704 0.04 256.788);
+      }
+
+      /* Buttons use UI CSS variables for custom typography */
+      button {
+        font-family: var(--font-ui);
+        font-weight: var(--ui-weight);
+        letter-spacing: var(--ui-tracking);
+        line-height: var(--ui-leading);
+        text-transform: var(--ui-transform);
+      }
+      .prose {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ul,
+        ol,
+        td,
+        th,
+        p,
+        em,
+        strong,
+        code {
+          color: #ffffff;
+        }
+        a {
+          color: #93c5fd;
+          transition: all 0.3s ease;
+          &:hover {
+            color: #bfdbfe;
+          }
+        }
+        blockquote {
+          border-left-color: #3b82f6;
+          color: #d1d5db;
+        }
+      }
+    </style>
 </head>
-<body class="max-w-5xl mx-auto p-8 bg-[#1a1a1a] text-[#e0e0e0]">
-  <h1 class="mb-4" style="font-size: 3rem;">Typography Kitchen Sink</h1>
-  <p class="mb-8">This page demonstrates all typography elements using your configured typography system.</p>
+<body class="max-w-5xl mx-auto p-8 text-zinc-200">
+  <header class="mb-12">
+    <h1 class="text-5xl mb-4">Typography Kitchen Sink</h1>
+    <p class="text-lg text-zinc-300">This page demonstrates all typography elements using your configured typography system.</p>
+  </header>
   
-  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg">
-    <h2 class="mb-6">Headings</h2>
+  <section class="mb-12 p-8 rounded-lg">
+    <h2 class="text-2xl mb-6">Headings</h2>
     <div class="space-y-4">
-      <h1 style="font-size: 3rem;">Heading 1 (H1)</h1>
-      <h2 style="font-size: 2.25rem;">Heading 2 (H2)</h2>
-      <h3 style="font-size: 1.875rem;">Heading 3 (H3)</h3>
-      <h4 style="font-size: 1.5rem;">Heading 4 (H4)</h4>
-      <h5 style="font-size: 1.25rem;">Heading 5 (H5)</h5>
-      <h6 style="font-size: 1.125rem;">Heading 6 (H6)</h6>
+      <h1 class="text-5xl">Heading 1 (H1)</h1>
+      <h2 class="text-4xl">Heading 2 (H2)</h2>
+      <h3 class="text-3xl">Heading 3 (H3)</h3>
+      <h4 class="text-2xl">Heading 4 (H4)</h4>
+      <h5 class="text-xl">Heading 5 (H5)</h5>
+      <h6 class="text-lg">Heading 6 (H6)</h6>
     </div>
   </section>
   
-  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
-    <h2 class="mb-6">Body Text</h2>
-    <p>This is a paragraph of body text. It demonstrates the default body typography settings including font family, weight, letter spacing, line height, and text transform.</p>
-    <p>Here's another paragraph to show spacing between paragraphs. Notice how the typography system creates a comfortable reading experience with appropriate line height and letter spacing.</p>
+  <section class="mb-12 p-8 rounded-lg">
+    <h2 class="text-2xl mb-6">Body Text</h2>
+    <div class="prose prose-invert max-w-none">
+      <p>This is a paragraph of body text. It demonstrates the default body typography settings including font family, weight, letter spacing, line height, and text transform.</p>
+      <p>Here's another paragraph to show spacing between paragraphs. Notice how the typography system creates a comfortable reading experience with appropriate line height and letter spacing.</p>
+    </div>
   </section>
   
-  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
-    <h2 class="mb-6">Text Formatting</h2>
-    <p>This paragraph contains <strong>strong/bold text</strong> and <em>emphasized/italic text</em> to demonstrate how these elements are styled.</p>
-    <p>You can also use <code>inline code</code> within paragraphs, and here's a <a href="#">link to demonstrate link styling</a>.</p>
+  <section class="mb-12 p-8 rounded-lg">
+    <h2 class="text-2xl mb-6">Text Formatting</h2>
+    <div class="prose prose-invert max-w-none">
+      <p>This paragraph contains <strong>strong/bold text</strong> and <em>emphasized/italic text</em> to demonstrate how these elements are styled.</p>
+      <p>You can also use <code>inline code</code> within paragraphs, and here's a <a href="#">link to demonstrate link styling</a>.</p>
+    </div>
   </section>
   
-  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
-    <h2 class="mb-6">Blockquote</h2>
-    <blockquote>
-      "This is a blockquote. It's used for highlighting important quotes or callouts. Notice how it has distinct styling from regular paragraphs."
-    </blockquote>
+  <section class="mb-12 p-8 rounded-lg">
+    <h2 class="text-2xl mb-6">Blockquote</h2>
+    <div class="prose prose-invert max-w-none">
+      <blockquote>
+        "This is a blockquote. It's used for highlighting important quotes or callouts. Notice how it has distinct styling from regular paragraphs."
+      </blockquote>
+    </div>
   </section>
   
-  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
-    <h2 class="mb-6">Lists</h2>
-    <h3>Unordered List</h3>
-    <ul>
-      <li>First list item</li>
-      <li>Second list item with <strong>bold text</strong></li>
-      <li>Third list item with <em>italic text</em></li>
-      <li>Fourth list item with <code>code</code></li>
-    </ul>
-    
-    <h3>Ordered List</h3>
-    <ol>
-      <li>First numbered item</li>
-      <li>Second numbered item</li>
-      <li>Third numbered item</li>
-    </ol>
+  <section class="mb-12 p-8 rounded-lg">
+    <h2 class="text-2xl mb-6">Lists</h2>
+    <div class="prose prose-invert max-w-none">
+      <h3>Unordered List</h3>
+      <ul>
+        <li>First list item</li>
+        <li>Second list item with <strong>bold text</strong></li>
+        <li>Third list item with <em>italic text</em></li>
+        <li>Fourth list item with <code>code</code></li>
+      </ul>
+      
+      <h3>Ordered List</h3>
+      <ol>
+        <li>First numbered item</li>
+        <li>Second numbered item</li>
+        <li>Third numbered item</li>
+      </ol>
+    </div>
   </section>
   
-  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg">
-    <h2 class="mb-6">Buttons</h2>
+  <section class="mb-12 p-8 rounded-lg">
+    <h2 class="text-2xl mb-6">Buttons</h2>
     <div class="flex gap-2">
-      <button class="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer hover:bg-blue-700">Primary Button</button>
-      <button class="px-4 py-2 bg-green-600 text-white rounded cursor-pointer hover:bg-green-700">Success Button</button>
-      <button class="px-4 py-2 bg-red-600 text-white rounded cursor-pointer hover:bg-red-700">Danger Button</button>
+      <button class="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer hover:bg-blue-700 transition-colors">Primary Button</button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded cursor-pointer hover:bg-green-700 transition-colors">Success Button</button>
+      <button class="px-4 py-2 bg-red-600 text-white rounded cursor-pointer hover:bg-red-700 transition-colors">Danger Button</button>
     </div>
   </section>
   
-  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
-    <h2 class="mb-6">Table</h2>
-    <div class="overflow-x-auto">
-      <table class="w-full border-collapse my-4">
+  <section class="mb-12 p-8 rounded-lg">
+    <h2 class="text-2xl mb-6">Table</h2>
+    <div class="prose prose-invert max-w-none overflow-x-auto">
+      <table>
         <thead>
           <tr>
-            <th class="p-3 text-left border-b border-[#3a3a3a] bg-[#2a2a2a]">Name</th>
-            <th class="p-3 text-left border-b border-[#3a3a3a] bg-[#2a2a2a]">Type</th>
-            <th class="p-3 text-left border-b border-[#3a3a3a] bg-[#2a2a2a]">Description</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="p-3 border-b border-[#3a3a3a]">Heading Font</td>
-            <td class="p-3 border-b border-[#3a3a3a]">Typography</td>
-            <td class="p-3 border-b border-[#3a3a3a]">${headingConfig.family} - ${headingConfig.weight}</td>
+            <td>Heading Font</td>
+            <td>Typography</td>
+            <td>${headingConfig.family} - ${headingConfig.weight}</td>
           </tr>
           <tr>
-            <td class="p-3 border-b border-[#3a3a3a]">Body Font</td>
-            <td class="p-3 border-b border-[#3a3a3a]">Typography</td>
-            <td class="p-3 border-b border-[#3a3a3a]">${bodyConfig.family} - ${bodyConfig.weight}</td>
+            <td>Body Font</td>
+            <td>Typography</td>
+            <td>${bodyConfig.family} - ${bodyConfig.weight}</td>
           </tr>
           <tr>
-            <td class="p-3 border-b border-[#3a3a3a]">UI Font</td>
-            <td class="p-3 border-b border-[#3a3a3a]">Typography</td>
-            <td class="p-3 border-b border-[#3a3a3a]">${uiConfig.family} - ${uiConfig.weight}</td>
+            <td>UI Font</td>
+            <td>Typography</td>
+            <td>${uiConfig.family} - ${uiConfig.weight}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
   
-  <section class="mb-12 p-8 bg-[#2a2a2a] rounded-lg prose prose-invert max-w-none">
-    <h2 class="mb-6">Code Block</h2>
-    <pre class="bg-[#1e1e1e] p-4 rounded overflow-x-auto"><code>// Example code block
+  <section class="mb-12 p-8 rounded-lg">
+    <h2 class="text-2xl mb-6">Code Block</h2>
+    <div class="prose prose-invert max-w-none">
+      <pre><code>// Example code block
 function example() {
   const heading = document.querySelector('h1');
   heading.style.fontFamily = 'var(--font-heading)';
   heading.style.fontWeight = 'var(--heading-weight)';
 }</code></pre>
+    </div>
   </section>
 </body>
 </html>`
