@@ -122,15 +122,19 @@ export const generateCSSExport = config => {
   })
 
   // Build Google Fonts URL with weights
-  // For handwriting fonts, omit weight specification (they're static fonts)
+  // For handwriting and display fonts, omit weight specification (they're often static fonts)
   // For other fonts, use variable font format (wght@)
   const googleFontsUrl = Array.from(fontMap.entries())
     .map(([family, data]) => {
       const familyName = family.replace(/\s+/g, '+')
       const category = data.category || 'Sans Serif'
+      const categoryLower = category.toLowerCase()
 
-      // For handwriting fonts, omit weight specification
-      if (category.toLowerCase().includes('handwriting')) {
+      // For handwriting and display fonts, omit weight specification (static fonts)
+      if (
+        categoryLower.includes('handwriting') ||
+        categoryLower.includes('display')
+      ) {
         return `family=${familyName}`
       }
 
@@ -2365,15 +2369,19 @@ export const generateKitchenSinkHTML = config => {
   })
 
   // Build Google Fonts URL with weights
-  // For handwriting fonts, omit weight specification (they're static fonts)
+  // For handwriting and display fonts, omit weight specification (they're often static fonts)
   // For other fonts, use variable font format (wght@)
   const googleFontsUrl = Array.from(fontMap.entries())
     .map(([family, data]) => {
       const familyName = family.replace(/\s+/g, '+')
       const category = data.category || 'Sans Serif'
+      const categoryLower = category.toLowerCase()
 
-      // For handwriting fonts, omit weight specification
-      if (category.toLowerCase().includes('handwriting')) {
+      // For handwriting and display fonts, omit weight specification (static fonts)
+      if (
+        categoryLower.includes('handwriting') ||
+        categoryLower.includes('display')
+      ) {
         return `family=${familyName}`
       }
 
