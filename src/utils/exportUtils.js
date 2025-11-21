@@ -1,9 +1,25 @@
 // JSZip is lazy loaded to reduce initial bundle size
 
 const getFontFamily = (family, category) => {
-  const fallback = category.toLowerCase().includes('serif')
-    ? 'serif'
-    : 'sans-serif'
+  // Map font categories to CSS generic font families
+  const categoryLower = (category || '').toLowerCase()
+  let fallback = 'sans-serif' // default fallback
+
+  if (categoryLower.includes('serif')) {
+    fallback = 'serif'
+  } else if (categoryLower.includes('monospace')) {
+    fallback = 'monospace'
+  } else if (categoryLower.includes('handwriting')) {
+    fallback = 'cursive'
+  } else if (categoryLower.includes('display')) {
+    // Display fonts are typically sans-serif, but can be serif
+    // Default to sans-serif for display fonts
+    fallback = 'sans-serif'
+  } else {
+    // Default to sans-serif for Sans Serif and any unknown categories
+    fallback = 'sans-serif'
+  }
+
   return `"${family}", ${fallback}`
 }
 
@@ -37,43 +53,89 @@ const getFontFamily = (family, category) => {
 export const generateCSSExport = config => {
   const getRoleConfig = role => config[role]?.all || {}
 
-  const headingConfig = getRoleConfig('headings')
-  const bodyConfig = getRoleConfig('body')
-  const uiConfig = getRoleConfig('ui')
+  const headingConfig = getRoleConfig('headings') || {}
+  const bodyConfig = getRoleConfig('body') || {}
+  const uiConfig = getRoleConfig('ui') || {}
 
-  // Collect all unique fonts with their weights for Google Fonts URL
-  const fontMap = new Map()
-
-  // Helper to add font with weight
-  const addFont = (family, weight) => {
-    if (!family) return
-    if (!fontMap.has(family)) {
-      fontMap.set(family, new Set())
-    }
-    fontMap.get(family).add(weight)
+  // Ensure we have default values if config is missing
+  const defaultHeading = {
+    family: headingConfig.family || 'Inter',
+    category: headingConfig.category || 'Sans Serif',
+    weight: headingConfig.weight || '700',
+    tracking: headingConfig.tracking || '0',
+    leading: headingConfig.leading || '1.1',
+    transform: headingConfig.transform || 'none'
+  }
+  const defaultBody = {
+    family: bodyConfig.family || 'Inter',
+    category: bodyConfig.category || 'Sans Serif',
+    weight: bodyConfig.weight || '400',
+    tracking: bodyConfig.tracking || '0',
+    leading: bodyConfig.leading || '1.6',
+    transform: bodyConfig.transform || 'none'
+  }
+  const defaultUI = {
+    family: uiConfig.family || 'Inter',
+    category: uiConfig.category || 'Sans Serif',
+    weight: uiConfig.weight || '500',
+    tracking: uiConfig.tracking || '0',
+    leading: uiConfig.leading || '1.4',
+    transform: uiConfig.transform || 'uppercase'
   }
 
-  // Add base fonts
-  addFont(headingConfig.family, headingConfig.weight)
-  addFont(bodyConfig.family, bodyConfig.weight)
-  addFont(uiConfig.family, uiConfig.weight)
+  // Collect all unique fonts with their weights and categories for Google Fonts URL
+  const fontMap = new Map()
+
+  // Helper to add font with weight and category
+  const addFont = (family, weight, category) => {
+    if (!family) return
+    if (!fontMap.has(family)) {
+      fontMap.set(family, {
+        weights: new Set(),
+        category: category || 'Sans Serif'
+      })
+    }
+    fontMap.get(family).weights.add(weight)
+    // Update category if provided and not already set
+    if (category) {
+      fontMap.get(family).category = category
+    }
+  }
+
+  // Add base fonts (use defaults if missing)
+  addFont(defaultHeading.family, defaultHeading.weight, defaultHeading.category)
+  addFont(defaultBody.family, defaultBody.weight, defaultBody.category)
+  addFont(defaultUI.family, defaultUI.weight, defaultUI.category)
 
   // Add element-specific fonts
   Object.values(config.headings || {}).forEach(elemConfig => {
-    if (elemConfig?.family) addFont(elemConfig.family, elemConfig.weight)
+    if (elemConfig?.family)
+      addFont(elemConfig.family, elemConfig.weight, elemConfig.category)
   })
   Object.values(config.body || {}).forEach(elemConfig => {
-    if (elemConfig?.family) addFont(elemConfig.family, elemConfig.weight)
+    if (elemConfig?.family)
+      addFont(elemConfig.family, elemConfig.weight, elemConfig.category)
   })
   Object.values(config.ui || {}).forEach(elemConfig => {
-    if (elemConfig?.family) addFont(elemConfig.family, elemConfig.weight)
+    if (elemConfig?.family)
+      addFont(elemConfig.family, elemConfig.weight, elemConfig.category)
   })
 
   // Build Google Fonts URL with weights
+  // For handwriting fonts, omit weight specification (they're static fonts)
+  // For other fonts, use variable font format (wght@)
   const googleFontsUrl = Array.from(fontMap.entries())
-    .map(([family, weights]) => {
+    .map(([family, data]) => {
       const familyName = family.replace(/\s+/g, '+')
-      const weightList = Array.from(weights).join(';')
+      const category = data.category || 'Sans Serif'
+
+      // For handwriting fonts, omit weight specification
+      if (category.toLowerCase().includes('handwriting')) {
+        return `family=${familyName}`
+      }
+
+      // For other fonts, use variable format
+      const weightList = Array.from(data.weights).sort().join(';')
       return `family=${familyName}:wght@${weightList}`
     })
     .join('&')
@@ -109,62 +171,91 @@ export const generateCSSExport = config => {
 :root {
   /* Typography System - Base Variables */
   /* Heading Typography */
-  --font-heading: ${getFontFamily(headingConfig.family, headingConfig.category)};
-  --heading-weight: ${headingConfig.weight};
-  --heading-tracking: ${headingConfig.tracking}em;
-  --heading-leading: ${headingConfig.leading};
-  --heading-transform: ${headingConfig.transform};
+  --font-heading: ${getFontFamily(defaultHeading.family, defaultHeading.category)};
+  --heading-weight: ${defaultHeading.weight};
+  --heading-tracking: ${defaultHeading.tracking}em;
+  --heading-leading: ${defaultHeading.leading};
+  --heading-transform: ${defaultHeading.transform};
 
   /* Body Typography */
-  --font-body: ${getFontFamily(bodyConfig.family, bodyConfig.category)};
-  --body-weight: ${bodyConfig.weight};
-  --body-tracking: ${bodyConfig.tracking}em;
-  --body-leading: ${bodyConfig.leading};
-  --body-transform: ${bodyConfig.transform};
+  --font-body: ${getFontFamily(defaultBody.family, defaultBody.category)};
+  --body-weight: ${defaultBody.weight};
+  --body-tracking: ${defaultBody.tracking}em;
+  --body-leading: ${defaultBody.leading};
+  --body-transform: ${defaultBody.transform};
 
   /* UI Typography */
-  --font-ui: ${getFontFamily(uiConfig.family, uiConfig.category)};
-  --ui-weight: ${uiConfig.weight};
-  --ui-tracking: ${uiConfig.tracking}em;
-  --ui-leading: ${uiConfig.leading};
-  --ui-transform: ${uiConfig.transform};`
+  --font-ui: ${getFontFamily(defaultUI.family, defaultUI.category)};
+  --ui-weight: ${defaultUI.weight};
+  --ui-tracking: ${defaultUI.tracking}em;
+  --ui-leading: ${defaultUI.leading};
+  --ui-transform: ${defaultUI.transform};`
 
   // Add element-specific CSS variables for headings
-  Object.keys(config.headings || {}).forEach(element => {
-    if (element !== 'all') {
-      const elemConfig = config.headings[element]
-      css += `
-  --font-heading-${element}: ${getFontFamily(elemConfig.family, elemConfig.category)};
-  --heading-${element}-weight: ${elemConfig.weight};
-  --heading-${element}-tracking: ${elemConfig.tracking}em;
-  --heading-${element}-leading: ${elemConfig.leading};
-  --heading-${element}-transform: ${elemConfig.transform};`
-    }
+  // Always generate variables for h1-h6, even if not explicitly in config
+  const headingElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+  headingElements.forEach(element => {
+    const elemConfig = config.headings?.[element]
+    // Use element-specific config if it exists, otherwise use base heading config
+    // This matches the pattern used for body elements and ensures custom fonts are always used
+    const family = elemConfig?.family || defaultHeading.family
+    const category = elemConfig?.category || defaultHeading.category
+    const weight = elemConfig?.weight || defaultHeading.weight
+    const tracking =
+      elemConfig?.tracking !== undefined && elemConfig.tracking !== null
+        ? elemConfig.tracking
+        : defaultHeading.tracking
+    const leading = elemConfig?.leading || defaultHeading.leading
+    const transform = elemConfig?.transform || defaultHeading.transform
+
+    // Always generate CSS variables (family will always have a value due to defaults)
+    css += `
+  --font-heading-${element}: ${getFontFamily(family, category)};
+  --heading-${element}-weight: ${weight};
+  --heading-${element}-tracking: ${tracking}em;
+  --heading-${element}-leading: ${leading};
+  --heading-${element}-transform: ${transform};`
   })
 
   // Add element-specific CSS variables for body
   Object.keys(config.body || {}).forEach(element => {
     if (element !== 'all') {
-      const elemConfig = config.body[element]
+      const elemConfig = config.body[element] || {}
+      // Use element-specific config with fallback to base body config
+      const family = elemConfig.family || defaultBody.family
+      const category = elemConfig.category || defaultBody.category
+      const weight = elemConfig.weight || defaultBody.weight
+      const tracking = elemConfig.tracking || defaultBody.tracking
+      const leading = elemConfig.leading || defaultBody.leading
+      const transform = elemConfig.transform || defaultBody.transform
+
       css += `
-  --font-body-${element}: ${getFontFamily(elemConfig.family, elemConfig.category)};
-  --body-${element}-weight: ${elemConfig.weight};
-  --body-${element}-tracking: ${elemConfig.tracking}em;
-  --body-${element}-leading: ${elemConfig.leading};
-  --body-${element}-transform: ${elemConfig.transform};`
+  --font-body-${element}: ${getFontFamily(family, category)};
+  --body-${element}-weight: ${weight};
+  --body-${element}-tracking: ${tracking}em;
+  --body-${element}-leading: ${leading};
+  --body-${element}-transform: ${transform};`
     }
   })
 
   // Add element-specific CSS variables for ui
   Object.keys(config.ui || {}).forEach(element => {
     if (element !== 'all') {
-      const elemConfig = config.ui[element]
+      const elemConfig = config.ui[element] || {}
+      // Use element-specific config with fallback to base ui config
+      const family = elemConfig.family || defaultUI.family
+      const category = elemConfig.category || defaultUI.category
+      const weight = elemConfig.weight || defaultUI.weight
+      const tracking = elemConfig.tracking || defaultUI.tracking
+      const leading = elemConfig.leading || defaultUI.leading
+      const transform = elemConfig.transform || defaultUI.transform
+
       css += `
-  --font-ui-${element}: ${getFontFamily(elemConfig.family, elemConfig.category)};
-  --ui-${element}-weight: ${elemConfig.weight};
-  --ui-${element}-tracking: ${elemConfig.tracking}em;
-  --ui-${element}-leading: ${elemConfig.leading};
-  --ui-${element}-transform: ${elemConfig.transform};`
+  --font-ui-${element}: ${getFontFamily(family, category)};
+  --ui-${element}-weight: ${weight};
+  --ui-${element}-tracking: ${tracking}em;
+  --ui-${element}-leading: ${leading};
+  --ui-${element}-transform: ${transform};`
     }
   })
 
@@ -1164,7 +1255,7 @@ export const generateStyleDictionaryConfig = () => {
  */
 export const generateIOSExport = config => {
   const getRoleConfig = role => config[role]?.all || {}
-  const getFontFamily = (family, _category) => {
+  const getFontFamily = family => {
     return `"${family}"`
   }
 
@@ -1186,21 +1277,21 @@ import SwiftUI
 
 struct Typography {
     struct Heading {
-        static let fontFamily = ${getFontFamily(headingConfig.family, headingConfig.category)}
+        static let fontFamily = ${getFontFamily(headingConfig.family)}
         static let fontWeight: Font.Weight = .${headingConfig.weight === '700' ? 'bold' : headingConfig.weight === '600' ? 'semibold' : headingConfig.weight === '500' ? 'medium' : 'regular'}
         static let letterSpacing: CGFloat = ${headingConfig.tracking}
         static let lineHeight: CGFloat = ${headingConfig.leading}
     }
     
     struct Body {
-        static let fontFamily = ${getFontFamily(bodyConfig.family, bodyConfig.category)}
+        static let fontFamily = ${getFontFamily(bodyConfig.family)}
         static let fontWeight: Font.Weight = .${bodyConfig.weight === '700' ? 'bold' : bodyConfig.weight === '600' ? 'semibold' : bodyConfig.weight === '500' ? 'medium' : 'regular'}
         static let letterSpacing: CGFloat = ${bodyConfig.tracking}
         static let lineHeight: CGFloat = ${bodyConfig.leading}
     }
     
     struct UI {
-        static let fontFamily = ${getFontFamily(uiConfig.family, uiConfig.category)}
+        static let fontFamily = ${getFontFamily(uiConfig.family)}
         static let fontWeight: Font.Weight = .${uiConfig.weight === '700' ? 'bold' : uiConfig.weight === '600' ? 'semibold' : uiConfig.weight === '500' ? 'medium' : 'regular'}
         static let letterSpacing: CGFloat = ${uiConfig.tracking}
         static let lineHeight: CGFloat = ${uiConfig.leading}
@@ -1234,7 +1325,7 @@ extension Font {
  */
 export const generateAndroidExport = config => {
   const getRoleConfig = role => config[role]?.all || {}
-  const getFontFamily = (family, _category) => {
+  const getFontFamily = family => {
     return family.replace(/\s+/g, '_').toLowerCase()
   }
 
@@ -1249,26 +1340,26 @@ export const generateAndroidExport = config => {
   
   Usage in Android:
   <TextView
-      android:fontFamily="@font/${getFontFamily(headingConfig.family, headingConfig.category)}"
+      android:fontFamily="@font/${getFontFamily(headingConfig.family)}"
       android:textStyle="bold"
       android:letterSpacing="${headingConfig.tracking}"
       android:lineSpacingMultiplier="${headingConfig.leading}" />
 -->
 <resources>
     <!-- Heading Typography -->
-    <string name="font_family_heading">${getFontFamily(headingConfig.family, headingConfig.category)}</string>
+    <string name="font_family_heading">${getFontFamily(headingConfig.family)}</string>
     <integer name="font_weight_heading">${headingConfig.weight}</integer>
     <dimen name="letter_spacing_heading">${headingConfig.tracking}sp</dimen>
     <dimen name="line_height_heading">${headingConfig.leading}sp</dimen>
     
     <!-- Body Typography -->
-    <string name="font_family_body">${getFontFamily(bodyConfig.family, bodyConfig.category)}</string>
+    <string name="font_family_body">${getFontFamily(bodyConfig.family)}</string>
     <integer name="font_weight_body">${bodyConfig.weight}</integer>
     <dimen name="letter_spacing_body">${bodyConfig.tracking}sp</dimen>
     <dimen name="line_height_body">${bodyConfig.leading}sp</dimen>
     
     <!-- UI Typography -->
-    <string name="font_family_ui">${getFontFamily(uiConfig.family, uiConfig.category)}</string>
+    <string name="font_family_ui">${getFontFamily(uiConfig.family)}</string>
     <integer name="font_weight_ui">${uiConfig.weight}</integer>
     <dimen name="letter_spacing_ui">${uiConfig.tracking}sp</dimen>
     <dimen name="line_height_ui">${uiConfig.leading}sp</dimen>
@@ -2174,43 +2265,120 @@ Check out \`kitchen-sink.html\` for a complete example of all typography element
 export const generateKitchenSinkHTML = config => {
   const getRoleConfig = role => config[role]?.all || {}
 
-  // Collect all unique fonts with their weights
+  // Collect all unique fonts with their weights and categories
   const fontMap = new Map()
 
-  // Helper to add font with weight
-  const addFont = (family, weight) => {
+  // Helper to add font with weight and category
+  const addFont = (family, weight, category) => {
     if (!family) return
     if (!fontMap.has(family)) {
-      fontMap.set(family, new Set())
+      fontMap.set(family, {
+        weights: new Set(),
+        category: category || 'Sans Serif'
+      })
     }
-    fontMap.get(family).add(weight)
+    fontMap.get(family).weights.add(weight)
+    // Update category if provided and not already set
+    if (category) {
+      fontMap.get(family).category = category
+    }
   }
 
-  // Add base fonts
-  const headingConfig = getRoleConfig('headings')
-  const bodyConfig = getRoleConfig('body')
-  const uiConfig = getRoleConfig('ui')
+  // Add base fonts with defaults
+  const headingConfig = getRoleConfig('headings') || {}
+  const bodyConfig = getRoleConfig('body') || {}
+  const uiConfig = getRoleConfig('ui') || {}
 
-  addFont(headingConfig.family, headingConfig.weight)
-  addFont(bodyConfig.family, bodyConfig.weight)
-  addFont(uiConfig.family, uiConfig.weight)
+  const defaultHeading = {
+    family: headingConfig.family || 'Inter',
+    weight: headingConfig.weight || '700',
+    category: headingConfig.category || 'Sans Serif'
+  }
+  const defaultBody = {
+    family: bodyConfig.family || 'Inter',
+    weight: bodyConfig.weight || '400',
+    category: bodyConfig.category || 'Sans Serif'
+  }
+  const defaultUI = {
+    family: uiConfig.family || 'Inter',
+    weight: uiConfig.weight || '500',
+    category: uiConfig.category || 'Sans Serif'
+  }
 
-  // Add element-specific fonts
-  Object.values(config.headings || {}).forEach(elemConfig => {
-    if (elemConfig?.family) addFont(elemConfig.family, elemConfig.weight)
+  addFont(defaultHeading.family, defaultHeading.weight, defaultHeading.category)
+  addFont(defaultBody.family, defaultBody.weight, defaultBody.category)
+  addFont(defaultUI.family, defaultUI.weight, defaultUI.category)
+
+  // Add element-specific fonts - ensure we check all heading elements (h1-h6)
+  const headingElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+  headingElements.forEach(element => {
+    const elemConfig = config.headings?.[element]
+    if (elemConfig?.family) {
+      addFont(
+        elemConfig.family,
+        elemConfig.weight || defaultHeading.weight,
+        elemConfig.category || defaultHeading.category
+      )
+    }
   })
-  Object.values(config.body || {}).forEach(elemConfig => {
-    if (elemConfig?.family) addFont(elemConfig.family, elemConfig.weight)
+
+  // Also check any other heading configs that might exist
+  Object.keys(config.headings || {}).forEach(key => {
+    if (key !== 'all' && !headingElements.includes(key)) {
+      const elemConfig = config.headings[key]
+      if (elemConfig?.family) {
+        addFont(
+          elemConfig.family,
+          elemConfig.weight || defaultHeading.weight,
+          elemConfig.category || defaultHeading.category
+        )
+      }
+    }
   })
-  Object.values(config.ui || {}).forEach(elemConfig => {
-    if (elemConfig?.family) addFont(elemConfig.family, elemConfig.weight)
+
+  // Add body element-specific fonts
+  Object.keys(config.body || {}).forEach(element => {
+    if (element !== 'all') {
+      const elemConfig = config.body[element]
+      if (elemConfig?.family) {
+        addFont(
+          elemConfig.family,
+          elemConfig.weight || defaultBody.weight,
+          elemConfig.category || defaultBody.category
+        )
+      }
+    }
+  })
+
+  // Add UI element-specific fonts
+  Object.keys(config.ui || {}).forEach(element => {
+    if (element !== 'all') {
+      const elemConfig = config.ui[element]
+      if (elemConfig?.family) {
+        addFont(
+          elemConfig.family,
+          elemConfig.weight || defaultUI.weight,
+          elemConfig.category || defaultUI.category
+        )
+      }
+    }
   })
 
   // Build Google Fonts URL with weights
+  // For handwriting fonts, omit weight specification (they're static fonts)
+  // For other fonts, use variable font format (wght@)
   const googleFontsUrl = Array.from(fontMap.entries())
-    .map(([family, weights]) => {
+    .map(([family, data]) => {
       const familyName = family.replace(/\s+/g, '+')
-      const weightList = Array.from(weights).join(';')
+      const category = data.category || 'Sans Serif'
+
+      // For handwriting fonts, omit weight specification
+      if (category.toLowerCase().includes('handwriting')) {
+        return `family=${familyName}`
+      }
+
+      // For other fonts, use variable format
+      const weightList = Array.from(data.weights).sort().join(';')
       return `family=${familyName}:wght@${weightList}`
     })
     .join('&')
@@ -2225,23 +2393,28 @@ export const generateKitchenSinkHTML = config => {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Typography Kitchen Sink</title>
   
-  <!-- Tailwind CSS Browser -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  
-  <!-- Tailwind Typography -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.x/dist/typography.min.css">
-  
-  <!-- Google Fonts -->
+  <!-- Google Fonts - Load first so fonts are available -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?${googleFontsUrl}&display=swap" rel="stylesheet">
   
+  <!-- CSS Variables - Define before Tailwind Typography so our styles can override -->
   <style>
     /* CSS Variables - Inline for standalone HTML */
 ${cssVars
   .split('\n')
   .map(line => '    ' + line)
   .join('\n')}
+  </style>
+  
+  <!-- Tailwind CSS Browser -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- Tailwind Typography - Load after CSS variables -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.x/dist/typography.min.css">
+  
+  <!-- Custom Styles - Load last to override Tailwind Typography -->
+  <style>
     
       body {
         background: linear-gradient(
@@ -2262,18 +2435,48 @@ ${cssVars
       header p {
         color: #f3f3f3;
       }
-      /* Headings use CSS variables for custom typography */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
+      /* Headings use element-specific CSS variables for custom typography - use !important to override Tailwind Typography */
+      h1 {
+        font-family: var(--font-heading-h1, var(--font-heading)) !important;
+        font-weight: var(--heading-h1-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h1-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h1-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h1-transform, var(--heading-transform)) !important;
+      }
+      h2 {
+        font-family: var(--font-heading-h2, var(--font-heading)) !important;
+        font-weight: var(--heading-h2-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h2-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h2-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h2-transform, var(--heading-transform)) !important;
+      }
+      h3 {
+        font-family: var(--font-heading-h3, var(--font-heading)) !important;
+        font-weight: var(--heading-h3-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h3-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h3-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h3-transform, var(--heading-transform)) !important;
+      }
+      h4 {
+        font-family: var(--font-heading-h4, var(--font-heading)) !important;
+        font-weight: var(--heading-h4-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h4-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h4-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h4-transform, var(--heading-transform)) !important;
+      }
+      h5 {
+        font-family: var(--font-heading-h5, var(--font-heading)) !important;
+        font-weight: var(--heading-h5-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h5-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h5-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h5-transform, var(--heading-transform)) !important;
+      }
       h6 {
-        font-family: var(--font-heading);
-        font-weight: var(--heading-weight);
-        letter-spacing: var(--heading-tracking);
-        line-height: var(--heading-leading);
-        text-transform: var(--heading-transform);
+        font-family: var(--font-heading-h6, var(--font-heading)) !important;
+        font-weight: var(--heading-h6-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h6-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h6-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h6-transform, var(--heading-transform)) !important;
       }
 
       section > h2 {
@@ -2288,34 +2491,81 @@ ${cssVars
         line-height: var(--ui-leading);
         text-transform: var(--ui-transform);
       }
-      .prose {
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        ul,
-        ol,
-        td,
-        th,
-        p,
-        em,
-        strong,
-        code {
-          color: #ffffff;
-        }
-        a {
-          color: #93c5fd;
-          transition: all 0.3s ease;
-          &:hover {
-            color: #bfdbfe;
-          }
-        }
-        blockquote {
-          border-left-color: #3b82f6;
-          color: #d1d5db;
-        }
+      /* Prose headings use element-specific CSS variables - use !important to override Tailwind Typography */
+      .prose h1,
+      .prose.prose-invert h1 {
+        font-family: var(--font-heading-h1, var(--font-heading)) !important;
+        font-weight: var(--heading-h1-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h1-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h1-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h1-transform, var(--heading-transform)) !important;
+      }
+      .prose h2,
+      .prose.prose-invert h2 {
+        font-family: var(--font-heading-h2, var(--font-heading)) !important;
+        font-weight: var(--heading-h2-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h2-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h2-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h2-transform, var(--heading-transform)) !important;
+      }
+      .prose h3,
+      .prose.prose-invert h3 {
+        font-family: var(--font-heading-h3, var(--font-heading)) !important;
+        font-weight: var(--heading-h3-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h3-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h3-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h3-transform, var(--heading-transform)) !important;
+      }
+      .prose h4,
+      .prose.prose-invert h4 {
+        font-family: var(--font-heading-h4, var(--font-heading)) !important;
+        font-weight: var(--heading-h4-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h4-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h4-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h4-transform, var(--heading-transform)) !important;
+      }
+      .prose h5,
+      .prose.prose-invert h5 {
+        font-family: var(--font-heading-h5, var(--font-heading)) !important;
+        font-weight: var(--heading-h5-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h5-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h5-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h5-transform, var(--heading-transform)) !important;
+      }
+      .prose h6,
+      .prose.prose-invert h6 {
+        font-family: var(--font-heading-h6, var(--font-heading)) !important;
+        font-weight: var(--heading-h6-weight, var(--heading-weight)) !important;
+        letter-spacing: var(--heading-h6-tracking, var(--heading-tracking)) !important;
+        line-height: var(--heading-h6-leading, var(--heading-leading)) !important;
+        text-transform: var(--heading-h6-transform, var(--heading-transform)) !important;
+      }
+      .prose h1,
+      .prose h2,
+      .prose h3,
+      .prose h4,
+      .prose h5,
+      .prose h6,
+      .prose ul,
+      .prose ol,
+      .prose td,
+      .prose th,
+      .prose p,
+      .prose em,
+      .prose strong,
+      .prose code {
+        color: #ffffff;
+      }
+      .prose a {
+        color: #93c5fd;
+        transition: all 0.3s ease;
+      }
+      .prose a:hover {
+        color: #bfdbfe;
+      }
+      .prose blockquote {
+        border-left-color: #3b82f6;
+        color: #d1d5db;
       }
     </style>
 </head>
