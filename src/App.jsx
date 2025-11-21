@@ -34,7 +34,7 @@ function App() {
     setActiveRole('headings')
     setActiveElement('all')
     setSearchQuery('')
-    setMode('custom')
+    setMode('preset')
   }
 
   useFontLoader(config)
