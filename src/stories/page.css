@@ -1,68 +1,46 @@
+@import 'tailwindcss' reference;
+
 .storybook-page {
-  margin: 0 auto;
-  padding: 48px 20px;
-  max-width: 600px;
-  color: #333;
-  font-size: 14px;
-  line-height: 24px;
+  @apply mx-auto px-5 py-12 max-w-[600px] text-slate-200 text-sm leading-6;
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .storybook-page h2 {
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 0 4px;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1;
+  @apply inline-block align-top mb-1 font-bold text-[32px] leading-none text-white;
 }
 
 .storybook-page p {
-  margin: 1em 0;
+  @apply my-4 text-slate-300;
 }
 
 .storybook-page a {
-  color: inherit;
+  @apply text-cyan-400 hover:text-cyan-300 underline decoration-cyan-500/50 hover:decoration-cyan-400 transition-colors;
+}
+
+.storybook-page a strong {
+  @apply font-bold text-white;
 }
 
 .storybook-page ul {
-  margin: 1em 0;
-  padding-left: 30px;
+  @apply my-4 pl-[30px] text-slate-300;
 }
 
 .storybook-page li {
-  margin-bottom: 8px;
+  @apply mb-2;
 }
 
 .storybook-page .tip {
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 10px;
-  border-radius: 1em;
-  background: #e7fdd8;
-  padding: 4px 12px;
-  color: #357a14;
-  font-weight: 700;
-  font-size: 11px;
-  line-height: 12px;
+  @apply inline-block align-top mr-2.5 rounded-full bg-emerald-500/20 px-3 py-1 text-emerald-300 font-bold text-[11px] leading-3 border border-emerald-500/30;
 }
 
 .storybook-page .tip-wrapper {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  font-size: 13px;
-  line-height: 20px;
+  @apply my-10 text-[13px] leading-5 text-slate-400;
 }
 
 .storybook-page .tip-wrapper svg {
-  display: inline-block;
-  vertical-align: top;
-  margin-top: 3px;
-  margin-right: 4px;
-  width: 12px;
-  height: 12px;
+  @apply inline-block align-top mt-0.5 mr-1 w-3 h-3;
 }
 
 .storybook-page .tip-wrapper svg path {
-  fill: #1ea7fd;
+  fill: #67e8f9;
 }

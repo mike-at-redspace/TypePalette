@@ -4,34 +4,21 @@
 }
 
 .content {
-  @apply space-y-6;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
+  @apply space-y-6 flex flex-col flex-1 min-h-0;
 }
 
 .tabsContainer {
-  @apply mb-0;
-  position: sticky;
-  top: 0;
-  z-index: 9;
-  background: rgb(2 6 23 / 0.9);
-  backdrop-filter: blur(8px);
+  @apply mb-0 sticky top-0 z-9 bg-slate-950/90 backdrop-blur-sm;
 }
 
 .tabContentWrapper {
-  @apply relative;
-  min-height: 400px;
+  @apply relative min-h-[400px] flex-1 overflow-y-auto;
   transform: translateZ(0);
-  flex: 1;
-  overflow-y: auto;
 }
 
 .tabContent {
-  @apply space-y-6 mt-4 pb-4;
+  @apply space-y-6 mt-4 pb-4 opacity-100;
   transform: translateZ(0);
-  opacity: 1;
   animation: fadeIn 0.1s ease-out;
 }
 
@@ -61,51 +48,15 @@
 }
 
 .copyButton {
-  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded;
-  min-width: 60px;
-  justify-content: center;
-  transition:
-    color 0.2s,
-    background-color 0.2s,
-    transform 0.15s;
-  transform: scale(1);
-}
-
-.copyButton:hover {
-  transform: scale(1.05);
-}
-
-.copyButton:active {
-  transform: scale(0.95);
+  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-white bg-white/5 px-2 py-1 rounded min-w-[60px] justify-center transition-[color,background-color,transform] duration-200 transform scale-100 hover:scale-105 active:scale-95;
 }
 
 .downloadButton {
-  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-cyan-400 bg-white/5 px-2 py-1 rounded;
-  min-width: 32px;
-  justify-content: center;
-  transition:
-    color 0.2s,
-    background-color 0.2s,
-    transform 0.15s;
-  transform: scale(1);
-}
-
-.downloadButton:hover {
-  transform: scale(1.05);
-  @apply bg-cyan-500/10;
-}
-
-.downloadButton:active {
-  transform: scale(0.95);
+  @apply text-xs flex items-center gap-1 text-slate-400 hover:text-cyan-400 bg-white/5 px-2 py-1 rounded min-w-[32px] justify-center transition-[color,background-color,transform] duration-200 transform scale-100 hover:scale-105 hover:bg-cyan-500/10 active:scale-95;
 }
 
 .copyButtonContent {
-  @apply flex items-center gap-1;
-  opacity: 1;
-  transform: scale(1);
-  transition:
-    opacity 0.2s ease-out,
-    transform 0.2s ease-out;
+  @apply flex items-center gap-1 opacity-100 transform scale-100 transition-[opacity,transform] duration-200 ease-out;
 }
 
 .checkIcon {
@@ -117,16 +68,10 @@
 }
 
 .codeBlock :global(pre) {
-  @apply m-0;
+  @apply m-0 overflow-x-auto rounded-lg px-3 py-3;
   background: transparent !important;
-  overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  border-radius: 0.5rem;
-  padding-left: 0.75rem !important;
-  padding-right: 0.75rem !important;
-  padding-top: 0.75rem !important;
-  padding-bottom: 0.75rem !important;
 }
 
 .codeBlock :global(pre::-webkit-scrollbar) {

@@ -20,7 +20,8 @@ A typography configuration tool for creating and customizing beautiful type syst
 - [React DOM](https://react.dev) - React renderer
 - [Framer Motion](https://www.framer.com/motion) - Animation library
 - [Lucide React](https://lucide.dev) - Icon library
-- [React Shiki](https://github.com/antfu/react-shiki) - Syntax highlighting
+- [React Shiki](https://react-shiki.vercel.app/) - Syntax highlighting
+- [JSZip](https://www.npmjs.com/package/jszip) - ZIP file creation
 
 ### Dev Dependencies
 

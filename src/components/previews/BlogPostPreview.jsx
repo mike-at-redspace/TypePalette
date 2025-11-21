@@ -224,7 +224,7 @@ const BlogPostPreview = ({ style }) => {
           </a>
           . {content.body3.end}
         </p>
-        <blockquote className='body-blockquote bg-slate-900/70 border-l-4 border-purple-400 p-8 italic text-2xl my-12 text-white rounded-r-xl backdrop-blur-sm shadow-lg'>
+        <blockquote className='body-blockquote bg-slate-900/70 border-l-4 border-purple-400 p-8 italic text-2xl my-12 text-white rounded-r-xl backdrop-blur-xs shadow-lg'>
           {content.quote}
         </blockquote>
       </div>

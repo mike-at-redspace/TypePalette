@@ -1,32 +1,26 @@
+@import 'tailwindcss' reference;
+
 .storybook-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 15px 20px;
+  @apply flex justify-between items-center border-b border-white/10 px-5 py-[15px];
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .storybook-header svg {
-  display: inline-block;
-  vertical-align: top;
+  @apply inline-block align-top;
 }
 
 .storybook-header h1 {
-  display: inline-block;
-  vertical-align: top;
-  margin: 6px 0 6px 10px;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1;
+  @apply inline-block align-top mx-0 my-1.5 ml-2.5 font-bold text-xl leading-none text-white;
 }
 
 .storybook-header button + button {
-  margin-left: 10px;
+  @apply ml-2.5;
 }
 
 .storybook-header .welcome {
-  margin-right: 10px;
-  color: #333;
-  font-size: 14px;
+  @apply mr-2.5 text-slate-300 text-sm;
+}
+
+.storybook-header .welcome b {
+  @apply font-semibold text-white;
 }

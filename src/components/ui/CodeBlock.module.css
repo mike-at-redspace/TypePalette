@@ -13,33 +13,27 @@
 }
 
 .container :global(pre) {
-  @apply m-0 p-0 bg-transparent;
-  font-size: 10px;
-  line-height: 1.6;
+  @apply m-0 p-0 bg-transparent text-[10px] leading-[1.6];
 }
 
 .container :global(code) {
-  font-size: 10px;
+  @apply text-[10px];
   font-family:
     'Cartograph CF', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
     'Liberation Mono', monospace;
 }
 
 .container :global(pre code) {
-  @apply block;
-  width: 100%;
+  @apply block w-full;
 }
 
 .fallback {
-  @apply m-0 p-4 bg-[#1e1e1e] rounded text-white overflow-x-auto;
-  font-size: 10px;
-  line-height: 1.6;
+  @apply m-0 p-4 bg-[#1e1e1e] rounded text-white overflow-x-auto text-[10px] leading-[1.6];
   font-family:
     'Cartograph CF', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
     'Liberation Mono', monospace;
 }
 
 .fallback code {
-  @apply block;
-  width: 100%;
+  @apply block w-full;
 }
