@@ -101,7 +101,7 @@
 }
 
 .categoryHeader {
-  @apply flex items-center justify-between px-3 py-2 mb-2 sticky top-0 bg-black/60 backdrop-blur-md border-b border-white/10 z-10;
+  @apply flex items-center justify-between px-3 py-2 sticky top-0 bg-black/60 backdrop-blur-md border-b border-white/10 z-10;
 }
 
 .categoryTitle {
