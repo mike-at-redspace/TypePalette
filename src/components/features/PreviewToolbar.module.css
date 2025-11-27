@@ -7,6 +7,11 @@
   @apply relative px-6 py-2 rounded-full text-xs font-bold flex items-center gap-2 transition-all text-slate-400 hover:text-white hover:bg-white/5 cursor-pointer;
 }
 
+.button:focus-visible {
+  @apply outline-none ring-2 ring-blue-400/80 ring-offset-4 ring-offset-slate-950/80;
+  outline-offset: 2px;
+}
+
 .button.active {
   @apply text-white;
 }

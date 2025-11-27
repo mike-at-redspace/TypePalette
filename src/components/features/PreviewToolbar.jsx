@@ -14,6 +14,8 @@ const PreviewToolbar = ({ activeMode, onModeChange }) => {
       {modes.map(mode => (
         <button
           key={mode.id}
+          type='button'
+          aria-pressed={activeMode === mode.id}
           onClick={() => onModeChange(mode.id)}
           className={`${styles.button} ${activeMode === mode.id ? styles.active : ''}`}
         >

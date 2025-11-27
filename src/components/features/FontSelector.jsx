@@ -8,6 +8,7 @@ import styles from './FontSelector.module.css'
 
 const RECENT_FONTS_KEY = 'typepalette_recent_fonts'
 const MAX_RECENT_FONTS = 3
+const FONT_ITEM_SELECTOR = 'button[data-font-name]'
 
 const getRecentFonts = () => {
   try {
@@ -130,6 +131,43 @@ const FontSelector = ({
   }, [visibleFonts])
 
   const fontListRef = useScrollFontPreloader(visibleFonts, true)
+  const focusAdjacentFontItem = useCallback(
+    direction => {
+      if (typeof document === 'undefined') return
+      const container = fontListRef.current
+      if (!container) return
+      const fontItems = Array.from(container.querySelectorAll(FONT_ITEM_SELECTOR))
+      if (fontItems.length === 0) return
+      const activeIndex = fontItems.findIndex(
+        item => item === document.activeElement
+      )
+      let nextIndex
+      if (activeIndex === -1) {
+        nextIndex = direction === 1 ? 0 : fontItems.length - 1
+      } else {
+        nextIndex = activeIndex + direction
+        if (nextIndex < 0) {
+          nextIndex = fontItems.length - 1
+        } else if (nextIndex >= fontItems.length) {
+          nextIndex = 0
+        }
+      }
+      const target = fontItems[nextIndex]
+      if (!target) return
+      target.focus()
+      target.scrollIntoView({ block: 'nearest' })
+    },
+    [fontListRef]
+  )
+  const handleFontNavigationKey = useCallback(
+    event => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+      event.preventDefault()
+      const direction = event.key === 'ArrowDown' ? 1 : -1
+      focusAdjacentFontItem(direction)
+    },
+    [focusAdjacentFontItem]
+  )
 
   // Check if search matches category for highlighting
   const isCategoryMatch = useCallback(
@@ -165,6 +203,7 @@ const FontSelector = ({
         placeholder='Search Google Fonts...'
         value={searchQuery}
         onChange={e => onSearchChange(e.target.value)}
+        onKeyDown={handleFontNavigationKey}
       />
 
       {recentFontsToShow.length > 0 && !searchQuery && (
@@ -231,7 +270,11 @@ const FontSelector = ({
           <List size={12} />
           <span className={styles.allFontsLabel}>All Fonts</span>
         </div>
-        <div ref={fontListRef} className={styles.fontList}>
+        <div
+          ref={fontListRef}
+          className={styles.fontList}
+          onKeyDown={handleFontNavigationKey}
+        >
           {FONT_CATEGORIES.map(category => {
             const categoryFonts = fontsByCategory[category]
             if (categoryFonts.length === 0) return null

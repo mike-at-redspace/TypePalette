@@ -61,7 +61,7 @@
 }
 
 .fontList {
-  @apply h-52 overflow-y-auto border rounded-lg border-white/10 bg-black/20 pr-1;
+  @apply h-52 overflow-y-auto border rounded-lg border-white/10 bg-black/20 pl-1 pr-1 pt-1 pb-1;
 }
 
 .fontItem {
