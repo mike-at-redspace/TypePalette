@@ -23,6 +23,14 @@
   @apply mb-6;
 }
 
+.baseSizeSection {
+  @apply mb-6;
+}
+
+.baseSizeDisclaimer {
+  @apply text-[10px] text-slate-500 italic mt-1 leading-tight;
+}
+
 .label {
   @apply block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2;
 }

@@ -50,6 +50,7 @@ function App() {
     const bodyConfig = getRoleConfig('body')
     const uiConfig = getRoleConfig('ui')
 
+    const baseFontSize = config.baseSize || '1'
     const styles = {
       '--font-heading': `"${headingConfig.family}", ${headingConfig.category === 'Serif' ? 'serif' : 'sans-serif'}`,
       '--font-body': `"${bodyConfig.family}", ${bodyConfig.category === 'Serif' ? 'serif' : 'sans-serif'}`,
@@ -65,8 +66,10 @@ function App() {
       '--ui-weight': uiConfig.weight,
       '--ui-tracking': `${uiConfig.tracking}em`,
       '--ui-leading': uiConfig.leading,
-      '--ui-transform': uiConfig.transform
+      '--ui-transform': uiConfig.transform,
+      fontSize: `${baseFontSize}rem`
     }
+    styles['--base-font-size'] = `${baseFontSize}rem`
 
     // Add element-specific CSS variables
     Object.keys(config.headings || {}).forEach(element => {
@@ -124,6 +127,7 @@ function App() {
           onSearchChange={setSearchQuery}
           onUpdate={updateConfig}
           onApplyPreset={handleApplyPreset}
+          baseSize={config.baseSize}
         />
         <MainContent
           previewMode={previewMode}

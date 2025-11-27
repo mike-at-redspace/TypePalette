@@ -225,6 +225,7 @@ export const GOOGLE_FONTS = [
 ]
 
 export const INITIAL_CONFIG = {
+  baseSize: '1',
   headings: {
     all: {
       family: 'Playfair Display',
@@ -549,7 +550,13 @@ const buildUIRole = (base, variants = {}) => ({
   input: { ...base, transform: 'none', ...(variants.input || {}) }
 })
 
-const createPresetConfig = ({ heading, body, ui = {}, mono = {} }) => {
+const createPresetConfig = ({
+  heading,
+  body,
+  ui = {},
+  mono = {},
+  baseSize = '1'
+}) => {
   const headingDefaults = {
     category: 'Sans Serif',
     weight: '700',
@@ -632,6 +639,7 @@ const createPresetConfig = ({ heading, body, ui = {}, mono = {} }) => {
   )
 
   return {
+    baseSize: String(baseSize ?? '1'),
     headings: buildHeadingRole(
       headingBase,
       heading.variants,

@@ -2,6 +2,55 @@
   --font-heading: var(--font-heading, 'Playfair Display', serif);
   --font-body: var(--font-body, 'Inter', sans-serif);
   --font-ui: var(--font-ui, 'Inter', sans-serif);
+  font-size: var(--base-font-size, 1rem);
+}
+
+.preview-canvas .text-xs {
+  font-size: calc(var(--base-font-size, 1rem) * 0.75);
+}
+
+.preview-canvas .text-sm {
+  font-size: calc(var(--base-font-size, 1rem) * 0.875);
+}
+
+.preview-canvas .text-base {
+  font-size: calc(var(--base-font-size, 1rem) * 1);
+}
+
+.preview-canvas .text-lg {
+  font-size: calc(var(--base-font-size, 1rem) * 1.125);
+}
+
+.preview-canvas .text-xl {
+  font-size: calc(var(--base-font-size, 1rem) * 1.25);
+}
+
+.preview-canvas .text-2xl {
+  font-size: calc(var(--base-font-size, 1rem) * 1.5);
+}
+
+.preview-canvas .text-3xl {
+  font-size: calc(var(--base-font-size, 1rem) * 1.875);
+}
+
+.preview-canvas .text-4xl {
+  font-size: calc(var(--base-font-size, 1rem) * 2.25);
+}
+
+.preview-canvas .text-5xl {
+  font-size: calc(var(--base-font-size, 1rem) * 3);
+}
+
+.preview-canvas .text-6xl {
+  font-size: calc(var(--base-font-size, 1rem) * 3.75);
+}
+
+.preview-canvas .text-7xl {
+  font-size: calc(var(--base-font-size, 1rem) * 4.5);
+}
+
+.preview-canvas .text-8xl {
+  font-size: calc(var(--base-font-size, 1rem) * 6);
 }
 
 .font-heading {

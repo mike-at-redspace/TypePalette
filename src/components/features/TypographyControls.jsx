@@ -145,13 +145,15 @@ const TypographyControls = ({
   config,
   activeRole,
   activeElement,
-  onUpdate
+  onUpdate,
+  baseSize
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const currentConfig =
     config[activeRole]?.[activeElement] || config[activeRole]?.all || {}
 
   const fontFamily = currentConfig.family || 'Inter'
+  const baseSizeValue = parseFloat(baseSize || '1')
 
   return (
     <div className={styles.container}>
@@ -190,6 +192,21 @@ const TypographyControls = ({
               />
             </div>
 
+            <div className={styles.baseSizeSection}>
+              <ControlSlider
+                label='Base Size'
+                value={baseSizeValue}
+                min={0.75}
+                max={1.5}
+                step={0.05}
+                unit='rem'
+                onChange={val => onUpdate('baseSize', val.toString())}
+              />
+              <p className={styles.baseSizeDisclaimer}>
+                Sets the document <code>rem</code> size for previews and exports.
+              </p>
+            </div>
+
             <ControlSlider
               label='Tracking'
               value={parseFloat(currentConfig.tracking || 0)}
@@ -207,28 +224,6 @@ const TypographyControls = ({
               max={2.5}
               step={0.05}
               onChange={val => onUpdate('leading', val.toString())}
-            />
-
-            <ControlSlider
-              label='Size'
-              value={parseFloat(
-                currentConfig.fontSize || (activeRole === 'headings' ? '3' : '1.333')
-              )}
-              min={activeRole === 'headings' ? 0.75 : 0.875}
-              max={activeRole === 'headings' ? 4 : 1.5}
-              step={0.125}
-              unit='rem'
-              onChange={val => onUpdate('fontSize', val.toString())}
-            />
-
-            <ControlSlider
-              label='Word Spacing'
-              value={parseFloat(currentConfig.wordSpacing || 0)}
-              min={-0.1}
-              max={0.3}
-              step={0.01}
-              unit='em'
-              onChange={val => onUpdate('wordSpacing', val.toString())}
             />
 
             <ControlSlider

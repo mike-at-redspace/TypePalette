@@ -54,7 +54,8 @@ const Sidebar = ({
   searchQuery,
   onSearchChange,
   onUpdate,
-  onApplyPreset
+  onApplyPreset,
+  baseSize
 }) => {
   const elementOptions = getElementOptions(activeRole)
   const currentConfig =
@@ -139,6 +140,7 @@ const Sidebar = ({
                   activeRole={activeRole}
                   activeElement={activeElement}
                   onUpdate={onUpdate}
+                  baseSize={baseSize}
                 />
               </div>
             </div>

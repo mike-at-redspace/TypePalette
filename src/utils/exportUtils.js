@@ -82,6 +82,7 @@ export const generateCSSExport = config => {
     leading: uiConfig.leading || '1.4',
     transform: uiConfig.transform || 'uppercase'
   }
+  const baseFontSize = config.baseSize || '1'
 
   // Collect all unique fonts with their weights and categories for Google Fonts URL
   const fontMap = new Map()
@@ -171,9 +172,10 @@ export const generateCSSExport = config => {
 
 /* Uncomment the line below to import Google Fonts via @import */
 /* @import url('https://fonts.googleapis.com/css2?${googleFontsUrl}&display=swap'); */
-
 :root {
   /* Typography System - Base Variables */
+  --base-font-size: ${baseFontSize}rem;
+  font-size: var(--base-font-size);
   /* Heading Typography */
   --font-heading: ${getFontFamily(defaultHeading.family, defaultHeading.category)};
   --heading-weight: ${defaultHeading.weight};
@@ -292,6 +294,7 @@ export const generateTailwindExport = config => {
   const headingConfig = getRoleConfig('headings')
   const bodyConfig = getRoleConfig('body')
   const uiConfig = getRoleConfig('ui')
+  const baseFontSize = config.baseSize || '1'
 
   return `/**
  * Tailwind v4 Theme Configuration - Basic
@@ -313,6 +316,11 @@ export const generateTailwindExport = config => {
   --font-display: ${getFontFamily(headingConfig.family, headingConfig.category)};
   --font-sans: ${getFontFamily(bodyConfig.family, bodyConfig.category)};
   --font-ui: ${getFontFamily(uiConfig.family, uiConfig.category)};
+  --base-font-size: ${baseFontSize}rem;
+}
+
+:root {
+  font-size: var(--base-font-size);
 }
 `.trim()
 }
@@ -353,6 +361,7 @@ export const generateComprehensiveTailwindConfig = config => {
   )
   const bodyFamily = getFontFamily(bodyConfig.family, bodyConfig.category)
   const uiFamily = getFontFamily(uiConfig.family, uiConfig.category)
+  const baseFontSize = config.baseSize || '1'
 
   let tailwindConfig = `/**
  * Tailwind v4 Comprehensive Theme Configuration
@@ -383,6 +392,7 @@ export const generateComprehensiveTailwindConfig = config => {
   --font-heading: ${headingFamily};
   --font-body: ${bodyFamily};
   --font-ui: ${uiFamily};
+  --base-font-size: ${baseFontSize}rem;
   
   /* Extended Font Family Definitions */
   --font-family-heading: ${headingFamily};
@@ -403,6 +413,11 @@ export const generateComprehensiveTailwindConfig = config => {
   --line-height-heading: ${headingConfig.leading};
   --line-height-body: ${bodyConfig.leading};
   --line-height-ui: ${uiConfig.leading};`
+
+  tailwindConfig += `
+:root {
+  font-size: var(--base-font-size);
+}`
 
   // Add element-specific theme variables for headings
   Object.keys(config.headings || {}).forEach(element => {
