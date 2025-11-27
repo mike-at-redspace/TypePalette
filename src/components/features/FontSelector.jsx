@@ -136,7 +136,9 @@ const FontSelector = ({
       if (typeof document === 'undefined') return
       const container = fontListRef.current
       if (!container) return
-      const fontItems = Array.from(container.querySelectorAll(FONT_ITEM_SELECTOR))
+      const fontItems = Array.from(
+        container.querySelectorAll(FONT_ITEM_SELECTOR)
+      )
       if (fontItems.length === 0) return
       const activeIndex = fontItems.findIndex(
         item => item === document.activeElement

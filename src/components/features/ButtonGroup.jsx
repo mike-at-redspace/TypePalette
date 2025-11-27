@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion'
 import styles from './ButtonGroup.module.css'
 
-const ButtonGroup = ({ label, value, onChange, options, layoutId, buttonStyle }) => {
+const ButtonGroup = ({
+  label,
+  value,
+  onChange,
+  options,
+  layoutId,
+  buttonStyle
+}) => {
   return (
     <div>
       <label className={styles.label}>{label}</label>
@@ -29,4 +36,3 @@ const ButtonGroup = ({ label, value, onChange, options, layoutId, buttonStyle })
 }
 
 export default ButtonGroup
-

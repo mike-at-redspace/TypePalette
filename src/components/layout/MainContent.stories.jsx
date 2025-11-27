@@ -63,3 +63,14 @@ export const MarketingMode = {
     }
   }
 }
+
+export const TailwindMode = {
+  args: {
+    previewMode: 'tailwind',
+    onModeChange: () => {},
+    previewStyles: {
+      '--font-heading': 'Inter',
+      '--font-body': 'Inter'
+    }
+  }
+}

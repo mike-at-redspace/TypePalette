@@ -3,7 +3,8 @@ import { PreviewToolbar } from '@/components/features'
 import {
   BlogPostPreview,
   DashboardPreview,
-  MarketingPreview
+  MarketingPreview,
+  TailwindPreview
 } from '@/components/previews'
 import styles from './MainContent.module.css'
 
@@ -48,6 +49,8 @@ const MainContent = ({ previewMode, onModeChange, previewStyles }) => {
         return <DashboardPreview />
       case 'marketing':
         return <MarketingPreview />
+      case 'tailwind':
+        return <TailwindPreview />
       default:
         return null
     }

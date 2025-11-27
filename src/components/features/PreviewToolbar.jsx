@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
-import { BookOpen, LayoutDashboard, Monitor } from 'lucide-react'
+import { BookOpen, LayoutDashboard, Monitor, Sparkles } from 'lucide-react'
 import styles from './PreviewToolbar.module.css'
 
 const PreviewToolbar = ({ activeMode, onModeChange }) => {
   const modes = [
     { id: 'blog', icon: BookOpen, label: 'Read' },
     { id: 'dashboard', icon: LayoutDashboard, label: 'App' },
-    { id: 'marketing', icon: Monitor, label: 'Hero' }
+    { id: 'marketing', icon: Monitor, label: 'Hero' },
+    { id: 'tailwind', icon: Sparkles, label: 'Tailwind' }
   ]
 
   return (

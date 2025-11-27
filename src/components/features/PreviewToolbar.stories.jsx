@@ -36,3 +36,10 @@ export const MarketingMode = {
     onModeChange: () => {}
   }
 }
+
+export const TailwindMode = {
+  args: {
+    activeMode: 'tailwind',
+    onModeChange: () => {}
+  }
+}

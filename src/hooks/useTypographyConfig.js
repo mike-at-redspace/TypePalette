@@ -8,9 +8,7 @@ const useTypographyConfig = () => {
 
   const updateConfig = (field, value) => {
     const resolvedUpdates =
-      typeof field === 'object' && field !== null
-        ? field
-        : { [field]: value }
+      typeof field === 'object' && field !== null ? field : { [field]: value }
 
     const updates = { ...resolvedUpdates }
     const baseSizeUpdate = updates.baseSize

@@ -6,7 +6,9 @@ const PresetSelector = ({ onApplyPreset }) => {
   return (
     <div className={styles.container}>
       <p className={styles.instruction}>
-        Start by selecting a preset, then switch to <strong className='text-white/80'>CUSTOM</strong> to fine-tune fonts for each HTML element.
+        Start by selecting a preset, then switch to{' '}
+        <strong className='text-white/80'>CUSTOM</strong> to fine-tune fonts for
+        each HTML element.
       </p>
       <h3 className={styles.title}>
         <span>
