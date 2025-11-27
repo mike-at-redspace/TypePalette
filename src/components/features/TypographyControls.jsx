@@ -203,7 +203,7 @@ const TypographyControls = ({
                 onChange={val => onUpdate('baseSize', val.toString())}
               />
               <p className={styles.baseSizeDisclaimer}>
-                Sets the document <code>rem</code> size for previews and exports.
+                Sets the document <code>rem</code> for all elements
               </p>
             </div>
 
