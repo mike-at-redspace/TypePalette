@@ -3,7 +3,46 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronUp, Sliders } from 'lucide-react'
 import { ControlSlider } from '@/components/ui'
 import CasingControl from './CasingControl'
+import ButtonGroup from './ButtonGroup'
 import styles from './TypographyControls.module.css'
+
+const FontStyleControl = ({ value, onChange }) => {
+  const options = [
+    { value: 'normal', label: 'Normal' },
+    { value: 'italic', label: 'Italic' },
+    { value: 'oblique', label: 'Oblique' }
+  ]
+
+  return (
+    <ButtonGroup
+      label='Style'
+      value={value}
+      onChange={onChange}
+      options={options}
+      layoutId='activeFontStyle'
+      buttonStyle='fontStyle'
+    />
+  )
+}
+
+const TextDecorationControl = ({ value, onChange }) => {
+  const options = [
+    { value: 'none', label: 'None' },
+    { value: 'underline', label: 'Underline' },
+    { value: 'line-through', label: 'Line-through' }
+  ]
+
+  return (
+    <ButtonGroup
+      label='Decoration'
+      value={value}
+      onChange={onChange}
+      options={options}
+      layoutId='activeTextDecoration'
+      buttonStyle='textDecoration'
+    />
+  )
+}
 
 const WEIGHT_OPTIONS = [
   { value: '300', label: 'Light (300)' },
@@ -170,9 +209,51 @@ const TypographyControls = ({
               onChange={val => onUpdate('leading', val.toString())}
             />
 
+            <ControlSlider
+              label='Size'
+              value={parseFloat(
+                currentConfig.fontSize || (activeRole === 'headings' ? '3' : '1.333')
+              )}
+              min={activeRole === 'headings' ? 0.75 : 0.875}
+              max={activeRole === 'headings' ? 4 : 1.5}
+              step={0.125}
+              unit='rem'
+              onChange={val => onUpdate('fontSize', val.toString())}
+            />
+
+            <ControlSlider
+              label='Word Spacing'
+              value={parseFloat(currentConfig.wordSpacing || 0)}
+              min={-0.1}
+              max={0.3}
+              step={0.01}
+              unit='em'
+              onChange={val => onUpdate('wordSpacing', val.toString())}
+            />
+
+            <ControlSlider
+              label='Word Spacing'
+              value={parseFloat(currentConfig.wordSpacing || 0)}
+              min={-0.1}
+              max={0.3}
+              step={0.01}
+              unit='em'
+              onChange={val => onUpdate('wordSpacing', val.toString())}
+            />
+
             <CasingControl
               value={currentConfig.transform || 'none'}
               onChange={value => onUpdate('transform', value)}
+            />
+
+            <FontStyleControl
+              value={currentConfig.fontStyle || 'normal'}
+              onChange={value => onUpdate('fontStyle', value)}
+            />
+
+            <TextDecorationControl
+              value={currentConfig.textDecoration || 'none'}
+              onChange={value => onUpdate('textDecoration', value)}
             />
           </motion.div>
         )}

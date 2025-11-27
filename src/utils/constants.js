@@ -232,7 +232,11 @@ export const INITIAL_CONFIG = {
       weight: '700',
       tracking: '-0.02',
       leading: '1.1',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '3',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     h1: {
       family: 'Playfair Display',
@@ -240,7 +244,11 @@ export const INITIAL_CONFIG = {
       weight: '700',
       tracking: '-0.02',
       leading: '1.1',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '3',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     h2: {
       family: 'Playfair Display',
@@ -248,7 +256,11 @@ export const INITIAL_CONFIG = {
       weight: '700',
       tracking: '-0.02',
       leading: '1.1',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '2.5',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     h3: {
       family: 'Playfair Display',
@@ -256,7 +268,11 @@ export const INITIAL_CONFIG = {
       weight: '700',
       tracking: '-0.02',
       leading: '1.1',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '2',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     h4: {
       family: 'Playfair Display',
@@ -264,7 +280,11 @@ export const INITIAL_CONFIG = {
       weight: '700',
       tracking: '-0.02',
       leading: '1.1',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.667',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     h5: {
       family: 'Playfair Display',
@@ -272,7 +292,11 @@ export const INITIAL_CONFIG = {
       weight: '700',
       tracking: '-0.02',
       leading: '1.1',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.5',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     h6: {
       family: 'Playfair Display',
@@ -280,7 +304,11 @@ export const INITIAL_CONFIG = {
       weight: '700',
       tracking: '-0.02',
       leading: '1.1',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.333',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     }
   },
   body: {
@@ -290,7 +318,11 @@ export const INITIAL_CONFIG = {
       weight: '400',
       tracking: '0',
       leading: '1.6',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.333',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     paragraph: {
       family: 'Inter',
@@ -298,7 +330,11 @@ export const INITIAL_CONFIG = {
       weight: '400',
       tracking: '0',
       leading: '1.6',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.333',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     strong: {
       family: 'Inter',
@@ -306,7 +342,11 @@ export const INITIAL_CONFIG = {
       weight: '600',
       tracking: '0',
       leading: '1.6',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.333',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     emphasis: {
       family: 'Inter',
@@ -314,7 +354,11 @@ export const INITIAL_CONFIG = {
       weight: '400',
       tracking: '0',
       leading: '1.6',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.333',
+      fontStyle: 'italic',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     blockquote: {
       family: 'Inter',
@@ -322,7 +366,11 @@ export const INITIAL_CONFIG = {
       weight: '400',
       tracking: '0',
       leading: '1.6',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.333',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     code: {
       family: 'Roboto Mono',
@@ -330,7 +378,11 @@ export const INITIAL_CONFIG = {
       weight: '400',
       tracking: '0',
       leading: '1.6',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.333',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     link: {
       family: 'Inter',
@@ -338,7 +390,11 @@ export const INITIAL_CONFIG = {
       weight: '400',
       tracking: '0',
       leading: '1.6',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1.333',
+      fontStyle: 'normal',
+      textDecoration: 'underline',
+      wordSpacing: '0'
     }
   },
   ui: {
@@ -348,7 +404,11 @@ export const INITIAL_CONFIG = {
       weight: '500',
       tracking: '0.02',
       leading: '1.4',
-      transform: 'uppercase'
+      transform: 'uppercase',
+      fontSize: '1',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     button: {
       family: 'Inter',
@@ -356,7 +416,11 @@ export const INITIAL_CONFIG = {
       weight: '500',
       tracking: '0.02',
       leading: '1.4',
-      transform: 'uppercase'
+      transform: 'uppercase',
+      fontSize: '1',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     label: {
       family: 'Inter',
@@ -364,7 +428,11 @@ export const INITIAL_CONFIG = {
       weight: '500',
       tracking: '0.02',
       leading: '1.4',
-      transform: 'uppercase'
+      transform: 'uppercase',
+      fontSize: '1',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     },
     input: {
       family: 'Inter',
@@ -372,105 +440,205 @@ export const INITIAL_CONFIG = {
       weight: '400',
       tracking: '0',
       leading: '1.4',
-      transform: 'none'
+      transform: 'none',
+      fontSize: '1',
+      fontStyle: 'normal',
+      textDecoration: 'none',
+      wordSpacing: '0'
     }
   }
 }
 
-// Helper function to create a full config from headline, body, and mono fonts
-const createPresetConfig = (
-  headlineFont,
-  headlineCategory,
-  headlineWeight,
-  headlineTracking,
-  headlineLeading,
-  bodyFont,
-  bodyCategory,
-  bodyWeight,
-  bodyTracking,
-  bodyLeading,
-  monoFont,
-  monoCategory = 'Monospace'
-) => {
-  const headingConfig = {
-    family: headlineFont,
-    category: headlineCategory,
-    weight: headlineWeight,
-    tracking: headlineTracking,
-    leading: headlineLeading,
-    transform: 'none'
+const DEFAULT_HEADING_SIZES = {
+  h1: '3',
+  h2: '2.5',
+  h3: '2',
+  h4: '1.667',
+  h5: '1.5',
+  h6: '1.333'
+}
+
+const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+
+const normalizeRoleConfig = (source, defaults) => ({
+  family: source.family,
+  category: source.category || defaults.category,
+  weight: source.weight ?? defaults.weight,
+  tracking: source.tracking ?? defaults.tracking,
+  leading: source.leading ?? defaults.leading,
+  transform: source.transform ?? defaults.transform,
+  fontSize: source.fontSize ?? defaults.fontSize,
+  fontStyle: source.fontStyle ?? defaults.fontStyle,
+  textDecoration: source.textDecoration ?? defaults.textDecoration,
+  wordSpacing: source.wordSpacing ?? defaults.wordSpacing
+})
+
+const buildHeadingRole = (base, variants = {}, fontSizes = {}) => {
+  const role = { all: base }
+  HEADING_LEVELS.forEach(level => {
+    role[level] = {
+      ...base,
+      fontSize:
+        fontSizes[level] || DEFAULT_HEADING_SIZES[level] || base.fontSize,
+      ...(variants[level] || {})
+    }
+  })
+  return role
+}
+
+const buildBodyRole = (base, variants = {}, monoBase) => {
+  const defaultStrongWeight = String(
+    Math.min(parseInt(base.weight, 10) + 200 || 600, 900)
+  )
+
+  const paragraph = {
+    ...base,
+    ...(variants.paragraph || {})
   }
 
-  const bodyBaseConfig = {
-    family: bodyFont,
-    category: bodyCategory,
-    weight: bodyWeight,
-    tracking: bodyTracking,
-    leading: bodyLeading,
-    transform: 'none'
+  const strong = {
+    ...base,
+    weight: variants.strong?.weight || defaultStrongWeight,
+    ...(variants.strong || {})
   }
 
-  const monoConfig = {
-    family: monoFont,
-    category: monoCategory,
-    weight: '400',
-    tracking: '0',
-    leading: '1.6',
-    transform: 'none'
+  const emphasis = {
+    ...base,
+    fontStyle: 'italic',
+    ...(variants.emphasis || {})
+  }
+
+  const blockquote = {
+    ...base,
+    ...(variants.blockquote || {})
+  }
+
+  const codeBase = {
+    ...base,
+    ...monoBase,
+    fontStyle: monoBase.fontStyle,
+    textDecoration: 'none'
+  }
+
+  const code = {
+    ...codeBase,
+    ...(variants.code || {})
+  }
+
+  const link = {
+    ...base,
+    textDecoration: 'underline',
+    ...(variants.link || {})
   }
 
   return {
-    headings: {
-      all: headingConfig,
-      h1: { ...headingConfig },
-      h2: { ...headingConfig },
-      h3: { ...headingConfig },
-      h4: { ...headingConfig },
-      h5: { ...headingConfig },
-      h6: { ...headingConfig }
+    all: base,
+    paragraph,
+    strong,
+    emphasis,
+    blockquote,
+    code,
+    link
+  }
+}
+
+const buildUIRole = (base, variants = {}) => ({
+  all: base,
+  button: { ...base, ...(variants.button || {}) },
+  label: { ...base, ...(variants.label || {}) },
+  input: { ...base, transform: 'none', ...(variants.input || {}) }
+})
+
+const createPresetConfig = ({ heading, body, ui = {}, mono = {} }) => {
+  const headingDefaults = {
+    category: 'Sans Serif',
+    weight: '700',
+    tracking: '0',
+    leading: '1.1',
+    transform: 'none',
+    fontSize: '3',
+    fontStyle: 'normal',
+    textDecoration: 'none',
+    wordSpacing: '0'
+  }
+
+  const bodyDefaults = {
+    category: 'Sans Serif',
+    weight: '400',
+    tracking: '0',
+    leading: '1.6',
+    transform: 'none',
+    fontSize: '1.333',
+    fontStyle: 'normal',
+    textDecoration: 'none',
+    wordSpacing: '0'
+  }
+
+  const uiDefaults = {
+    category: 'Sans Serif',
+    weight: '500',
+    tracking: '0.02',
+    leading: '1.4',
+    transform: 'uppercase',
+    fontSize: '1',
+    fontStyle: 'normal',
+    textDecoration: 'none',
+    wordSpacing: '0'
+  }
+
+  const monoDefaults = {
+    category: 'Monospace',
+    weight: '400',
+    tracking: '0',
+    leading: '1.6',
+    transform: 'none',
+    fontSize: '1',
+    fontStyle: 'normal',
+    textDecoration: 'none',
+    wordSpacing: '0'
+  }
+
+  const headingBase = normalizeRoleConfig({ ...heading }, headingDefaults)
+  const bodyBase = normalizeRoleConfig({ ...body }, bodyDefaults)
+  const uiBase = normalizeRoleConfig(
+    {
+      family: ui.family || bodyBase.family,
+      category: ui.category || bodyBase.category,
+      weight: ui.weight ?? uiDefaults.weight,
+      tracking: ui.tracking ?? uiDefaults.tracking,
+      leading: ui.leading ?? uiDefaults.leading,
+      transform: ui.transform ?? uiDefaults.transform,
+      fontSize: ui.fontSize ?? uiDefaults.fontSize,
+      fontStyle: ui.fontStyle ?? uiDefaults.fontStyle,
+      textDecoration: ui.textDecoration ?? uiDefaults.textDecoration,
+      wordSpacing: ui.wordSpacing ?? bodyBase.wordSpacing
     },
-    body: {
-      all: bodyBaseConfig,
-      paragraph: { ...bodyBaseConfig },
-      strong: {
-        ...bodyBaseConfig,
-        weight: String(Math.min(parseInt(bodyWeight) + 200, 900))
-      },
-      emphasis: { ...bodyBaseConfig },
-      blockquote: { ...bodyBaseConfig },
-      code: { ...monoConfig },
-      link: { ...bodyBaseConfig }
+    uiDefaults
+  )
+  const monoBase = normalizeRoleConfig(
+    {
+      family: mono.family || bodyBase.family,
+      category: mono.category || monoDefaults.category,
+      weight: mono.weight ?? monoDefaults.weight,
+      tracking: mono.tracking ?? monoDefaults.tracking,
+      leading: mono.leading ?? monoDefaults.leading,
+      transform: mono.transform ?? monoDefaults.transform,
+      fontSize: mono.fontSize ?? monoDefaults.fontSize,
+      fontStyle: mono.fontStyle ?? monoDefaults.fontStyle,
+      textDecoration: mono.textDecoration ?? monoDefaults.textDecoration,
+      wordSpacing: mono.wordSpacing ?? bodyBase.wordSpacing
     },
-    ui: {
-      all: {
-        ...bodyBaseConfig,
-        weight: '500',
-        tracking: '0.02',
-        leading: '1.4',
-        transform: 'uppercase'
-      },
-      button: {
-        ...bodyBaseConfig,
-        weight: '500',
-        tracking: '0.02',
-        leading: '1.4',
-        transform: 'uppercase'
-      },
-      label: {
-        ...bodyBaseConfig,
-        weight: '500',
-        tracking: '0.02',
-        leading: '1.4',
-        transform: 'uppercase'
-      },
-      input: {
-        ...bodyBaseConfig,
-        weight: '400',
-        tracking: '0',
-        leading: '1.4',
-        transform: 'none'
-      }
-    }
+    monoDefaults
+  )
+
+  return {
+    headings: buildHeadingRole(
+      headingBase,
+      heading.variants,
+      heading.fontSizes
+    ),
+    body: buildBodyRole(bodyBase, body.variants, monoBase),
+    ui: buildUIRole(uiBase, ui.variants)
   }
 }
 
@@ -480,189 +648,645 @@ export const TYPOGRAPHY_PRESETS = [
     name: 'Hyper-SaaS',
     description: 'Clean, high-trust, and optimized for conversion',
     vibe: 'Stripe-esque, Linear-like, professional software',
-    config: createPresetConfig(
-      'Inter Tight',
-      'Sans Serif',
-      '700',
-      '-0.02',
-      '1.1',
-      'Inter',
-      'Sans Serif',
-      '400',
-      '0',
-      '1.6',
-      'JetBrains Mono'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Inter Tight',
+        category: 'Sans Serif',
+        weight: '700',
+        tracking: '-0.015',
+        leading: '1.15',
+        wordSpacing: '0.02',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.6', tracking: '-0.01' }
+        }
+      },
+      body: {
+        family: 'Inter',
+        category: 'Sans Serif',
+        weight: '400',
+        tracking: '0.02',
+        leading: '1.65',
+        wordSpacing: '0.018',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '0.01' },
+          emphasis: { fontStyle: 'italic', tracking: '0.03' },
+          blockquote: {
+            leading: '1.9',
+            tracking: '0.025',
+            wordSpacing: '0.03'
+          },
+          link: { textDecoration: 'underline', tracking: '0.025' },
+          code: { tracking: '0.02' }
+        }
+      },
+      ui: {
+        family: 'Space Grotesk',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.035',
+        leading: '1.35',
+        wordSpacing: '0.02',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { tracking: '0.045', fontSize: '0.95' },
+          input: { transform: 'none', tracking: '0.01' }
+        }
+      },
+      mono: {
+        family: 'JetBrains Mono',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.01',
+        leading: '1.6',
+        wordSpacing: '0.015'
+      }
+    })
   },
   {
     id: 'neo-editorial',
     name: 'Neo-Editorial',
     description: 'High contrast between expressive serifs and crisp details',
     vibe: 'Substack, high-end blogs, fashion portfolios',
-    config: createPresetConfig(
-      'Fraunces',
-      'Serif',
-      '700',
-      '-0.02',
-      '1.1',
-      'Newsreader',
-      'Serif',
-      '400',
-      '0',
-      '1.7',
-      'IBM Plex Mono'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Fraunces',
+        category: 'Serif',
+        weight: '700',
+        tracking: '-0.03',
+        leading: '1.08',
+        wordSpacing: '0.04',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.6', tracking: '-0.02', wordSpacing: '0.045' },
+          h3: { fontSize: '1.55', tracking: '-0.025' }
+        }
+      },
+      body: {
+        family: 'Newsreader',
+        category: 'Serif',
+        weight: '400',
+        tracking: '0.01',
+        leading: '1.75',
+        wordSpacing: '0.035',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '640', tracking: '0.005' },
+          emphasis: { fontStyle: 'italic', tracking: '0.03' },
+          blockquote: { leading: '1.9', wordSpacing: '0.05' },
+          link: { textDecoration: 'underline', tracking: '0.02' }
+        }
+      },
+      ui: {
+        family: 'IBM Plex Sans',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.025',
+        leading: '1.45',
+        wordSpacing: '0.02',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { tracking: '0.035' },
+          label: { tracking: '0.025' },
+          input: { transform: 'none', tracking: '0.015' }
+        }
+      },
+      mono: {
+        family: 'IBM Plex Mono',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.015',
+        leading: '1.6',
+        wordSpacing: '0.02'
+      }
+    })
   },
   {
     id: 'code-brutalist',
     name: 'Code Brutalist',
     description: 'Raw, mechanical, and retro-futuristic',
     vibe: 'Vercel experiments, Web3, developer documentation',
-    config: createPresetConfig(
-      'Space Grotesk',
-      'Sans Serif',
-      '700',
-      '-0.01',
-      '1.1',
-      'Space Mono',
-      'Monospace',
-      '400',
-      '0',
-      '1.6',
-      'Space Mono'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Space Grotesk',
+        category: 'Sans Serif',
+        weight: '700',
+        tracking: '0.02',
+        leading: '1.2',
+        wordSpacing: '0.03',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.5', tracking: '0.03' },
+          h6: { fontSize: '0.95', tracking: '0.015' }
+        }
+      },
+      body: {
+        family: 'Space Mono',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.02',
+        leading: '1.75',
+        wordSpacing: '0.04',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '0.015' },
+          emphasis: { fontStyle: 'italic', tracking: '0.03' },
+          blockquote: { leading: '1.9', wordSpacing: '0.05' },
+          link: { textDecoration: 'underline', tracking: '0.025' }
+        }
+      },
+      ui: {
+        family: 'Inter',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.02',
+        leading: '1.45',
+        wordSpacing: '0.025',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { tracking: '0.035' },
+          input: { transform: 'none', tracking: '0.02' }
+        }
+      },
+      mono: {
+        family: 'Space Mono',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.02',
+        leading: '1.6',
+        wordSpacing: '0.025'
+      }
+    })
   },
   {
     id: 'swiss-international',
     name: 'Swiss International',
     description: 'Objectively neutral, grid-based, and structured',
     vibe: 'Government sites, architectural firms, accessible dashboards',
-    config: createPresetConfig(
-      'Schibsted Grotesk',
-      'Sans Serif',
-      '700',
-      '-0.01',
-      '1.1',
-      'Public Sans',
-      'Sans Serif',
-      '400',
-      '0',
-      '1.6',
-      'Roboto Mono'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Schibsted Grotesk',
+        category: 'Sans Serif',
+        weight: '700',
+        tracking: '-0.015',
+        leading: '1.15',
+        wordSpacing: '0.015',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.4', tracking: '-0.01' }
+        }
+      },
+      body: {
+        family: 'Public Sans',
+        category: 'Sans Serif',
+        weight: '400',
+        tracking: '0.01',
+        leading: '1.65',
+        wordSpacing: '0.02',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '0' },
+          emphasis: { fontStyle: 'italic', tracking: '0.02' },
+          blockquote: { leading: '1.85', wordSpacing: '0.03' },
+          link: { textDecoration: 'underline', tracking: '0.02' }
+        }
+      },
+      ui: {
+        family: 'Inter',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.015',
+        leading: '1.45',
+        wordSpacing: '0.02',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { fontSize: '0.95', tracking: '0.02' },
+          input: { transform: 'none', tracking: '0.01' }
+        }
+      },
+      mono: {
+        family: 'Roboto Mono',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.015',
+        leading: '1.6',
+        wordSpacing: '0.02'
+      }
+    })
   },
   {
     id: 'friendly-fintech',
     name: 'Friendly Fintech',
     description: 'Geometric but warm, removing the intimidation from data',
     vibe: 'Neobanks, budgeting apps, education platforms',
-    config: createPresetConfig(
-      'Plus Jakarta Sans',
-      'Sans Serif',
-      '800',
-      '-0.01',
-      '1.1',
-      'Instrument Sans',
-      'Sans Serif',
-      '400',
-      '0',
-      '1.6',
-      'Fira Code'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Plus Jakarta Sans',
+        category: 'Sans Serif',
+        weight: '800',
+        tracking: '-0.01',
+        leading: '1.2',
+        wordSpacing: '0.015',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.4', tracking: '-0.005' }
+        }
+      },
+      body: {
+        family: 'Instrument Sans',
+        category: 'Sans Serif',
+        weight: '400',
+        tracking: '0.01',
+        leading: '1.7',
+        wordSpacing: '0.025',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '0.015' },
+          emphasis: { fontStyle: 'italic', tracking: '0.025' },
+          blockquote: {
+            leading: '1.85',
+            tracking: '0.02',
+            wordSpacing: '0.03'
+          },
+          link: { textDecoration: 'underline', tracking: '0.02' }
+        }
+      },
+      ui: {
+        family: 'Nunito Sans',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.028',
+        leading: '1.4',
+        wordSpacing: '0.02',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { tracking: '0.04' },
+          input: { transform: 'none', tracking: '0.02' }
+        }
+      },
+      mono: {
+        family: 'Fira Code',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.015',
+        leading: '1.6',
+        wordSpacing: '0.025'
+      }
+    })
   },
   {
     id: 'organic-warmth',
     name: 'Organic Warmth',
     description: 'Soft curves and humanist touches; feels "un-tech"',
     vibe: 'Wellness, cooking, non-profits, ceramics',
-    config: createPresetConfig(
-      'DM Serif Display',
-      'Serif',
-      '700',
-      '-0.02',
-      '1.1',
-      'Mulish',
-      'Sans Serif',
-      '400',
-      '0',
-      '1.6',
-      'Cutive Mono'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'DM Serif Display',
+        category: 'Serif',
+        weight: '700',
+        tracking: '-0.03',
+        leading: '1.1',
+        wordSpacing: '0.045',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.6', wordSpacing: '0.05' }
+        }
+      },
+      body: {
+        family: 'Mulish',
+        category: 'Sans Serif',
+        weight: '400',
+        tracking: '0.015',
+        leading: '1.7',
+        wordSpacing: '0.04',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '0.01' },
+          emphasis: { fontStyle: 'italic', tracking: '0.03' },
+          blockquote: { leading: '1.9', wordSpacing: '0.06' },
+          link: { textDecoration: 'underline', tracking: '0.03' }
+        }
+      },
+      ui: {
+        family: 'Raleway',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.02',
+        leading: '1.45',
+        wordSpacing: '0.03',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { tracking: '0.035' },
+          input: { transform: 'none', tracking: '0.015' }
+        }
+      },
+      mono: {
+        family: 'Cutive Mono',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.015',
+        leading: '1.6',
+        wordSpacing: '0.03'
+      }
+    })
   },
   {
     id: 'disruptor',
     name: 'Disruptor',
     description: 'Maximalist typography that screams for attention',
     vibe: 'Creative agencies, Gen Z marketing, event landing pages',
-    config: createPresetConfig(
-      'Bricolage Grotesque',
-      'Sans Serif',
-      '700',
-      '0',
-      '1.1',
-      'Albert Sans',
-      'Sans Serif',
-      '400',
-      '0',
-      '1.6',
-      'DM Mono'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Bricolage Grotesque',
+        category: 'Sans Serif',
+        weight: '700',
+        tracking: '0.02',
+        leading: '1.15',
+        wordSpacing: '0.035',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.7', tracking: '0.03' }
+        }
+      },
+      body: {
+        family: 'Albert Sans',
+        category: 'Sans Serif',
+        weight: '400',
+        tracking: '0.03',
+        leading: '1.7',
+        wordSpacing: '0.04',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '0.02' },
+          emphasis: { fontStyle: 'italic', tracking: '0.035' },
+          blockquote: {
+            leading: '1.95',
+            wordSpacing: '0.05',
+            tracking: '0.04'
+          },
+          link: { textDecoration: 'underline', tracking: '0.03' }
+        }
+      },
+      ui: {
+        family: 'Kanit',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.03',
+        leading: '1.45',
+        wordSpacing: '0.035',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { tracking: '0.04' },
+          input: { transform: 'none', tracking: '0.025' }
+        }
+      },
+      mono: {
+        family: 'DM Mono',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.02',
+        leading: '1.6',
+        wordSpacing: '0.03'
+      }
+    })
   },
   {
     id: 'luxury-minimal',
     name: 'Luxury Minimal',
     description: 'Sparse, elegant, and airy',
     vibe: 'Real estate, jewelry, high-end furniture',
-    config: createPresetConfig(
-      'Playfair Display',
-      'Serif',
-      '700',
-      '-0.02',
-      '1.1',
-      'Manrope',
-      'Sans Serif',
-      '400',
-      '0',
-      '1.7',
-      'Nanum Gothic Coding'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Playfair Display',
+        category: 'Serif',
+        weight: '700',
+        tracking: '-0.035',
+        leading: '1.1',
+        wordSpacing: '0.05',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.6', tracking: '-0.02' }
+        }
+      },
+      body: {
+        family: 'Manrope',
+        category: 'Sans Serif',
+        weight: '400',
+        tracking: '0',
+        leading: '1.75',
+        wordSpacing: '0.02',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '-0.005' },
+          emphasis: { fontStyle: 'italic', tracking: '0.01' },
+          blockquote: { leading: '1.9', wordSpacing: '0.035' },
+          link: { textDecoration: 'underline', tracking: '0.015' }
+        }
+      },
+      ui: {
+        family: 'Manrope',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.01',
+        leading: '1.45',
+        wordSpacing: '0.02',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { fontSize: '0.95', tracking: '0.02' },
+          input: { transform: 'none', tracking: '0.01' }
+        }
+      },
+      mono: {
+        family: 'Nanum Gothic Coding',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.005',
+        leading: '1.6',
+        wordSpacing: '0.02'
+      }
+    })
   },
   {
     id: 'global-tech',
     name: 'Global Tech',
     description: 'Scalable, multi-language friendly, and authoritative',
     vibe: 'Cloud platforms, global logistics, massive data tables',
-    config: createPresetConfig(
-      'Noto Sans',
-      'Sans Serif',
-      '900',
-      '-0.01',
-      '1.1',
-      'Roboto Flex',
-      'Sans Serif',
-      '400',
-      '0',
-      '1.6',
-      'Inconsolata'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Noto Sans',
+        category: 'Sans Serif',
+        weight: '900',
+        tracking: '-0.01',
+        leading: '1.2',
+        wordSpacing: '0.02',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.4', tracking: '-0.008' }
+        }
+      },
+      body: {
+        family: 'Roboto Flex',
+        category: 'Sans Serif',
+        weight: '400',
+        tracking: '0.01',
+        leading: '1.65',
+        wordSpacing: '0.03',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '0.005' },
+          emphasis: { fontStyle: 'italic', tracking: '0.02' },
+          blockquote: { leading: '1.9', wordSpacing: '0.035' },
+          link: { textDecoration: 'underline', tracking: '0.02' }
+        }
+      },
+      ui: {
+        family: 'Space Grotesk',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.02',
+        leading: '1.45',
+        wordSpacing: '0.025',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { tracking: '0.03' },
+          input: { transform: 'none', tracking: '0.015' }
+        }
+      },
+      mono: {
+        family: 'Inconsolata',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.015',
+        leading: '1.6',
+        wordSpacing: '0.025'
+      }
+    })
   },
   {
     id: 'retro-pop',
     name: 'Retro Pop',
     description: 'Fun, bubbly, yet structured enough for UI',
     vibe: 'SaaS aimed at creators, music apps, retro-gaming',
-    config: createPresetConfig(
-      'Outfit',
-      'Sans Serif',
-      '700',
-      '-0.01',
-      '1.1',
-      'Be Vietnam Pro',
-      'Sans Serif',
-      '400',
-      '0',
-      '1.6',
-      'Ubuntu Mono'
-    )
+    config: createPresetConfig({
+      heading: {
+        family: 'Outfit',
+        category: 'Sans Serif',
+        weight: '700',
+        tracking: '0.015',
+        leading: '1.2',
+        wordSpacing: '0.03',
+        fontSize: '2.25',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          h1: { fontSize: '2.4', tracking: '0.02' }
+        }
+      },
+      body: {
+        family: 'Be Vietnam Pro',
+        category: 'Sans Serif',
+        weight: '400',
+        tracking: '0.02',
+        leading: '1.65',
+        wordSpacing: '0.035',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'none',
+        variants: {
+          strong: { weight: '600', tracking: '0.025' },
+          emphasis: { fontStyle: 'italic', tracking: '0.03' },
+          blockquote: { leading: '1.9', wordSpacing: '0.04' },
+          link: { textDecoration: 'underline', tracking: '0.03' }
+        }
+      },
+      ui: {
+        family: 'Be Vietnam Pro',
+        category: 'Sans Serif',
+        weight: '500',
+        tracking: '0.03',
+        leading: '1.45',
+        wordSpacing: '0.032',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        transform: 'uppercase',
+        variants: {
+          button: { tracking: '0.04' },
+          input: { transform: 'none', tracking: '0.02' }
+        }
+      },
+      mono: {
+        family: 'Ubuntu Mono',
+        category: 'Monospace',
+        weight: '400',
+        tracking: '0.02',
+        leading: '1.6',
+        wordSpacing: '0.03'
+      }
+    })
   }
 ]

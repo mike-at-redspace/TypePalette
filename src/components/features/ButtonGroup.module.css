@@ -1,0 +1,22 @@
+@import 'tailwindcss' reference;
+
+.label {
+  @apply block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2;
+}
+
+.buttonGrid {
+  @apply grid grid-cols-3 gap-2 mb-2 bg-black/40 p-1 rounded-lg border border-white/10;
+}
+
+.button {
+  @apply relative px-2 py-1.5 text-[10px] rounded font-bold transition-all text-slate-500 hover:text-slate-300 min-h-[28px];
+}
+
+.button.active {
+  @apply text-white;
+}
+
+.activeIndicator {
+  @apply absolute inset-0 bg-white/10 rounded shadow-xs border border-white/10 -z-10 pointer-events-none;
+}
+

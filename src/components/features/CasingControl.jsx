@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion'
-import styles from './CasingControl.module.css'
+import ButtonGroup from './ButtonGroup'
 
 const CasingControl = ({ value, onChange }) => {
   const options = [
@@ -9,27 +8,13 @@ const CasingControl = ({ value, onChange }) => {
   ]
 
   return (
-    <div>
-      <label className={styles.label}>Casing</label>
-      <div className={styles.casingGrid}>
-        {options.map(option => (
-          <button
-            key={option.value}
-            onClick={() => onChange(option.value)}
-            className={`${styles.casingButton} ${value === option.value ? styles.active : ''}`}
-          >
-            {option.label}
-            {value === option.value && (
-              <motion.div
-                layoutId='activeCasing'
-                className={styles.activeIndicator}
-                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              />
-            )}
-          </button>
-        ))}
-      </div>
-    </div>
+    <ButtonGroup
+      label='Casing'
+      value={value}
+      onChange={onChange}
+      options={options}
+      layoutId='activeCasing'
+    />
   )
 }
 
